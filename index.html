@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- ===== 基本メタ情報 ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>しんたや / shintaya — AIで紡ぐ、甘くてかわいい音楽世界</title>
+  <meta name="description" content="Kawaii Future BassをAIツール（Suno・FL Studio）で制作するクリエイター・しんたやのポータル。スイーツがテーマのオリジナル楽曲を世界へ。">
+
+  <!-- ===== OGP（SNSシェア時の表示用） ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="しんたや / shintaya — AIで紡ぐ、甘くてかわいい音楽世界">
+  <meta property="og:description" content="Kawaii Future BassをAIツールで制作するクリエイター・しんたやのリンク集。スイーツテーマのオリジナル楽曲を世界へ🍰">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+
+  <!-- ===== 絵文字ファビコン（外部画像を使わずSVGで生成） ===== -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍰</text></svg>">
+
+  <!-- ===== Webフォント（丸ゴシック系・丸みサンセリフ） ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== カラーパレット・全体設定 =====
+       メイン：パステルピンク／サブ1：ミントグリーン／サブ2：イエロー */
+    :root {
+      --pink:       #ffd1e3;  /* パステルピンク（背景・アクセント） */
+      --pink-deep:  #ff8cba;  /* 濃いめピンク（強調） */
+      --mint:       #b8f2e6;  /* ミントグリーン（ボタン・装飾） */
+      --mint-deep:  #6fd6c2;
+      --yellow:     #fff3b0;  /* イエロー（ハイライト） */
+      --ink:        #5b4a55;  /* 文字色（やわらかい墨色） */
+      --ink-soft:   #8a7a84;  /* 補助テキスト */
+      --white:      #fffdfa;
+      --radius:     999px;    /* ボタンの角丸 */
+      --shadow:     0 8px 20px rgba(255, 140, 186, 0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ===== 背景：3色のやわらかグラデーション ===== */
+    body {
+      font-family: 'M PLUS Rounded 1c', 'Quicksand', sans-serif;
+      color: var(--ink);
+      line-height: 1.8;
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--pink) 0%, var(--yellow) 50%, var(--mint) 100%);
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      padding: 32px 18px 48px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== メインカード（中央寄せ・モバイルファースト幅） ===== */
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--white);
+      border-radius: 32px;
+      padding: 40px 26px 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* カード上部の飾りグラデーション帯 */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--pink-deep), var(--yellow), var(--mint-deep));
+    }
+
+    /* ===== ヒーロー：アバター絵文字 ===== */
+    .avatar {
+      font-size: 64px;
+      line-height: 1;
+      display: inline-block;
+      animation: floaty 3.5s ease-in-out infinite;
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    /* ===== 名前・キャッチコピー ===== */
+    .name {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+    .name .en {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--pink-deep);
+    }
+    .catch {
+      margin-top: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .catch .en {
+      display: block;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--mint-deep);
+      margin-top: 2px;
+    }
+
+    /* ===== 自己紹介文 ===== */
+    .bio {
+      margin-top: 22px;
+      font-size: 0.92rem;
+      text-align: left;
+      color: var(--ink);
+    }
+    .bio p { margin-bottom: 12px; }
+    .bio .en {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+    .bio .en p { margin-bottom: 10px; }
+
+    /* 日本語と英語ブロックを区切る点線 */
+    .bio-divider {
+      border: none;
+      border-top: 2px dotted var(--pink);
+      margin: 16px 0;
+    }
+
+    /* ===== リンクボタン群 ===== */
+    .links {
+      margin-top: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 56px;           /* タップしやすい大きさ */
+      padding: 12px 20px;
+      border-radius: var(--radius); /* 角丸 */
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--mint);
+      box-shadow: 0 4px 0 var(--mint-deep);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+    /* ホバーで少し浮き上がる */
+    .link-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--mint-deep);
+      background: var(--yellow);
+    }
+    .link-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 var(--mint-deep);
+    }
+    .link-btn:focus-visible {
+      outline: 3px solid var(--pink-deep);
+      outline-offset: 3px;
+    }
+    .link-btn .ico { font-size: 1.25rem; }
+
+    /* SleepFadeだけ「Beta」感を出すピンク系アクセント */
+    .link-btn.beta {
+      background: var(--pink);
+      box-shadow: 0 4px 0 var(--pink-deep);
+    }
+    .link-btn.beta:hover {
+      background: var(--yellow);
+      box-shadow: 0 6px 0 var(--pink-deep);
+    }
+    .link-btn.beta:active {
+      box-shadow: 0 2px 0 var(--pink-deep);
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      margin-top: 30px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    /* ===== レスポンシブ：少し広い画面での微調整 ===== */
+    @media (min-width: 480px) {
+      .name  { font-size: 1.9rem; }
+      .avatar { font-size: 72px; }
+    }
+
+    /* ===== アニメーションを抑制したいユーザーへの配慮 ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .avatar { animation: none; }
+      .link-btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+
+    <!-- ===== 4-1. ヒーローセクション ===== -->
+    <span class="avatar" role="img" aria-label="ショートケーキ">🍰</span>
+    <h1 class="name">しんたや <span class="en">/ shintaya</span></h1>
+    <p class="catch">
+      AIで紡ぐ、甘くてかわいい音楽世界
+      <span class="en" lang="en">🍰 Weaving sweet, kawaii music with AI 🍰</span>
+    </p>
+
+    <!-- 自己紹介文（日本語 → 英語の順に併記） -->
+    <section class="bio">
+      <p>Kawaii Future Bassを中心に、AIツール（Suno・FL Studio）で音楽を制作しているクリエイターです。</p>
+      <p>スイーツをテーマにしたオリジナル楽曲（Sugar, Cookie, Lemon Tart...）で、ふんわり甘く、ちょっと切ない世界観を発信中。</p>
+      <p>海外リスナーにも届くよう英語タイトルを併記し、現在は世界各国の方に聴いていただいています🌍</p>
+      <p>音楽以外にも、睡眠用Androidアプリ「SleepFade」のテスター運営など、AIを道具として使いこなす活動を続けています。</p>
+
+      <hr class="bio-divider">
+
+      <div class="en" lang="en">
+        <p>A creator making Kawaii Future Bass with AI tools (Suno, FL Studio). I craft sweet, dessert-themed original songs (Sugar, Cookie, Lemon Tart...) with a soft, slightly bittersweet vibe.</p>
+        <p>With bilingual titles, my music reaches listeners around the world. Beyond music, I'm running closed tests for my sleep timer app "SleepFade" — exploring what's possible when AI becomes a creative tool.</p>
+      </div>
+    </section>
+
+    <!-- ===== 4-2. リンクボタン（上から表示順通り） ===== -->
+    <nav class="links" aria-label="SNS・活動リンク">
+      <a class="link-btn" href="https://www.youtube.com/@shintaya990654" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true">🎵</span>YouTube
+      </a>
+      <a class="link-btn beta" href="https://play.google.com/apps/testing/com.sleepfade.app" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true">🌙</span>SleepFade（Beta）
+      </a>
+      <a class="link-btn" href="https://x.com/shintaya990654" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true">✨</span>X（Twitter）
+      </a>
+      <a class="link-btn" href="https://note.com/shintaya_goshow" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true">📝</span>note
+      </a>
+      <a class="link-btn" href="https://ofuse.me/ca13973b" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true">💝</span>OFUSE
+      </a>
+    </nav>
+
+    <!-- ===== 4-3. フッター ===== -->
+    <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
+
+  </main>
+</body>
+</html>
