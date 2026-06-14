@@ -76,12 +76,14 @@
       background: linear-gradient(90deg, var(--pink-deep), var(--yellow), var(--mint-deep));
     }
 
-    /* ===== ヒーロー：アバター絵文字 ===== */
-    .avatar {
-      font-size: 64px;
-      line-height: 1;
-      display: inline-block;
-      animation: floaty 3.5s ease-in-out infinite;
+    /* ===== ヒーロー：ウェルカムイラスト（しろ＆くろ） ===== */
+    .hero-illust {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      margin: 4px auto 2px;
+      animation: floaty 4s ease-in-out infinite;
     }
     @keyframes floaty {
       0%, 100% { transform: translateY(0); }
@@ -250,12 +252,12 @@
     /* ===== レスポンシブ：少し広い画面での微調整 ===== */
     @media (min-width: 480px) {
       .name  { font-size: 1.9rem; }
-      .avatar { font-size: 72px; }
+      .hero-illust { max-width: 380px; }
     }
 
     /* ===== アニメーションを抑制したいユーザーへの配慮 ===== */
     @media (prefers-reduced-motion: reduce) {
-      .avatar { animation: none; }
+      .hero-illust { animation: none; }
       .link-btn { transition: none; }
     }
   </style>
@@ -264,8 +266,9 @@
   <main class="card">
 
     <!-- ===== 4-1. ヒーローセクション ===== -->
-    <span class="avatar" role="img" aria-label="ショートケーキ">🍰</span>
-    <h1 class="name">しんたや <span class="en">/ shintaya</span></h1>
+    <img class="hero-illust" src="images/shiro_kuro.png" width="800" height="533"
+         alt="しろちゃんとくろちゃんが手を振って出迎えるイラスト" decoding="async">
+    <h1 class="name">🍰 しんたや <span class="en">/ shintaya</span></h1>
     <p class="catch">
       AIで紡ぐ、甘くてかわいい音楽世界
       <span class="en" lang="en">🍰 Weaving sweet, kawaii music with AI 🍰</span>
