@@ -116,6 +116,43 @@
       margin-top: 2px;
     }
 
+    /* ===== URL共有（コピー）ボタン ===== */
+    .share-wrap {
+      margin-top: 16px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--pink-deep);
+      background: var(--white);
+      border: 2px solid var(--pink);
+      border-radius: 999px;
+      padding: 9px 22px;
+      cursor: pointer;
+      box-shadow: 0 3px 0 var(--pink);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 var(--pink);
+      background: #fff5fa;
+    }
+    .share-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 var(--pink);
+    }
+    /* コピー成功時はミント色でフィードバック */
+    .share-btn.copied {
+      background: var(--mint);
+      border-color: var(--mint-deep);
+      color: var(--mint-deep);
+      box-shadow: 0 3px 0 var(--mint-deep);
+    }
+
     /* ===== 自己紹介文 ===== */
     .bio {
       margin-top: 22px;
@@ -413,6 +450,13 @@
       <span class="en" lang="en">🍰 Weaving sweet, kawaii music with AI 🍰</span>
     </p>
 
+    <!-- ===== URLをコピーして共有するボタン ===== -->
+    <div class="share-wrap">
+      <button type="button" class="share-btn" id="shareBtn" aria-label="このページのURLをコピー">
+        <span aria-hidden="true">🔗</span><span id="shareLabel">URLをコピーして共有</span>
+      </button>
+    </div>
+
     <!-- 自己紹介文（日本語 → 英語の順に併記） -->
     <section class="bio">
       <p>Kawaii Future Bassを中心に、AIツール（Suno・FL Studio）で音楽を制作しているクリエイターです。</p>
@@ -538,5 +582,48 @@
     <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
 
   </main>
+
+  <!-- ===== URLコピー（共有）処理 ===== -->
+  <script>
+    (function () {
+      var SHARE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
+      var btn = document.getElementById('shareBtn');
+      var label = document.getElementById('shareLabel');
+      var resetTimer;
+
+      btn.addEventListener('click', function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(SHARE_URL).then(showCopied, fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      // 古い環境向けフォールバック
+      function fallbackCopy() {
+        var t = document.createElement('textarea');
+        t.value = SHARE_URL;
+        t.setAttribute('readonly', '');
+        t.style.position = 'absolute';
+        t.style.left = '-9999px';
+        document.body.appendChild(t);
+        t.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(t);
+        showCopied();
+      }
+
+      // コピー成功の見た目フィードバック
+      function showCopied() {
+        label.textContent = '✓ コピーしました！';
+        btn.classList.add('copied');
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          label.textContent = 'URLをコピーして共有';
+          btn.classList.remove('copied');
+        }, 1800);
+      }
+    })();
+  </script>
 </body>
 </html>
