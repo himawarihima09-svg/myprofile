@@ -365,6 +365,8 @@
     /* 制作物カードをクリック可能なリンクに */
     a.work-card {
       cursor: pointer;
+      text-decoration: none;   /* 文字の下線を消す（囲み全体がリンク） */
+      color: var(--ink);
       transition: transform 0.15s ease, border-color 0.2s ease;
     }
     a.work-card:hover {
