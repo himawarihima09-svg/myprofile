@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- ===== 基本メタ情報 ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 輝度＆オーディオ切替アプリ（haru ちゃん付き）｜しんたや 制作物</title>
+  <meta name="description" content="画面輝度と音声デバイスをワンタッチ切替できるWindows用ユーティリティ。自作マスコット haru ちゃんが操作に反応します。しんたやの制作物。">
+
+  <!-- ===== OGP ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="🌸 輝度＆オーディオ切替アプリ（haru ちゃん付き）">
+  <meta property="og:description" content="画面輝度と音声デバイスをワンタッチ切替できるWindows用ユーティリティ。自作マスコット haru ちゃん付き。">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+  <!-- ===== Webフォント ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== ポータル本体と同じカラーパレット ===== */
+    :root {
+      --pink:       #ffd1e3;
+      --pink-deep:  #ff8cba;
+      --mint:       #b8f2e6;
+      --mint-deep:  #6fd6c2;
+      --yellow:     #fff3b0;
+      --ink:        #5b4a55;
+      --ink-soft:   #8a7a84;
+      --white:      #fffdfa;
+      --shadow:     0 8px 20px rgba(255, 140, 186, 0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'M PLUS Rounded 1c', 'Quicksand', sans-serif;
+      color: var(--ink);
+      line-height: 1.8;
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--pink) 0%, var(--yellow) 50%, var(--mint) 100%);
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      padding: 28px 18px 48px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      background: var(--white);
+      border-radius: 28px;
+      padding: 30px 24px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--pink-deep), var(--yellow), var(--mint-deep));
+    }
+
+    /* ===== 戻るリンク ===== */
+    .back {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--mint-deep);
+      text-decoration: none;
+      margin-bottom: 14px;
+    }
+    .back:hover { text-decoration: underline; }
+
+    /* ===== ヘッダー（タイトル＋haru） ===== */
+    .app-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .app-head img {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+    .lead {
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin: 14px 0 6px;
+    }
+
+    /* ===== セクション見出し ===== */
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--pink-deep);
+      margin: 26px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px dotted var(--pink);
+    }
+
+    /* ===== 表 ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--pink);
+      vertical-align: top;
+    }
+    th {
+      white-space: nowrap;
+      color: var(--pink-deep);
+      font-weight: 800;
+    }
+
+    /* ===== タグ ===== */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .tags span {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--mint-deep);
+      background: var(--mint);
+      border-radius: 999px;
+      padding: 3px 12px;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      background: #fff5fa;
+      border: 2px solid var(--pink);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-top: 20px;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+
+    <a class="back" href="index.html">← ポータルに戻る</a>
+
+    <!-- ===== ヘッダー ===== -->
+    <div class="app-head">
+      <img src="images/haru_works.png" width="260" height="260" alt="自作マスコット haru ちゃん" decoding="async">
+      <h1>🌸 輝度＆オーディオ切替アプリ<br>（haru ちゃん付き）</h1>
+    </div>
+
+    <p class="lead">画面の<strong>輝度</strong>と<strong>オーディオ（出力・マイク・音量）</strong>をワンタッチで切り替えられる、Windows 用のかわいいユーティリティ。自作キャラ「haru ちゃん」がマスコットとして操作に反応します。</p>
+
+    <div class="tags">
+      <span>Windows 10 / 11</span>
+      <span>Python 3.13</span>
+      <span>customtkinter</span>
+      <span>自作マスコット</span>
+    </div>
+
+    <!-- ===== できること ===== -->
+    <h2>✨ できること</h2>
+    <table>
+      <tr><th>🖥 輝度</th><td>「明るい／暗い」トグル＋スライダー微調整（プリセット値は変更可・内蔵ディスプレイ対象）</td></tr>
+      <tr><th>🔊 出力</th><td>出力デバイスを A ⇔ B でワンボタン切替／全デバイスから選択</td></tr>
+      <tr><th>🔈 音量</th><td>音量スライダー＋ミュート切替</td></tr>
+      <tr><th>🎤 マイク</th><td>マイクを A ⇔ B 切替／全マイクから選択</td></tr>
+      <tr><th>🎬 シーン</th><td>「作業／動画／音楽制作」など、輝度＋出力＋マイク＋音量を<strong>まとめてワンクリック適用</strong>。現在の状態を保存して呼び出せる</td></tr>
+      <tr><th>🎀 haru</th><td>操作でポーズ変化（明→ダンス／暗→おやすみ／音声→ヘッドホン）、右クリックや操作でおしゃべり</td></tr>
+      <tr><th>🪄 ミニ状態</th><td>デスクトップに常駐。クリックで復帰／ドラッグで移動／全操作ボタン＋デバイス選択ポップアップ付き</td></tr>
+    </table>
+
+    <!-- ===== 使い方 ===== -->
+    <h2>🕹 使い方（ざっくり）</h2>
+    <table>
+      <tr><th>初回</th><td><code>セットアップ.bat</code> をダブルクリック → 必要なライブラリが自動インストール</td></tr>
+      <tr><th>起動</th><td><code>起動.vbs</code> をダブルクリック（コンソール窓なし）。最初は<strong>ミニ状態</strong>で静かに始動</td></tr>
+      <tr><th>開く</th><td>デスクトップの haru ちゃんを<strong>クリック</strong>でウィンドウ表示</td></tr>
+      <tr><th>動かす</th><td>haru ちゃんを<strong>ドラッグ</strong>で移動／<strong>右クリック</strong>でおしゃべり</td></tr>
+      <tr><th>自動起動</th><td>Windows 起動時に自動で「ミニ状態」で立ち上がる（スタートアップ登録済み）</td></tr>
+    </table>
+
+    <!-- ===== haru ちゃん ===== -->
+    <h2>🎀 haru ちゃんについて</h2>
+    <p style="font-size:0.85rem;">操作に合わせてポーズが変わる自作マスコット。読書ポーズでまばたき＆ページめくりのコマアニメも再生できます。デスクトップ常駐時は背景を透過して、ふわっと佇みます。</p>
+
+    <div class="note">
+      ※ 現在は個人用に制作したアプリです。一般配布は未定。公開・配布できるようになったら、このページにダウンロードリンクを追加予定です。
+    </div>
+
+    <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
+
+  </main>
+</body>
+</html>
