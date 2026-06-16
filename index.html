@@ -241,6 +241,51 @@
       font-size: 0.7rem;
     }
 
+    /* ===== 制作物セクション ===== */
+    .work-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+      background: var(--white);
+      border: 2px solid var(--pink);
+      border-radius: 22px;
+      padding: 14px 16px;
+    }
+    .work-img {
+      flex: 0 0 auto;
+      width: 84px;
+      height: 84px;
+      object-fit: contain;
+    }
+    .work-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .work-desc {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+    /* 技術タグ（小さな丸ピル） */
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .work-tags span {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--mint-deep);
+      background: var(--mint);
+      border-radius: 999px;
+      padding: 2px 10px;
+    }
+
     /* ===== フッター ===== */
     footer {
       margin-top: 30px;
@@ -327,6 +372,22 @@
       </a>
       <!-- LATEST_VIDEOS_END -->
     </nav>
+
+    <!-- ===== 制作物セクション ===== -->
+    <h2 class="section-title">🛠 制作物</h2>
+    <div class="work-card">
+      <img class="work-img" src="images/haru_works.png" width="260" height="260"
+           alt="自作マスコット haru ちゃん" decoding="async">
+      <div>
+        <p class="work-title">🌸 輝度＆オーディオ切替アプリ</p>
+        <p class="work-desc">画面の明るさと音声デバイス（出力・マイク・音量）をワンタッチで切り替えできる Windows 用ユーティリティ。自作マスコット「haru ちゃん」が操作に反応して動きます。</p>
+        <p class="work-tags">
+          <span>Windows 10 / 11</span>
+          <span>Python</span>
+          <span>自作マスコット</span>
+        </p>
+      </div>
+    </div>
 
     <!-- ===== 4-3. フッター ===== -->
     <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
