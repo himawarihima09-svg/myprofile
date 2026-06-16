@@ -335,6 +335,49 @@
     }
     .news-link:hover { text-decoration: underline; }
 
+    /* 過去のお知らせ（バックナンバー：折りたたみ） */
+    .backnumbers {
+      margin-top: 16px;
+      border-top: 2px dashed var(--pink);
+      padding-top: 12px;
+    }
+    .backnumbers > summary {
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--pink-deep);
+    }
+    .bn-item {
+      margin-top: 10px;
+      background: var(--white);
+      border: 1px solid var(--pink);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .bn-item > summary {
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .bn-item .news-banner { margin-top: 10px; }
+
+    /* 制作物カードをクリック可能なリンクに */
+    a.work-card {
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.2s ease;
+    }
+    a.work-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--pink-deep);
+    }
+    .work-more {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--mint-deep);
+      margin-top: 8px;
+    }
+
     /* ===== フッター ===== */
     footer {
       margin-top: 30px;
@@ -385,6 +428,8 @@
 
     <!-- ===== お知らせセクション（コミュニティ投稿は手動更新） ===== -->
     <section class="news" aria-label="お知らせ">
+      <!-- 最新のお知らせ -->
+      <article class="news-item">
       <img class="news-banner" src="images/anniversary.jpg" width="1000" height="562"
            alt="チャンネル1周年記念バナー（1 Year → 2）" decoding="async">
       <p class="news-title">🎉 チャンネル1周年を迎えました！</p>
@@ -406,6 +451,20 @@
         <p class="news-sign">shintaya / しんたや</p>
       </div>
       <a class="news-link" href="https://www.youtube.com/@shintaya-z1f/community" target="_blank" rel="noopener">▶ YouTubeでコミュニティ投稿を見る</a>
+      </article>
+
+      <!-- 過去のお知らせ（バックナンバー）。
+           次回お知らせ更新時：上の <article class="news-item"> の中身を、下の
+           BACKNUMBERS マーカーの間に <details class="bn-item"> として移動し、
+           最新分を新しく差し替える。エントリが無い間は何も表示されない。
+           例:
+           <details class="backnumbers">
+             <summary>🗂 過去のお知らせ</summary>
+             <details class="bn-item"><summary>🎉 2026-06-16 チャンネル1周年</summary> …中身… </details>
+           </details>
+      -->
+      <!-- BACKNUMBERS_START -->
+      <!-- BACKNUMBERS_END -->
     </section>
 
     <!-- ===== 4-2. リンクボタン（上から表示順通り） ===== -->
@@ -424,6 +483,9 @@
       </a>
       <a class="link-btn" href="https://ofuse.me/ca13973b" target="_blank" rel="noopener">
         <span class="ico" aria-hidden="true">💝</span>OFUSE
+      </a>
+      <a class="link-btn" href="https://line.me/S/sticker/34130066" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true">💚</span>LINEスタンプ販売中！
       </a>
     </nav>
 
@@ -449,7 +511,7 @@
 
     <!-- ===== 制作物セクション ===== -->
     <h2 class="section-title">🛠 制作物</h2>
-    <div class="work-card">
+    <a class="work-card" href="app.html">
       <img class="work-img" src="images/haru_works.png" width="260" height="260"
            alt="自作マスコット haru ちゃん" decoding="async">
       <div>
@@ -460,8 +522,9 @@
           <span>Python</span>
           <span>自作マスコット</span>
         </p>
+        <p class="work-more">タップで詳細・できることを見る ▸</p>
       </div>
-    </div>
+    </a>
 
     <!-- ===== 4-3. フッター ===== -->
     <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
