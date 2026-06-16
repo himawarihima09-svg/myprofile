@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💌 お便りBOX｜しんたや</title>
+  <meta name="description" content="しんたやへのお便りBOX。感想・リクエスト・応援メッセージをどうぞ。いただいた内容はしんたや本人にだけ届きます。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="💌 お便りBOX｜しんたや">
+  <meta property="og:description" content="しんたやへのお便りBOX。感想・リクエスト・応援メッセージをどうぞ🍰">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== ポータルと同じカラーパレット ===== */
+    :root {
+      --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84; --white:#fffdfa;
+      --shadow:0 8px 20px rgba(255,140,186,0.25);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
+      color:var(--ink); line-height:1.8; min-height:100vh;
+      background:linear-gradient(160deg,var(--pink) 0%,var(--yellow) 50%,var(--mint) 100%);
+      background-attachment:fixed; display:flex; justify-content:center;
+      padding:28px 18px 48px; -webkit-font-smoothing:antialiased;
+    }
+    .card {
+      width:100%; max-width:480px; background:var(--white); border-radius:28px;
+      padding:30px 24px 28px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+    }
+    .card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:8px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep));
+    }
+    .back {
+      display:inline-block; font-size:0.82rem; font-weight:700;
+      color:var(--mint-deep); text-decoration:none; margin-bottom:12px;
+    }
+    .back:hover { text-decoration:underline; }
+    h1 { font-size:1.5rem; font-weight:800; text-align:center; }
+    .lead {
+      font-size:0.86rem; color:var(--ink-soft); text-align:center; margin:10px 0 22px;
+    }
+
+    /* ===== フォーム ===== */
+    label {
+      display:block; font-size:0.85rem; font-weight:700; margin-bottom:6px;
+    }
+    label .req {
+      font-size:0.7rem; color:#fff; background:var(--pink-deep);
+      border-radius:999px; padding:1px 8px; margin-left:6px; vertical-align:middle;
+    }
+    label .opt {
+      font-size:0.7rem; color:var(--mint-deep); margin-left:6px;
+    }
+    .field { margin-bottom:18px; }
+    input[type=text], input[type=email], textarea {
+      width:100%; font-family:inherit; font-size:0.95rem; color:var(--ink);
+      background:#fffafc; border:2px solid var(--pink); border-radius:14px;
+      padding:12px 14px; outline:none; transition:border-color 0.2s ease;
+    }
+    input:focus, textarea:focus { border-color:var(--pink-deep); }
+    textarea { resize:vertical; min-height:120px; line-height:1.7; }
+
+    /* ハニーポット（人間には見えない・ボット用おとり） */
+    .hp {
+      position:absolute; left:-9999px; top:-9999px;
+      width:1px; height:1px; overflow:hidden; opacity:0;
+    }
+
+    .submit {
+      width:100%; min-height:54px; font-family:inherit; font-size:1.05rem; font-weight:800;
+      color:var(--ink); background:var(--mint); border:none; border-radius:999px;
+      box-shadow:0 4px 0 var(--mint-deep); cursor:pointer;
+      transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+    .submit:hover { transform:translateY(-2px); box-shadow:0 6px 0 var(--mint-deep); background:var(--yellow); }
+    .submit:active { transform:translateY(2px); box-shadow:0 2px 0 var(--mint-deep); }
+    .submit:disabled { opacity:0.6; cursor:default; transform:none; box-shadow:0 4px 0 var(--mint-deep); }
+
+    .privacy {
+      font-size:0.74rem; color:var(--ink-soft); margin-top:14px; line-height:1.6;
+    }
+    .err {
+      font-size:0.8rem; color:#c0392b; margin-top:10px; min-height:1em;
+    }
+
+    /* ===== 送信完了表示 ===== */
+    #done { display:none; text-align:center; padding:20px 0; }
+    #done .big { font-size:3rem; }
+    #done h2 { font-size:1.3rem; font-weight:800; color:var(--pink-deep); margin:10px 0 8px; }
+    #done p { font-size:0.9rem; color:var(--ink); }
+    #done .back { margin-top:18px; }
+
+    @media (prefers-reduced-motion:reduce) { .submit { transition:none; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <a class="back" href="index.html">← ポータルに戻る</a>
+
+    <!-- ===== 入力フォーム ===== -->
+    <div id="formArea">
+      <h1>💌 お便りBOX</h1>
+      <p class="lead">感想・リクエスト・応援メッセージ、なんでもどうぞ🍰<br>いただいたお便りは<strong>しんたや本人にだけ</strong>届きます。</p>
+
+      <form id="letterForm" novalidate>
+        <div class="field">
+          <label for="nickname">お名前・ニックネーム <span class="opt">任意</span></label>
+          <input type="text" id="nickname" name="nickname" maxlength="50" placeholder="例：まろん">
+        </div>
+
+        <div class="field">
+          <label for="email">メールアドレス <span class="req">必須</span></label>
+          <input type="email" id="email" name="email" maxlength="200" placeholder="返信・確認に使います" required>
+        </div>
+
+        <div class="field">
+          <label for="message">メッセージ <span class="req">必須</span></label>
+          <textarea id="message" name="message" maxlength="2000" placeholder="ここにお便りを書いてね" required></textarea>
+        </div>
+
+        <!-- ハニーポット：人間は触れない。ここに入力があったらボット判定 -->
+        <div class="hp" aria-hidden="true">
+          <label for="website">ここは空欄のままにしてください</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="submit" id="submitBtn">お便りを送る 💌</button>
+        <p class="err" id="errMsg"></p>
+      </form>
+
+      <p class="privacy">
+        ※ メールアドレスは返信・本人確認のためだけに使い、サイト等で公開することはありません。<br>
+        ※ お送りいただいた内容は、しんたや本人のみが確認します。
+      </p>
+    </div>
+
+    <!-- ===== 送信完了 ===== -->
+    <div id="done">
+      <div class="big">💌✨</div>
+      <h2>お便りありがとう！</h2>
+      <p>しんたやに届けたよ。<br>あなたのメッセージが、次の曲の力になります🍰</p>
+      <a class="back" href="index.html">← ポータルに戻る</a>
+    </div>
+  </main>
+
+  <script>
+    // ===== 送信先（Apps Script のウェブアプリURL）=====
+    // ▼ デプロイ後の /exec URL をここに入れる（設定完了後に差し替え）
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbxPfl5ekjMUsoX2_TZi_uPWyJNgSUqZIPB2800SyU0UJJ-r6pqCykfac2ro8Uj_vSYVWg/exec";
+
+    const form = document.getElementById('letterForm');
+    const btn = document.getElementById('submitBtn');
+    const errMsg = document.getElementById('errMsg');
+
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      errMsg.textContent = "";
+
+      // --- ハニーポット：おとりが埋まっていたら、何もせず完了風に終わる ---
+      if (document.getElementById('website').value) { showDone(); return; }
+
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // --- 入力チェック ---
+      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      if (!emailOk) { errMsg.textContent = "メールアドレスの形式を確認してください。"; return; }
+      if (!message) { errMsg.textContent = "メッセージを入力してください。"; return; }
+
+      btn.disabled = true;
+      btn.textContent = "送信中…";
+
+      try {
+        await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
+        showDone();
+      } catch (e) {
+        // no-cors のため基本ここには来ないが、念のため
+        errMsg.textContent = "送信に失敗しました。時間をおいて試してください。";
+        btn.disabled = false;
+        btn.textContent = "お便りを送る 💌";
+      }
+    });
+
+    function showDone() {
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
