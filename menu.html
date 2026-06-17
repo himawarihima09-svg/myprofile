@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧁 楽曲メニュー｜しんたや</title>
+  <meta name="description" content="しんたやのオリジナル楽曲を「スイーツメニュー」風に。今日のラッキー曲おみくじも楽しめます🍰">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🧁 楽曲メニュー｜しんたや">
+  <meta property="og:description" content="AI音楽×スイーツ。オリジナル楽曲をメニュー表風に楽しめます。今日のラッキー曲おみくじ付き🔮">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧁</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84; --white:#fffdfa;
+      --shadow:0 8px 20px rgba(255,140,186,0.25);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
+      color:var(--ink); line-height:1.8; min-height:100vh;
+      background:linear-gradient(160deg,var(--pink) 0%,var(--yellow) 50%,var(--mint) 100%);
+      background-attachment:fixed; display:flex; justify-content:center;
+      padding:28px 18px 48px; -webkit-font-smoothing:antialiased;
+    }
+    .card {
+      width:100%; max-width:520px; background:var(--white); border-radius:28px;
+      padding:30px 24px 28px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+    }
+    .card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:8px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep));
+    }
+    .back {
+      display:inline-block; font-size:0.82rem; font-weight:700;
+      color:var(--mint-deep); text-decoration:none; margin-bottom:14px;
+    }
+    .back:hover { text-decoration:underline; }
+    h1 { font-size:1.6rem; font-weight:800; text-align:center; }
+    .subtitle {
+      text-align:center; font-family:'Quicksand',sans-serif; font-weight:600;
+      font-size:0.82rem; color:var(--mint-deep); margin-top:2px; margin-bottom:8px;
+    }
+
+    /* ===== おみくじ ===== */
+    .omikuji {
+      background:#fff5fa; border:2px solid var(--pink); border-radius:22px;
+      padding:18px 18px 20px; margin:18px 0 26px; text-align:center;
+    }
+    .omikuji h2 { font-size:1.1rem; font-weight:800; color:var(--pink-deep); }
+    .omikuji .desc { font-size:0.82rem; color:var(--ink-soft); margin:6px 0 14px; }
+    .omikuji-btn {
+      font-family:inherit; font-size:1.05rem; font-weight:800; color:var(--ink);
+      background:var(--mint); border:none; border-radius:999px; padding:11px 30px;
+      box-shadow:0 4px 0 var(--mint-deep); cursor:pointer;
+      transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+    .omikuji-btn:hover { transform:translateY(-2px); box-shadow:0 6px 0 var(--mint-deep); background:var(--yellow); }
+    .omikuji-btn:active { transform:translateY(2px); box-shadow:0 2px 0 var(--mint-deep); }
+
+    .omikuji-result { margin-top:18px; }
+    .omikuji-result .rank { font-size:2.4rem; line-height:1; }
+    .omikuji-result .fortune { font-size:1.05rem; font-weight:800; color:var(--pink-deep); margin-top:4px; }
+    .omikuji-result .song {
+      font-size:1rem; font-weight:800; margin:10px 0 4px; color:var(--ink);
+    }
+    .omikuji-result .msg { font-size:0.84rem; color:var(--ink-soft); }
+    .omikuji-actions { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px; }
+    .omikuji-actions a {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:0.85rem; font-weight:700; text-decoration:none;
+      border-radius:999px; padding:8px 18px;
+    }
+    .listen-link { color:var(--ink); background:var(--mint); }
+    .listen-link:hover { background:var(--yellow); }
+    /* SNS投稿リンク（"share"の語を避けた名前でブロッカー対策） */
+    .xpost-link { color:#fff; background:var(--pink-deep); }
+    .xpost-link:hover { filter:brightness(1.05); }
+
+    /* ===== メニュー表 ===== */
+    h2.section { font-size:1.1rem; font-weight:800; color:var(--ink); margin:24px 0 6px; }
+    .menu-note { font-size:0.78rem; color:var(--ink-soft); margin-bottom:14px; }
+    .menu-item { padding:12px 0; border-bottom:1px dashed var(--pink); }
+    .menu-row { display:flex; align-items:baseline; gap:8px; }
+    .menu-name { font-size:0.98rem; font-weight:800; color:var(--ink); white-space:nowrap; }
+    .menu-dots { flex:1 1 auto; border-bottom:2px dotted var(--pink); transform:translateY(-3px); min-width:20px; }
+    .menu-listen {
+      font-size:0.8rem; font-weight:700; color:var(--mint-deep);
+      text-decoration:none; white-space:nowrap;
+    }
+    .menu-listen:hover { text-decoration:underline; }
+    .menu-flavor { font-size:0.78rem; color:var(--ink-soft); margin-top:4px; }
+    .menu-flavor .tag {
+      font-family:'Quicksand',sans-serif; font-weight:600; color:var(--mint-deep);
+    }
+
+    /* 本日のコース（MIX）強調 */
+    .course {
+      margin-top:20px; background:#fffaf0; border:2px solid var(--yellow);
+      border-radius:18px; padding:14px 16px;
+    }
+    .course .label {
+      display:inline-block; font-size:0.7rem; font-weight:800; color:#b58900;
+      background:var(--yellow); border-radius:999px; padding:2px 12px; margin-bottom:8px;
+    }
+    .course .menu-name { display:block; margin-bottom:4px; white-space:normal; }
+
+    footer {
+      margin-top:28px; text-align:center; font-family:'Quicksand',sans-serif;
+      font-size:0.78rem; color:var(--ink-soft);
+    }
+    @media (prefers-reduced-motion:reduce) { .omikuji-btn { transition:none; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <a class="back" href="index.html">← ポータルに戻る</a>
+    <h1>🧁 楽曲メニュー</h1>
+    <p class="subtitle">Sweets Menu — AIで紡ぐ、甘い音楽たち</p>
+
+    <!-- ===== 今日のラッキー曲おみくじ ===== -->
+    <section class="omikuji">
+      <h2>🔮 今日のラッキー曲</h2>
+      <p class="desc">ボタンを押すと、今日のあなたにぴったりの1曲を占います🍰</p>
+      <button type="button" class="omikuji-btn" id="omikujiBtn">占う 🍰</button>
+      <div class="omikuji-result" id="omikujiResult" hidden></div>
+    </section>
+
+    <!-- ===== メニュー表（楽曲一覧） ===== -->
+    <h2 class="section">🎵 ラインナップ</h2>
+    <p class="menu-note">お好きな一曲をどうぞ。「試聴」でYouTubeが開きます。</p>
+
+    <div class="menu-list">
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🍓 Fruit Groove</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=n4wGXMyX78k" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Liquid DnB Remix</span> — 朝を駆けるフルーツティーの疾走感</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🌊 クリスタル・マリンバ</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=LSNGP28OcCE" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × マリンバ</span> — 透明な夏の始まりアンセム</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">⚡ サンダー・サーキット</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=JpEURMQzadk" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Future Bass × EDM Pop</span> — 思考回路フル回転の集中アンセム</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🌟 ステラ・ギター</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=iK-tNGjyxGA" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × アコギ</span> — 星空の下の小さなコンサート</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">💥 フラッシュ・オーバードライブ</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=0xoa-W5gE7g" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Future Bass × EDM Pop</span> — 限界の先へ突き抜けるアンセム</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🍬 マシュマロ・ファンファーレ</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=rot1705CwZQ" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × Brass</span> — 小さな勝利を祝う応援歌</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🌙 ミッドナイト・イグニション</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=VTEKOVDvXcE" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Future Bass × EDM Pop</span> — 真夜中に自分を再起動するアンセム</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🎮 ピクセル・ドリーム</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=4X1WyrkROqE" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × 8bit</span> — 人生をリスタートする応援歌</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">⚡ ネオン・チェイサー</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=Yymnf8yRocY" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Future Bass × EDM Pop</span> — 夜の街を切り裂くアンセム</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">✨ シュガー・ストリングス</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=a7WenL6z1kY" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × Strings</span> — 甘い涙のメロディ</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🎀 ボルテージ・ガール</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=ctxMGMVKk3Q" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × EDM Pop</span> — Voltage Girl</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🍿 ポップコーン・アンセム</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=8tBR8a8z5AQ" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass</span> — 毎日を吹っ飛ばすはじけるアンセム</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">🍬 シュガーコート・バイバイ</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=89dMDM9NG1g" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × Future Pop</span> — 甘くコーティングしたサヨナラ</p></div>
+      <div class="menu-item"><div class="menu-row"><span class="menu-name">💔 グリッチ・ラブレター</span><span class="menu-dots"></span><a class="menu-listen" href="https://www.youtube.com/watch?v=mNFJtN_IuiA" target="_blank" rel="noopener">試聴 ▸</a></div><p class="menu-flavor"><span class="tag">Kawaii Future Bass × J-Pop EDM</span> — 壊れたまま叫ぶ感情ドロップ</p></div>
+    </div>
+
+    <!-- 本日のコース（作業用MIX） -->
+    <div class="course">
+      <span class="label">本日のコース 🍽</span>
+      <span class="menu-name">🌸 Spring Sweets MIX Vol.1（作業用BGM・1時間）</span>
+      <p class="menu-flavor"><span class="tag">Kawaii Future Bass MIX</span> — 春のスイーツ世界を朝から夜まで巡る10曲</p>
+      <a class="menu-listen" href="https://www.youtube.com/watch?v=WE7GKgB4J-o" target="_blank" rel="noopener">試聴 ▸</a>
+    </div>
+
+    <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
+  </main>
+
+  <!-- ===== おみくじ処理 ===== -->
+  <script>
+    (function () {
+      var SITE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
+
+      // おみくじ対象の楽曲（1曲もの）
+      var SONGS = [
+        { n: '🍓 Fruit Groove', id: 'n4wGXMyX78k' },
+        { n: '🌊 クリスタル・マリンバ', id: 'LSNGP28OcCE' },
+        { n: '⚡ サンダー・サーキット', id: 'JpEURMQzadk' },
+        { n: '🌟 ステラ・ギター', id: 'iK-tNGjyxGA' },
+        { n: '💥 フラッシュ・オーバードライブ', id: '0xoa-W5gE7g' },
+        { n: '🍬 マシュマロ・ファンファーレ', id: 'rot1705CwZQ' },
+        { n: '🌙 ミッドナイト・イグニション', id: 'VTEKOVDvXcE' },
+        { n: '🎮 ピクセル・ドリーム', id: '4X1WyrkROqE' },
+        { n: '⚡ ネオン・チェイサー', id: 'Yymnf8yRocY' },
+        { n: '✨ シュガー・ストリングス', id: 'a7WenL6z1kY' },
+        { n: '🎀 ボルテージ・ガール', id: 'ctxMGMVKk3Q' },
+        { n: '🍿 ポップコーン・アンセム', id: '8tBR8a8z5AQ' },
+        { n: '🍬 シュガーコート・バイバイ', id: '89dMDM9NG1g' },
+        { n: '💔 グリッチ・ラブレター', id: 'mNFJtN_IuiA' }
+      ];
+
+      // スイーツ占い（運勢）
+      var FORTUNES = [
+        { r: '🍰', f: '大吉', m: '今日は最高のスイーツ日和！この曲でテンション爆上げでいこう✨' },
+        { r: '🍓', f: '中吉', m: 'ふんわり良い一日になりそう。この曲でひと息ついて🍓' },
+        { r: '🍪', f: '小吉', m: 'ちょっと甘いご褒美を。この曲がぴったり寄り添ってくれるよ🍪' },
+        { r: '🍮', f: '吉', m: '落ち着いた一日に。この曲でまったり過ごそう🍮' },
+        { r: '🍬', f: '末吉', m: 'そっと寄り添う一日。この曲と一緒にゆっくりね🍬' }
+      ];
+
+      var btn = document.getElementById('omikujiBtn');
+      var box = document.getElementById('omikujiResult');
+
+      btn.addEventListener('click', function () {
+        var song = SONGS[Math.floor(Math.random() * SONGS.length)];
+        var fortune = FORTUNES[Math.floor(Math.random() * FORTUNES.length)];
+        var watch = 'https://www.youtube.com/watch?v=' + song.id;
+
+        // Xポスト用テキスト（"share"の語は使わない）
+        var postText = '今日のラッキー曲は ' + song.n + ' 🎵\n' + fortune.f + '！' + fortune.m + '\n#しんたや #KawaiiFutureBass';
+        var xUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(postText) + '&url=' + encodeURIComponent(SITE_URL);
+
+        box.innerHTML =
+          '<div class="rank">' + fortune.r + '</div>' +
+          '<div class="fortune">' + fortune.f + '</div>' +
+          '<div class="song">今日のラッキー曲は… ' + song.n + '</div>' +
+          '<div class="msg">' + fortune.m + '</div>' +
+          '<div class="omikuji-actions">' +
+            '<a class="listen-link" href="' + watch + '" target="_blank" rel="noopener">▶ 聴いてみる</a>' +
+            '<a class="xpost-link" href="' + xUrl + '" target="_blank" rel="noopener">𝕏 でポスト</a>' +
+          '</div>';
+        box.hidden = false;
+        btn.textContent = 'もう一度占う 🍰';
+      });
+    })();
+  </script>
+</body>
+</html>
