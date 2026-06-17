@@ -117,10 +117,10 @@
     }
 
     /* ===== URL共有（コピー）ボタン ===== */
-    .share-wrap {
+    .copyurl-wrap {
       margin-top: 16px;
     }
-    .share-btn {
+    .copyurl-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -136,17 +136,17 @@
       box-shadow: 0 3px 0 var(--pink);
       transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
-    .share-btn:hover {
+    .copyurl-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 0 var(--pink);
       background: #fff5fa;
     }
-    .share-btn:active {
+    .copyurl-btn:active {
       transform: translateY(1px);
       box-shadow: 0 2px 0 var(--pink);
     }
     /* コピー成功時はミント色でフィードバック */
-    .share-btn.copied {
+    .copyurl-btn.copied {
       background: var(--mint);
       border-color: var(--mint-deep);
       color: var(--mint-deep);
@@ -451,9 +451,9 @@
     </p>
 
     <!-- ===== URLをコピーして共有するボタン ===== -->
-    <div class="share-wrap">
-      <button type="button" class="share-btn" id="shareBtn" aria-label="このページのURLをコピー">
-        <span aria-hidden="true">🔗</span><span id="shareLabel">URLをコピーして共有</span>
+    <div class="copyurl-wrap">
+      <button type="button" class="copyurl-btn" id="copyUrlBtn" aria-label="このページのURLをコピー">
+        <span aria-hidden="true">🔗</span><span id="copyUrlLabel">URLをコピーして共有</span>
       </button>
     </div>
 
@@ -546,10 +546,6 @@
     <h2 class="section-title">🎬 最新動画</h2>
     <nav class="videos" aria-label="最新動画">
       <!-- LATEST_VIDEOS_START -->
-      <a class="video-item" href="https://www.youtube.com/watch?v=n4wGXMyX78k" target="_blank" rel="noopener">
-        <span class="video-play" aria-hidden="true">▶</span>
-        <span>🍓🌅【Fruit Groove】｜Liquid DnB Remix｜朝を駆けるフルーツティーの疾走感✨</span>
-      </a>
       <a class="video-item" href="https://www.youtube.com/watch?v=LSNGP28OcCE" target="_blank" rel="noopener">
         <span class="video-play" aria-hidden="true">▶</span>
         <span>🌊🍬 【クリスタル・マリンバ】｜Kawaii Future Bass × マリンバ｜透明な夏の始まりアンセム</span>
@@ -557,6 +553,10 @@
       <a class="video-item" href="https://www.youtube.com/watch?v=JpEURMQzadk" target="_blank" rel="noopener">
         <span class="video-play" aria-hidden="true">▶</span>
         <span>⚡💻 【サンダー・サーキット】｜Future Bass × EDM Pop｜思考回路フル回転の集中アンセム</span>
+      </a>
+      <a class="video-item" href="https://www.youtube.com/watch?v=iK-tNGjyxGA" target="_blank" rel="noopener">
+        <span class="video-play" aria-hidden="true">▶</span>
+        <span>🌟🎸 【ステラ・ギター】｜Kawaii Future Bass × アコギ｜星空の下の小さなコンサート</span>
       </a>
       <!-- LATEST_VIDEOS_END -->
     </nav>
@@ -587,8 +587,8 @@
   <script>
     (function () {
       var SHARE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
-      var btn = document.getElementById('shareBtn');
-      var label = document.getElementById('shareLabel');
+      var btn = document.getElementById('copyUrlBtn');
+      var label = document.getElementById('copyUrlLabel');
       var resetTimer;
 
       btn.addEventListener('click', function () {
