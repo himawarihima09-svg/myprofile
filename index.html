@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="ja">
 <head>
   <!-- ===== 基本メタ情報 ===== -->
   <meta charset="UTF-8">
@@ -60,7 +60,7 @@
       max-width: 440px;
       background: var(--white);
       border-radius: 32px;
-      padding: 40px 26px 32px;
+      padding: 18px 26px 32px;
       box-shadow: var(--shadow);
       text-align: center;
       position: relative;
@@ -76,13 +76,29 @@
       background: linear-gradient(90deg, var(--pink-deep), var(--yellow), var(--mint-deep));
     }
 
+    /* ===== 言語切替ボタン ===== */
+    .lang-toggle-wrap { text-align: right; margin: 6px 0 -4px; }
+    .lang-toggle {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--mint-deep);
+      background: var(--white);
+      border: 2px solid var(--mint);
+      border-radius: 999px;
+      padding: 4px 14px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .lang-toggle:hover { background: var(--mint); color: var(--ink); }
+
     /* ===== ヒーロー：ウェルカムイラスト（しろ＆くろ） ===== */
     .hero-illust {
       display: block;
       width: 100%;
       max-width: 340px;
       height: auto;
-      margin: 4px auto 2px;
+      margin: 2px auto 2px;
       animation: floaty 4s ease-in-out infinite;
     }
     @keyframes floaty {
@@ -107,13 +123,9 @@
       font-weight: 700;
       color: var(--ink);
     }
-    .catch .en {
-      display: block;
+    .catch .lang-en {
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
       color: var(--mint-deep);
-      margin-top: 2px;
     }
 
     /* ===== URL共有（コピー）ボタン ===== */
@@ -161,18 +173,8 @@
       color: var(--ink);
     }
     .bio p { margin-bottom: 12px; }
-    .bio .en {
+    .bio .lang-en {
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.82rem;
-      color: var(--ink-soft);
-    }
-    .bio .en p { margin-bottom: 10px; }
-
-    /* 日本語と英語ブロックを区切る点線 */
-    .bio-divider {
-      border: none;
-      border-top: 2px dotted var(--pink);
-      margin: 16px 0;
     }
 
     /* ===== リンクボタン群 ===== */
@@ -313,7 +315,7 @@
       flex-wrap: wrap;
       gap: 6px;
     }
-    .work-tags span {
+    .work-tags > span {
       font-family: 'Quicksand', sans-serif;
       font-size: 0.68rem;
       font-weight: 600;
@@ -352,10 +354,8 @@
       color: var(--ink);
     }
     .news-body p { margin-bottom: 10px; }
-    .news-body .en {
+    .news-body .lang-en {
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.78rem;
-      color: var(--ink-soft);
     }
     .news-sign {
       text-align: right;
@@ -441,13 +441,18 @@
 <body>
   <main class="card">
 
+    <!-- ===== 言語切替（JP / EN） ===== -->
+    <div class="lang-toggle-wrap">
+      <button type="button" class="lang-toggle" id="langToggle">🌐 English</button>
+    </div>
+
     <!-- ===== 4-1. ヒーローセクション ===== -->
     <img class="hero-illust" src="images/shiro_kuro.png" width="800" height="533"
          alt="しろちゃんとくろちゃんが手を振って出迎えるイラスト" decoding="async">
     <h1 class="name">🍰 しんたや <span class="en">/ shintaya</span></h1>
     <p class="catch">
-      AIで紡ぐ、甘くてかわいい音楽世界
-      <span class="en" lang="en">🍰 Weaving sweet, kawaii music with AI 🍰</span>
+      <span class="lang-ja">AIで紡ぐ、甘くてかわいい音楽世界</span>
+      <span class="lang-en" lang="en" hidden>🍰 Weaving sweet, kawaii music with AI 🍰</span>
     </p>
 
     <!-- ===== URLをコピーして共有するボタン ===== -->
@@ -457,16 +462,15 @@
       </button>
     </div>
 
-    <!-- 自己紹介文（日本語 → 英語の順に併記） -->
+    <!-- 自己紹介文（言語切替で表示） -->
     <section class="bio">
-      <p>Kawaii Future Bassを中心に、AIツール（Suno・FL Studio）で音楽を制作しているクリエイターです。</p>
-      <p>スイーツをテーマにしたオリジナル楽曲（Sugar, Cookie, Lemon Tart...）で、ふんわり甘く、ちょっと切ない世界観を発信中。</p>
-      <p>海外リスナーにも届くよう英語タイトルを併記し、現在は世界各国の方に聴いていただいています🌍</p>
-      <p>音楽以外にも、睡眠用Androidアプリ「SleepFade」のテスター運営など、AIを道具として使いこなす活動を続けています。</p>
-
-      <hr class="bio-divider">
-
-      <div class="en" lang="en">
+      <div class="lang-ja">
+        <p>Kawaii Future Bassを中心に、AIツール（Suno・FL Studio）で音楽を制作しているクリエイターです。</p>
+        <p>スイーツをテーマにしたオリジナル楽曲（Sugar, Cookie, Lemon Tart...）で、ふんわり甘く、ちょっと切ない世界観を発信中。</p>
+        <p>海外リスナーにも届くよう英語タイトルを併記し、現在は世界各国の方に聴いていただいています🌍</p>
+        <p>音楽以外にも、睡眠用Androidアプリ「SleepFade」のテスター運営など、AIを道具として使いこなす活動を続けています。</p>
+      </div>
+      <div class="lang-en" lang="en" hidden>
         <p>A creator making Kawaii Future Bass with AI tools (Suno, FL Studio). I craft sweet, dessert-themed original songs (Sugar, Cookie, Lemon Tart...) with a soft, slightly bittersweet vibe.</p>
         <p>With bilingual titles, my music reaches listeners around the world. Beyond music, I'm running closed tests for my sleep timer app "SleepFade" — exploring what's possible when AI becomes a creative tool.</p>
       </div>
@@ -478,37 +482,35 @@
       <article class="news-item">
       <img class="news-banner" src="images/anniversary.jpg" width="1000" height="562"
            alt="チャンネル1周年記念バナー（1 Year → 2）" decoding="async">
-      <p class="news-title">🎉 チャンネル1周年を迎えました！</p>
+      <p class="news-title">
+        <span class="lang-ja">🎉 チャンネル1周年を迎えました！</span>
+        <span class="lang-en" hidden>🎉 We just turned 1 year old!</span>
+      </p>
       <div class="news-body">
-        <p>いつも聴いてくれて、本当にありがとうございます。おかげさまで、このチャンネルが1年を迎えることができました。</p>
-        <p>後半はKawaii Future Bass中心でやってきましたが、たまに違うジャンルも出てきます。そこは「味変」だと思って、肩の力を抜いて楽しんでもらえたら嬉しいです🍰</p>
-        <p>コメントやチャンネル登録、ひとつひとつが本当に励みになっています。再生・登録・コメント——みんなのおかげで次の曲を作れています。</p>
-        <p>このチャンネルが、たくさんの人の心に笑顔を作れる場所になればと思っています。聴いて、ちょっと心が軽くなったり笑顔になれたら、それが一番うれしいです☺️</p>
-        <p>これからも、音楽で楽しくなれる場所として育てていきます。2年目もよろしくお願いします！</p>
-
-        <hr class="bio-divider">
-
-        <div class="en" lang="en">
+        <div class="lang-ja">
+          <p>いつも聴いてくれて、本当にありがとうございます。おかげさまで、このチャンネルが1年を迎えることができました。</p>
+          <p>後半はKawaii Future Bass中心でやってきましたが、たまに違うジャンルも出てきます。そこは「味変」だと思って、肩の力を抜いて楽しんでもらえたら嬉しいです🍰</p>
+          <p>コメントやチャンネル登録、ひとつひとつが本当に励みになっています。再生・登録・コメント——みんなのおかげで次の曲を作れています。</p>
+          <p>このチャンネルが、たくさんの人の心に笑顔を作れる場所になればと思っています。聴いて、ちょっと心が軽くなったり笑顔になれたら、それが一番うれしいです☺️</p>
+          <p>これからも、音楽で楽しくなれる場所として育てていきます。2年目もよろしくお願いします！</p>
+        </div>
+        <div class="lang-en" lang="en" hidden>
           <p>🎉 We just turned 1 year old!</p>
           <p>Thank you so much for always listening. Lately I've focused on Kawaii Future Bass, but sometimes a different genre slips in — think of it as a little “change of flavor” and just enjoy the switch-up🍰</p>
           <p>Every play, every sub, every comment really keeps me going. My hope is that this channel becomes a place that puts a smile in many hearts. Here's to year two — thank you for being here☺️</p>
         </div>
-
         <p class="news-sign">shintaya / しんたや</p>
       </div>
-      <a class="news-link" href="https://www.youtube.com/@shintaya-z1f" target="_blank" rel="noopener">▶ YouTubeチャンネルを見る</a>
+      <a class="news-link" href="https://www.youtube.com/@shintaya-z1f" target="_blank" rel="noopener">
+        <span class="lang-ja">▶ YouTubeチャンネルを見る</span>
+        <span class="lang-en" hidden>▶ Visit my YouTube channel</span>
+      </a>
       </article>
 
       <!-- 過去のお知らせ（バックナンバー）。
            次回お知らせ更新時：上の <article class="news-item"> の中身を、下の
            BACKNUMBERS マーカーの間に <details class="bn-item"> として移動し、
-           最新分を新しく差し替える。エントリが無い間は何も表示されない。
-           例:
-           <details class="backnumbers">
-             <summary>🗂 過去のお知らせ</summary>
-             <details class="bn-item"><summary>🎉 2026-06-16 チャンネル1周年</summary> …中身… </details>
-           </details>
-      -->
+           最新分を新しく差し替える。エントリが無い間は何も表示されない。 -->
       <!-- BACKNUMBERS_START -->
       <!-- BACKNUMBERS_END -->
     </section>
@@ -522,7 +524,13 @@
         <span class="ico" aria-hidden="true">🎶</span>Suno
       </a>
       <a class="link-btn" href="menu.html">
-        <span class="ico" aria-hidden="true">🧁</span>楽曲メニュー＆おみくじ
+        <span class="ico" aria-hidden="true">🧁</span><span class="lang-ja">楽曲メニュー＆おみくじ</span><span class="lang-en" hidden>Music Menu &amp; Omikuji</span>
+      </a>
+      <a class="link-btn" href="zukan.html">
+        <span class="ico" aria-hidden="true">🎴</span><span class="lang-ja">キャラクター図鑑</span><span class="lang-en" hidden>Characters</span>
+      </a>
+      <a class="link-btn" href="wallpaper.html">
+        <span class="ico" aria-hidden="true">🖼</span><span class="lang-ja">壁紙プレゼント</span><span class="lang-en" hidden>Wallpapers</span>
       </a>
       <a class="link-btn beta" href="https://play.google.com/apps/testing/com.sleepfade.app" target="_blank" rel="noopener">
         <span class="ico" aria-hidden="true">🌙</span>SleepFade（Beta）
@@ -537,22 +545,18 @@
         <span class="ico" aria-hidden="true">💝</span>OFUSE
       </a>
       <a class="link-btn" href="https://line.me/S/sticker/34130066" target="_blank" rel="noopener">
-        <span class="ico" aria-hidden="true">💚</span>LINEスタンプ販売中！
+        <span class="ico" aria-hidden="true">💚</span><span class="lang-ja">LINEスタンプ販売中！</span><span class="lang-en" hidden>LINE Stickers</span>
       </a>
       <a class="link-btn" href="letter.html">
-        <span class="ico" aria-hidden="true">💌</span>お便りBOX
+        <span class="ico" aria-hidden="true">💌</span><span class="lang-ja">お便りBOX</span><span class="lang-en" hidden>Letter Box</span>
       </a>
     </nav>
 
     <!-- ===== 最新動画セクション（GitHub Actionsが自動更新） =====
          LATEST_VIDEOS_START 〜 END の間は自動生成。手動で編集しないこと。 -->
-    <h2 class="section-title">🎬 最新動画</h2>
+    <h2 class="section-title"><span class="lang-ja">🎬 最新動画</span><span class="lang-en" hidden>🎬 Latest Videos</span></h2>
     <nav class="videos" aria-label="最新動画">
       <!-- LATEST_VIDEOS_START -->
-      <a class="video-item" href="https://www.youtube.com/watch?v=n4wGXMyX78k" target="_blank" rel="noopener">
-        <span class="video-play" aria-hidden="true">▶</span>
-        <span>🍓🌅【Fruit Groove】｜Liquid DnB Remix｜朝を駆けるフルーツティーの疾走感✨</span>
-      </a>
       <a class="video-item" href="https://www.youtube.com/watch?v=LSNGP28OcCE" target="_blank" rel="noopener">
         <span class="video-play" aria-hidden="true">▶</span>
         <span>🌊🍬 【クリスタル・マリンバ】｜Kawaii Future Bass × マリンバ｜透明な夏の始まりアンセム</span>
@@ -561,23 +565,36 @@
         <span class="video-play" aria-hidden="true">▶</span>
         <span>⚡💻 【サンダー・サーキット】｜Future Bass × EDM Pop｜思考回路フル回転の集中アンセム</span>
       </a>
+      <a class="video-item" href="https://www.youtube.com/watch?v=iK-tNGjyxGA" target="_blank" rel="noopener">
+        <span class="video-play" aria-hidden="true">▶</span>
+        <span>🌟🎸 【ステラ・ギター】｜Kawaii Future Bass × アコギ｜星空の下の小さなコンサート</span>
+      </a>
       <!-- LATEST_VIDEOS_END -->
     </nav>
 
     <!-- ===== 制作物セクション ===== -->
-    <h2 class="section-title">🛠 制作物</h2>
+    <h2 class="section-title"><span class="lang-ja">🛠 制作物</span><span class="lang-en" hidden>🛠 Works</span></h2>
     <a class="work-card" href="app.html">
       <img class="work-img" src="images/haru_works.png" width="260" height="260"
            alt="自作マスコット haru ちゃん" decoding="async">
       <div>
-        <p class="work-title">🌸 輝度＆オーディオ切替アプリ</p>
-        <p class="work-desc">画面の明るさと音声デバイス（出力・マイク・音量）をワンタッチで切り替えできる Windows 用ユーティリティ。自作マスコット「haru ちゃん」が操作に反応して動きます。</p>
+        <p class="work-title">
+          <span class="lang-ja">🌸 輝度＆オーディオ切替アプリ</span>
+          <span class="lang-en" hidden>🌸 Brightness &amp; Audio Switcher</span>
+        </p>
+        <p class="work-desc">
+          <span class="lang-ja">画面の明るさと音声デバイス（出力・マイク・音量）をワンタッチで切り替えできる Windows 用ユーティリティ。自作マスコット「haru ちゃん」が操作に反応して動きます。</span>
+          <span class="lang-en" hidden>A Windows utility to switch screen brightness and audio (output / mic / volume) in one tap. The original mascot “haru” reacts to your actions.</span>
+        </p>
         <p class="work-tags">
           <span>Windows 10 / 11</span>
           <span>Python</span>
-          <span>自作マスコット</span>
+          <span><span class="lang-ja">自作マスコット</span><span class="lang-en" hidden>Original mascot</span></span>
         </p>
-        <p class="work-more">タップで詳細・できることを見る ▸</p>
+        <p class="work-more">
+          <span class="lang-ja">タップで詳細・できることを見る ▸</span>
+          <span class="lang-en" hidden>Tap to see what it can do ▸</span>
+        </p>
       </div>
     </a>
 
@@ -586,23 +603,55 @@
 
   </main>
 
-  <!-- ===== URLコピー（共有）処理 ===== -->
+  <!-- ===== 言語切替 ＋ URLコピー（共有）処理 ===== -->
   <script>
     (function () {
       var SHARE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
-      var btn = document.getElementById('copyUrlBtn');
-      var label = document.getElementById('copyUrlLabel');
+      // コピーボタンのラベル（言語別）
+      var COPY = {
+        ja: { label: 'URLをコピーして共有', copied: '✓ コピーしました！' },
+        en: { label: 'Copy & share URL', copied: '✓ Copied!' }
+      };
+
+      var root = document.documentElement;
+      var toggle = document.getElementById('langToggle');
+      var copyBtn = document.getElementById('copyUrlBtn');
+      var copyLabel = document.getElementById('copyUrlLabel');
+      var curLang = 'ja';
+      var copying = false;
       var resetTimer;
 
-      btn.addEventListener('click', function () {
+      // ---- 言語適用 ----
+      function applyLang(lang) {
+        curLang = lang;
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+        var ja = document.querySelectorAll('.lang-ja');
+        for (var i = 0; i < ja.length; i++) ja[i].hidden = (lang === 'en');
+        var en = document.querySelectorAll('.lang-en');
+        for (var j = 0; j < en.length; j++) en[j].hidden = (lang !== 'en');
+        toggle.textContent = (lang === 'en') ? '🌐 日本語' : '🌐 English';
+        if (!copying) copyLabel.textContent = COPY[lang].label;
+      }
+
+      var saved = null;
+      try { saved = localStorage.getItem('lang'); } catch (e) {}
+      applyLang(saved === 'en' ? 'en' : 'ja');
+
+      toggle.addEventListener('click', function () {
+        var next = (curLang === 'en') ? 'ja' : 'en';
+        try { localStorage.setItem('lang', next); } catch (e) {}
+        applyLang(next);
+      });
+
+      // ---- URLコピー ----
+      copyBtn.addEventListener('click', function () {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(SHARE_URL).then(showCopied, fallbackCopy);
         } else {
           fallbackCopy();
         }
       });
-
-      // 古い環境向けフォールバック
       function fallbackCopy() {
         var t = document.createElement('textarea');
         t.value = SHARE_URL;
@@ -615,15 +664,15 @@
         document.body.removeChild(t);
         showCopied();
       }
-
-      // コピー成功の見た目フィードバック
       function showCopied() {
-        label.textContent = '✓ コピーしました！';
-        btn.classList.add('copied');
+        copying = true;
+        copyLabel.textContent = COPY[curLang].copied;
+        copyBtn.classList.add('copied');
         clearTimeout(resetTimer);
         resetTimer = setTimeout(function () {
-          label.textContent = 'URLをコピーして共有';
-          btn.classList.remove('copied');
+          copying = false;
+          copyLabel.textContent = COPY[curLang].label;
+          copyBtn.classList.remove('copied');
         }, 1800);
       }
     })();
