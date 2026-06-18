@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎴 キャラクター図鑑｜しんたや</title>
+  <meta name="description" content="しんたや公式キャラクター6人の図鑑。しろ・くろ・はる・なつ・あき・ふゆ。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🎴 キャラクター図鑑｜しんたや">
+  <meta property="og:description" content="しんたや公式キャラクター6人を紹介🤍🖤🌸🌊🍁❄️">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎴</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84; --white:#fffdfa;
+      --shadow:0 8px 20px rgba(255,140,186,0.25);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
+      color:var(--ink); line-height:1.8; min-height:100vh;
+      background:linear-gradient(160deg,var(--pink) 0%,var(--yellow) 50%,var(--mint) 100%);
+      background-attachment:fixed; display:flex; justify-content:center;
+      padding:28px 18px 48px; -webkit-font-smoothing:antialiased;
+    }
+    .card {
+      width:100%; max-width:560px; background:var(--white); border-radius:28px;
+      padding:30px 24px 28px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+    }
+    .card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:8px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep));
+    }
+    .back {
+      display:inline-block; font-size:0.82rem; font-weight:700;
+      color:var(--mint-deep); text-decoration:none; margin-bottom:14px;
+    }
+    .back:hover { text-decoration:underline; }
+    h1 { font-size:1.6rem; font-weight:800; text-align:center; }
+    .subtitle {
+      text-align:center; font-family:'Quicksand',sans-serif; font-weight:600;
+      font-size:0.82rem; color:var(--mint-deep); margin-top:2px; margin-bottom:20px;
+    }
+
+    /* ===== キャラグリッド ===== */
+    .chars {
+      display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
+    }
+    @media (max-width:440px){ .chars { grid-template-columns:repeat(2, 1fr); } }
+    .char {
+      background:#fff; border:2px solid var(--pink); border-radius:20px;
+      padding:10px 8px 12px; text-align:center;
+    }
+    .char img {
+      width:100%; height:auto; display:block; border-radius:14px; background:#fff;
+    }
+    .char .name {
+      font-size:0.92rem; font-weight:800; color:var(--ink); margin-top:8px;
+    }
+
+    .note {
+      font-size:0.78rem; color:var(--ink-soft); text-align:center;
+      background:#fff5fa; border:2px dashed var(--pink); border-radius:16px;
+      padding:12px 14px; margin-top:22px;
+    }
+    footer {
+      margin-top:26px; text-align:center; font-family:'Quicksand',sans-serif;
+      font-size:0.78rem; color:var(--ink-soft);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <a class="back" href="index.html">← ポータルに戻る</a>
+    <h1>🎴 キャラクター図鑑</h1>
+    <p class="subtitle">shintaya official characters</p>
+
+    <div class="chars">
+      <div class="char"><img src="images/chars/shiro.png" width="400" height="400" alt="しろちゃん" loading="lazy"><p class="name">🤍 しろちゃん</p></div>
+      <div class="char"><img src="images/chars/kuro.png" width="400" height="400" alt="くろちゃん" loading="lazy"><p class="name">🖤 くろちゃん</p></div>
+      <div class="char"><img src="images/chars/haru.png" width="400" height="400" alt="はるちゃん" loading="lazy"><p class="name">🌸 はるちゃん</p></div>
+      <div class="char"><img src="images/chars/natu.png" width="400" height="400" alt="なつちゃん" loading="lazy"><p class="name">🌊 なつちゃん</p></div>
+      <div class="char"><img src="images/chars/aki.png" width="400" height="400" alt="あきちゃん" loading="lazy"><p class="name">🍁 あきちゃん</p></div>
+      <div class="char"><img src="images/chars/fuyu.png" width="400" height="400" alt="ふゆちゃん" loading="lazy"><p class="name">❄️ ふゆちゃん</p></div>
+    </div>
+
+    <p class="note">📝 プロフィールは準備中…！ それぞれの詳しい設定は、これから少しずつ公開予定です🍰</p>
+
+    <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
+  </main>
+</body>
+</html>
