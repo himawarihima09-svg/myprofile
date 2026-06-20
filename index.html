@@ -1,137 +1,126 @@
 <!DOCTYPE html>
 <html lang="ja" data-lang="ja">
 <head>
-  <!-- ===== 基本メタ情報 ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>しんたや / shintaya — AIで紡ぐ、甘くてかわいい音楽世界</title>
   <meta name="description" content="Kawaii Future BassをAIツール（Suno・FL Studio）で制作するクリエイター・しんたやのポータル。スイーツがテーマのオリジナル楽曲を世界へ。">
 
-  <!-- ===== OGP（SNSシェア時の表示用） ===== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="しんたや / shintaya — AIで紡ぐ、甘くてかわいい音楽世界">
   <meta property="og:description" content="Kawaii Future BassをAIツールで制作するクリエイター・しんたやのリンク集。スイーツテーマのオリジナル楽曲を世界へ🍰">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary">
 
-  <!-- ===== 絵文字ファビコン（外部画像を使わずSVGで生成） ===== -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍰</text></svg>">
 
-  <!-- ===== Webフォント（丸ゴシック系・丸みサンセリフ） ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== カラーパレット・全体設定 =====
-       メイン：パステルピンク／サブ1：ミントグリーン／サブ2：イエロー */
+    /* ===== Sugar Mist パレット（A案） ===== */
     :root {
-      --pink:       #ffd1e3;  /* パステルピンク（背景・アクセント） */
-      --pink-deep:  #ff8cba;  /* 濃いめピンク（強調） */
-      --mint:       #b8f2e6;  /* ミントグリーン（ボタン・装飾） */
+      --pink:       #ffd1e3;
+      --pink-deep:  #ff8cba;
+      --mint:       #b8f2e6;
       --mint-deep:  #6fd6c2;
-      --yellow:     #fff3b0;  /* イエロー（ハイライト） */
-      --ink:        #5b4a55;  /* 文字色（やわらかい墨色） */
-      --ink-soft:   #8a7a84;  /* 補助テキスト */
-      --white:      #fffdfa;
-      --radius:     999px;    /* ボタンの角丸 */
-      --shadow:     0 8px 20px rgba(255, 140, 186, 0.25);
+      --yellow:     #fff3b0;
+      --ink:        #5b4a55;
+      --ink-soft:   #8a7a84;
+      --card:       #fffdfb;
+      --card-border:#fbe4ee;
+      --soft-shadow:0 22px 50px -24px rgba(255,140,186,.45);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ===== 背景：3色のやわらかグラデーション ===== */
+    /* やわらかい白×ピンクのミストグラデーション */
     body {
       font-family: 'M PLUS Rounded 1c', 'Quicksand', sans-serif;
       color: var(--ink);
       line-height: 1.8;
       min-height: 100vh;
-      background: linear-gradient(160deg, var(--pink) 0%, var(--yellow) 50%, var(--mint) 100%);
+      background: linear-gradient(165deg, #fff6fa 0%, #fdeef4 52%, #edfaf5 100%);
       background-attachment: fixed;
       display: flex;
       justify-content: center;
-      padding: 32px 18px 48px;
+      padding: 34px 16px 48px;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== メインカード（中央寄せ・モバイルファースト幅） ===== */
+    /* ===== メインカード ===== */
     .card {
       width: 100%;
-      max-width: 440px;
-      background: var(--white);
-      border-radius: 32px;
-      padding: 18px 26px 32px;
-      box-shadow: var(--shadow);
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      padding: 28px 24px 30px;
+      box-shadow: var(--soft-shadow);
       text-align: center;
       position: relative;
       overflow: hidden;
+      animation: cardIn .7s cubic-bezier(.2,.7,.2,1) both;
     }
-
-    /* カード上部の飾りグラデーション帯 */
+    /* 上部のきらめく帯 */
     .card::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 8px;
-      background: linear-gradient(90deg, var(--pink-deep), var(--yellow), var(--mint-deep));
+      height: 5px;
+      background: linear-gradient(90deg, var(--pink-deep), var(--yellow), var(--mint-deep), var(--pink-deep));
+      background-size: 200% 100%;
+      animation: barShine 6s linear infinite;
     }
 
+    @keyframes cardIn { from { opacity:0; transform:translateY(26px) scale(.985); } to { opacity:1; transform:none; } }
+    @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+    @keyframes floaty { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+    @keyframes barShine { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
+
+    .reveal { animation: riseIn .6s cubic-bezier(.2,.7,.2,1) both; }
+
     /* ===== 言語切替ボタン ===== */
-    .lang-toggle-wrap { text-align: right; margin: 6px 0 -4px; }
+    .lang-toggle-wrap { text-align: right; margin: 0 0 2px; }
     .lang-toggle {
       font-family: 'Quicksand', sans-serif;
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--mint-deep);
-      background: var(--white);
-      border: 2px solid var(--mint);
+      background: #fff;
+      border: 1.5px solid #cdeee6;
       border-radius: 999px;
-      padding: 4px 14px;
+      padding: 6px 15px;
       cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease;
+      transition: background 0.2s ease, transform 0.15s ease;
     }
-    .lang-toggle:hover { background: var(--mint); color: var(--ink); }
+    .lang-toggle:hover { background: #f1fbf8; transform: translateY(-1px); }
 
-    /* ===== ヒーロー：ウェルカムイラスト（しろ＆くろ） ===== */
+    /* ===== ヒーロー：ウェルカムイラスト ===== */
     .hero-illust {
       display: block;
       width: 100%;
       max-width: 340px;
       height: auto;
-      margin: 2px auto 2px;
+      margin: 6px auto 2px;
+      border-radius: 22px;
       animation: floaty 4s ease-in-out infinite;
-    }
-    @keyframes floaty {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-8px); }
     }
 
     /* ===== 名前・キャッチコピー ===== */
     .name {
-      font-size: 1.7rem;
+      font-size: 1.85rem;
       font-weight: 800;
-      margin-top: 10px;
-      letter-spacing: 0.02em;
+      margin-top: 14px;
+      letter-spacing: 0.01em;
     }
-    .name .en {
-      font-family: 'Quicksand', sans-serif;
-      color: var(--pink-deep);
-    }
-    .catch {
-      margin-top: 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .catch .lang-en {
-      font-family: 'Quicksand', sans-serif;
-      color: var(--mint-deep);
-    }
+    .name .en { font-family: 'Quicksand', sans-serif; color: var(--pink-deep); }
+    .catch { margin-top: 9px; font-size: 1rem; font-weight: 700; color: var(--ink); }
+    .catch .lang-en { font-family: 'Quicksand', sans-serif; color: var(--mint-deep); }
 
-    /* ===== URL共有（コピー）ボタン ===== */
-    .copyurl-wrap {
-      margin-top: 16px;
-    }
+    /* ===== URL共有ボタン ===== */
+    .copyurl-wrap { margin-top: 16px; }
     .copyurl-btn {
       display: inline-flex;
       align-items: center;
@@ -140,107 +129,72 @@
       font-size: 0.9rem;
       font-weight: 800;
       color: var(--pink-deep);
-      background: var(--white);
-      border: 2px solid var(--pink);
+      background: #fff;
+      border: 1.5px solid var(--pink);
       border-radius: 999px;
-      padding: 9px 22px;
+      padding: 10px 24px;
       cursor: pointer;
-      box-shadow: 0 3px 0 var(--pink);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
-    .copyurl-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 0 var(--pink);
-      background: #fff5fa;
-    }
-    .copyurl-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 2px 0 var(--pink);
-    }
-    /* コピー成功時はミント色でフィードバック */
-    .copyurl-btn.copied {
-      background: var(--mint);
-      border-color: var(--mint-deep);
-      color: var(--mint-deep);
-      box-shadow: 0 3px 0 var(--mint-deep);
-    }
+    .copyurl-btn:hover { transform: translateY(-2px); background: #fff6fa; }
+    .copyurl-btn:active { transform: translateY(0); }
+    .copyurl-btn.copied { color: var(--mint-deep); border-color: var(--mint); background: #f1fbf8; }
 
     /* ===== 自己紹介文 ===== */
-    .bio {
-      margin-top: 22px;
-      font-size: 0.92rem;
-      text-align: left;
-      color: var(--ink);
-    }
-    .bio p { margin-bottom: 12px; }
-    .bio .lang-en {
-      font-family: 'Quicksand', sans-serif;
-    }
+    .bio { margin-top: 24px; font-size: 0.94rem; line-height: 1.85; text-align: left; color: var(--ink); }
+    .bio p { margin-bottom: 11px; }
+    .bio .lang-en { font-family: 'Quicksand', sans-serif; }
 
     /* ===== リンクボタン群 ===== */
-    .links {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .links { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
     .link-btn {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 56px;           /* タップしやすい大きさ */
-      padding: 12px 20px;
-      border-radius: var(--radius); /* 角丸 */
-      font-size: 1.05rem;
+      gap: 13px;
+      min-height: 56px;
+      padding: 11px 19px;
+      border-radius: 16px;
+      font-size: 1.02rem;
       font-weight: 700;
       text-decoration: none;
       color: var(--ink);
-      background: var(--mint);
-      box-shadow: 0 4px 0 var(--mint-deep);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+      background: #fff;
+      border: 1.5px solid #ffe1ec;
+      box-shadow: 0 6px 14px -11px rgba(255,140,186,.6);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
-    /* ホバーで少し浮き上がる */
     .link-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 0 var(--mint-deep);
-      background: var(--yellow);
+      border-color: var(--pink-deep);
+      background: #fff6fa;
+      box-shadow: 0 11px 20px -13px rgba(255,140,186,.7);
     }
-    .link-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 var(--mint-deep);
+    .link-btn:focus-visible { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+    .link-btn .ico {
+      width: 32px; height: 32px; flex: 0 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: #ffeef5; font-size: 1.05rem;
     }
-    .link-btn:focus-visible {
-      outline: 3px solid var(--pink-deep);
-      outline-offset: 3px;
-    }
-    .link-btn .ico { font-size: 1.25rem; }
+    .link-btn.beta .ico { background: #e6faf4; }
 
-    /* SleepFadeだけ「Beta」感を出すピンク系アクセント */
-    .link-btn.beta {
-      background: var(--pink);
-      box-shadow: 0 4px 0 var(--pink-deep);
-    }
-    .link-btn.beta:hover {
-      background: var(--yellow);
-      box-shadow: 0 6px 0 var(--pink-deep);
-    }
-    .link-btn.beta:active {
-      box-shadow: 0 2px 0 var(--pink-deep);
-    }
-
-    /* ===== 最新動画セクション ===== */
+    /* ===== セクション見出し ===== */
     .section-title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       margin: 32px 0 14px;
       color: var(--ink);
-    }
-    .videos {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      gap: 8px;
     }
+    .section-title::before {
+      content: "";
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--pink-deep);
+    }
+
+    /* ===== 最新動画 ===== */
+    .videos { display: flex; flex-direction: column; gap: 10px; }
     .video-item {
       display: flex;
       align-items: center;
@@ -248,193 +202,92 @@
       text-align: left;
       text-decoration: none;
       color: var(--ink);
-      background: var(--white);
-      border: 2px solid var(--mint);
-      border-radius: 18px;
+      background: #fff;
+      border: 1.5px solid #cdeee6;
+      border-radius: 16px;
       padding: 11px 14px;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 700;
       line-height: 1.45;
       transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
     }
-    .video-item:hover {
-      transform: translateY(-2px);
-      border-color: var(--pink-deep);
-      background: var(--yellow);
-    }
-    .video-item:focus-visible {
-      outline: 3px solid var(--pink-deep);
-      outline-offset: 3px;
-    }
-    /* 再生マーク（丸いピンクのボタン風） */
+    .video-item:hover { transform: translateY(-2px); border-color: var(--pink-deep); background: #fff6fa; }
+    .video-item:focus-visible { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
     .video-play {
       flex: 0 0 auto;
-      width: 30px;
-      height: 30px;
+      width: 30px; height: 30px;
       border-radius: 50%;
       background: var(--pink-deep);
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem;
     }
 
-    /* ===== 制作物セクション ===== */
+    /* ===== 制作物 ===== */
     .work-card {
       display: flex;
       align-items: center;
       gap: 14px;
       text-align: left;
-      background: var(--white);
-      border: 2px solid var(--pink);
-      border-radius: 22px;
-      padding: 14px 16px;
-    }
-    .work-img {
-      flex: 0 0 auto;
-      width: 84px;
-      height: 84px;
-      object-fit: contain;
-    }
-    .work-title {
-      font-size: 0.95rem;
-      font-weight: 800;
+      background: #fff;
+      border: 1.5px solid var(--pink);
+      border-radius: 20px;
+      padding: 15px;
+      cursor: pointer;
+      text-decoration: none;
       color: var(--ink);
-      margin-bottom: 4px;
+      transition: transform 0.15s ease, border-color 0.2s ease;
     }
-    .work-desc {
-      font-size: 0.78rem;
-      line-height: 1.5;
-      color: var(--ink-soft);
-      margin-bottom: 8px;
-    }
-    /* 技術タグ（小さな丸ピル） */
-    .work-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .work-card:hover { transform: translateY(-2px); border-color: var(--pink-deep); }
+    .work-img { flex: 0 0 auto; width: 84px; height: 84px; object-fit: contain; }
+    .work-title { font-size: 0.98rem; font-weight: 800; color: var(--ink); margin-bottom: 5px; }
+    .work-desc { font-size: 0.79rem; line-height: 1.5; color: var(--ink-soft); margin-bottom: 8px; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .work-tags > span {
       font-family: 'Quicksand', sans-serif;
       font-size: 0.68rem;
       font-weight: 600;
       color: var(--mint-deep);
-      background: var(--mint);
+      background: #e6faf4;
       border-radius: 999px;
       padding: 2px 10px;
     }
+    .work-more { font-size: 0.74rem; font-weight: 700; color: var(--mint-deep); margin-top: 8px; }
 
-    /* ===== お知らせセクション ===== */
+    /* ===== お知らせ ===== */
     .news {
-      margin-top: 26px;
+      margin-top: 28px;
       background: #fff5fa;
-      border: 2px solid var(--pink);
-      border-radius: 22px;
-      padding: 16px 16px 18px;
+      border: 1.5px solid var(--pink);
+      border-radius: 20px;
+      padding: 18px;
       text-align: left;
     }
-    .news-banner {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 14px;
-      margin-bottom: 14px;
-    }
-    .news-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--pink-deep);
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .news-body {
-      font-size: 0.84rem;
-      line-height: 1.7;
-      color: var(--ink);
-    }
+    .news-banner { display: block; width: 100%; height: auto; border-radius: 14px; margin-bottom: 14px; }
+    .news-title { font-size: 1.08rem; font-weight: 800; color: var(--pink-deep); text-align: center; margin-bottom: 12px; }
+    .news-body { font-size: 0.87rem; line-height: 1.75; color: var(--ink); }
     .news-body p { margin-bottom: 10px; }
-    .news-body .lang-en {
-      font-family: 'Quicksand', sans-serif;
-    }
-    .news-sign {
-      text-align: right;
-      font-weight: 700;
-      color: var(--pink-deep);
-    }
-    .news-link {
-      display: inline-block;
-      margin-top: 4px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--mint-deep);
-      text-decoration: none;
-    }
+    .news-body .lang-en { font-family: 'Quicksand', sans-serif; }
+    .news-sign { text-align: right; font-weight: 700; color: var(--pink-deep); }
+    .news-link { display: inline-block; margin-top: 4px; font-size: 0.82rem; font-weight: 700; color: var(--mint-deep); text-decoration: none; }
     .news-link:hover { text-decoration: underline; }
 
-    /* 過去のお知らせ（バックナンバー：折りたたみ） */
-    .backnumbers {
-      margin-top: 16px;
-      border-top: 2px dashed var(--pink);
-      padding-top: 12px;
-    }
-    .backnumbers > summary {
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 0.85rem;
-      color: var(--pink-deep);
-    }
-    .bn-item {
-      margin-top: 10px;
-      background: var(--white);
-      border: 1px solid var(--pink);
-      border-radius: 14px;
-      padding: 10px 12px;
-    }
-    .bn-item > summary {
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--ink);
-    }
+    .backnumbers { margin-top: 16px; border-top: 1.5px dashed var(--pink); padding-top: 12px; }
+    .backnumbers > summary { cursor: pointer; font-weight: 800; font-size: 0.87rem; color: var(--pink-deep); }
+    .bn-item { margin-top: 11px; background: #fff; border: 1px solid var(--pink); border-radius: 14px; padding: 11px 13px; }
+    .bn-item > summary { cursor: pointer; font-size: 0.84rem; font-weight: 700; color: var(--ink); }
     .bn-item .news-banner { margin-top: 10px; }
 
-    /* 制作物カードをクリック可能なリンクに */
-    a.work-card {
-      cursor: pointer;
-      text-decoration: none;   /* 文字の下線を消す（囲み全体がリンク） */
-      color: var(--ink);
-      transition: transform 0.15s ease, border-color 0.2s ease;
-    }
-    a.work-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--pink-deep);
-    }
-    .work-more {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--mint-deep);
-      margin-top: 8px;
-    }
-
     /* ===== フッター ===== */
-    footer {
-      margin-top: 30px;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.8rem;
-      color: var(--ink-soft);
-    }
+    footer { margin-top: 30px; font-family: 'Quicksand', sans-serif; font-size: 0.82rem; color: var(--ink-soft); }
 
-    /* ===== レスポンシブ：少し広い画面での微調整 ===== */
     @media (min-width: 480px) {
-      .name  { font-size: 1.9rem; }
-      .hero-illust { max-width: 380px; }
+      .name { font-size: 1.95rem; }
+      .hero-illust { max-width: 360px; }
     }
-
-    /* ===== アニメーションを抑制したいユーザーへの配慮 ===== */
     @media (prefers-reduced-motion: reduce) {
-      .hero-illust { animation: none; }
-      .link-btn { transition: none; }
+      * { animation: none !important; }
+      .link-btn, .video-item, .work-card, .copyurl-btn { transition: none; }
     }
   </style>
 </head>
@@ -446,39 +299,17 @@
       <button type="button" class="lang-toggle" id="langToggle">🌐 English</button>
     </div>
 
-    <!-- ===== 4-1. ヒーローセクション ===== -->
+    <!-- ===== ヒーロー ===== -->
     <img class="hero-illust" src="images/shiro_kuro.png" width="800" height="533"
          alt="しろちゃんとくろちゃんが手を振って出迎えるイラスト" decoding="async">
     <h1 class="name">🍰 しんたや <span class="en">/ shintaya</span></h1>
     <p class="catch">
       <span class="lang-ja">AIで紡ぐ、甘くてかわいい音楽世界</span>
-      <span class="lang-en" lang="en" hidden>🍰 Weaving sweet, kawaii music with AI 🍰</span>
+      <span class="lang-en" lang="en" hidden>Weaving sweet, kawaii music with AI</span>
     </p>
 
-    <!-- ===== URLをコピーして共有するボタン ===== -->
-    <div class="copyurl-wrap">
-      <button type="button" class="copyurl-btn" id="copyUrlBtn" aria-label="このページのURLをコピー">
-        <span aria-hidden="true">🔗</span><span id="copyUrlLabel">URLをコピーして共有</span>
-      </button>
-    </div>
-
-    <!-- 自己紹介文（言語切替で表示） -->
-    <section class="bio">
-      <div class="lang-ja">
-        <p>Kawaii Future Bassを中心に、AIツール（Suno・FL Studio）で音楽を制作しているクリエイターです。</p>
-        <p>スイーツをテーマにしたオリジナル楽曲（Sugar, Cookie, Lemon Tart...）で、ふんわり甘く、ちょっと切ない世界観を発信中。</p>
-        <p>海外リスナーにも届くよう英語タイトルを併記し、現在は世界各国の方に聴いていただいています🌍</p>
-        <p>音楽以外にも、睡眠用Androidアプリ「SleepFade」のテスター運営など、AIを道具として使いこなす活動を続けています。</p>
-      </div>
-      <div class="lang-en" lang="en" hidden>
-        <p>A creator making Kawaii Future Bass with AI tools (Suno, FL Studio). I craft sweet, dessert-themed original songs (Sugar, Cookie, Lemon Tart...) with a soft, slightly bittersweet vibe.</p>
-        <p>With bilingual titles, my music reaches listeners around the world. Beyond music, I'm running closed tests for my sleep timer app "SleepFade" — exploring what's possible when AI becomes a creative tool.</p>
-      </div>
-    </section>
-
-    <!-- ===== お知らせセクション（コミュニティ投稿は手動更新） ===== -->
-    <section class="news" aria-label="お知らせ">
-      <!-- 最新のお知らせ：ポータルサイト公開 -->
+    <!-- ===== お知らせ ===== -->
+    <section class="news reveal" style="animation-delay:.3s" aria-label="お知らせ">
       <article class="news-item">
       <img class="news-banner" src="images/news_portal_open.jpg" width="1000" height="1000"
            alt="ポータルサイト公開！ Portal Site OPEN!（T4Sチビ4人）" decoding="async">
@@ -499,8 +330,6 @@
       </div>
       </article>
 
-      <!-- 過去のお知らせ（バックナンバー）。
-           次回更新時：上の最新 <article> をここへ <details class="bn-item"> として移動し、最新分を差し替える。 -->
       <!-- BACKNUMBERS_START -->
       <details class="backnumbers">
         <summary><span class="lang-ja">🗂 過去のお知らせ</span><span class="lang-en" hidden>🗂 Past announcements</span></summary>
@@ -518,7 +347,7 @@
             </div>
             <div class="lang-en" lang="en" hidden>
               <p>🎉 We just turned 1 year old!</p>
-              <p>Thank you so much for always listening. Lately I've focused on Kawaii Future Bass, but sometimes a different genre slips in — think of it as a little “change of flavor” and just enjoy the switch-up🍰</p>
+              <p>Thank you so much for always listening. Lately I've focused on Kawaii Future Bass, but sometimes a different genre slips in — think of it as a little "change of flavor" and just enjoy the switch-up🍰</p>
               <p>Every play, every sub, every comment really keeps me going. My hope is that this channel becomes a place that puts a smile in many hearts. Here's to year two — thank you for being here☺️</p>
             </div>
             <p class="news-sign">shintaya / しんたや</p>
@@ -532,8 +361,29 @@
       <!-- BACKNUMBERS_END -->
     </section>
 
-    <!-- ===== 4-2. リンクボタン（上から表示順通り） ===== -->
-    <nav class="links" aria-label="SNS・活動リンク">
+    <!-- ===== URL共有 ===== -->
+    <div class="copyurl-wrap reveal" style="animation-delay:.36s">
+      <button type="button" class="copyurl-btn" id="copyUrlBtn" aria-label="このページのURLをコピー">
+        <span aria-hidden="true">🔗</span><span id="copyUrlLabel">URLをコピーして共有</span>
+      </button>
+    </div>
+
+    <!-- ===== 自己紹介文 ===== -->
+    <section class="bio reveal" style="animation-delay:.42s">
+      <div class="lang-ja">
+        <p>Kawaii Future Bassを中心に、AIツール（Suno・FL Studio）で音楽を制作しているクリエイターです。</p>
+        <p>スイーツをテーマにしたオリジナル楽曲（Sugar, Cookie, Lemon Tart...）で、ふんわり甘く、ちょっと切ない世界観を発信中。</p>
+        <p>海外リスナーにも届くよう英語タイトルを併記し、現在は世界各国の方に聴いていただいています🌍</p>
+        <p>音楽以外にも、睡眠用Androidアプリ「SleepFade」のテスター運営など、AIを道具として使いこなす活動を続けています。</p>
+      </div>
+      <div class="lang-en" lang="en" hidden>
+        <p>A creator making Kawaii Future Bass with AI tools (Suno, FL Studio). I craft sweet, dessert-themed original songs (Sugar, Cookie, Lemon Tart...) with a soft, slightly bittersweet vibe.</p>
+        <p>With bilingual titles, my music reaches listeners around the world. Beyond music, I'm running closed tests for my sleep timer app "SleepFade" — exploring what's possible when AI becomes a creative tool.</p>
+      </div>
+    </section>
+
+    <!-- ===== リンクボタン ===== -->
+    <nav class="links reveal" style="animation-delay:.5s" aria-label="SNS・活動リンク">
       <a class="link-btn" href="https://www.youtube.com/@shintaya-z1f" target="_blank" rel="noopener">
         <span class="ico" aria-hidden="true">🎵</span>YouTube
       </a>
@@ -569,15 +419,10 @@
       </a>
     </nav>
 
-    <!-- ===== 最新動画セクション（GitHub Actionsが自動更新） =====
-         LATEST_VIDEOS_START 〜 END の間は自動生成。手動で編集しないこと。 -->
+    <!-- ===== 最新動画 ===== -->
     <h2 class="section-title"><span class="lang-ja">🎬 最新動画</span><span class="lang-en" hidden>🎬 Latest Videos</span></h2>
     <nav class="videos" aria-label="最新動画">
       <!-- LATEST_VIDEOS_START -->
-      <a class="video-item" href="https://www.youtube.com/watch?v=n4wGXMyX78k" target="_blank" rel="noopener">
-        <span class="video-play" aria-hidden="true">▶</span>
-        <span>🍓🌅【Fruit Groove】｜Liquid DnB Remix｜朝を駆けるフルーツティーの疾走感✨</span>
-      </a>
       <a class="video-item" href="https://www.youtube.com/watch?v=LSNGP28OcCE" target="_blank" rel="noopener">
         <span class="video-play" aria-hidden="true">▶</span>
         <span>🌊🍬 【クリスタル・マリンバ】｜Kawaii Future Bass × マリンバ｜透明な夏の始まりアンセム</span>
@@ -586,10 +431,14 @@
         <span class="video-play" aria-hidden="true">▶</span>
         <span>⚡💻 【サンダー・サーキット】｜Future Bass × EDM Pop｜思考回路フル回転の集中アンセム</span>
       </a>
+      <a class="video-item" href="https://www.youtube.com/watch?v=iK-tNGjyxGA" target="_blank" rel="noopener">
+        <span class="video-play" aria-hidden="true">▶</span>
+        <span>🌟🎸 【ステラ・ギター】｜Kawaii Future Bass × アコギ｜星空の下の小さなコンサート</span>
+      </a>
       <!-- LATEST_VIDEOS_END -->
     </nav>
 
-    <!-- ===== 制作物セクション ===== -->
+    <!-- ===== 制作物 ===== -->
     <h2 class="section-title"><span class="lang-ja">🛠 制作物</span><span class="lang-en" hidden>🛠 Works</span></h2>
     <a class="work-card" href="app.html">
       <img class="work-img" src="images/haru_works.png" width="260" height="260"
@@ -601,7 +450,7 @@
         </p>
         <p class="work-desc">
           <span class="lang-ja">画面の明るさと音声デバイス（出力・マイク・音量）をワンタッチで切り替えできる Windows 用ユーティリティ。自作マスコット「haru ちゃん」が操作に反応して動きます。</span>
-          <span class="lang-en" hidden>A Windows utility to switch screen brightness and audio (output / mic / volume) in one tap. The original mascot “haru” reacts to your actions.</span>
+          <span class="lang-en" hidden>A Windows utility to switch screen brightness and audio (output / mic / volume) in one tap. The original mascot "haru" reacts to your actions.</span>
         </p>
         <p class="work-tags">
           <span>Windows 10 / 11</span>
@@ -615,16 +464,13 @@
       </div>
     </a>
 
-    <!-- ===== 4-3. フッター ===== -->
     <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
 
   </main>
 
-  <!-- ===== 言語切替 ＋ URLコピー（共有）処理 ===== -->
   <script>
     (function () {
       var SHARE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
-      // コピーボタンのラベル（言語別）
       var COPY = {
         ja: { label: 'URLをコピーして共有', copied: '✓ コピーしました！' },
         en: { label: 'Copy & share URL', copied: '✓ Copied!' }
@@ -638,7 +484,6 @@
       var copying = false;
       var resetTimer;
 
-      // ---- 言語適用 ----
       function applyLang(lang) {
         curLang = lang;
         root.setAttribute('data-lang', lang);
@@ -661,7 +506,6 @@
         applyLang(next);
       });
 
-      // ---- URLコピー ----
       copyBtn.addEventListener('click', function () {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(SHARE_URL).then(showCopied, fallbackCopy);
