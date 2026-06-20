@@ -17,31 +17,35 @@
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== Sugar Mist パレット（A案） ===== */
     :root {
       --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
-      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84; --white:#fffdfa;
-      --shadow:0 8px 20px rgba(255,140,186,0.25);
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84;
+      --card:#fffdfb; --card-border:#fbe4ee; --soft-shadow:0 22px 50px -24px rgba(255,140,186,.45);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
       color:var(--ink); line-height:1.8; min-height:100vh;
-      background:linear-gradient(160deg,var(--pink) 0%,var(--yellow) 50%,var(--mint) 100%);
+      background:linear-gradient(165deg,#fff6fa 0%,#fdeef4 52%,#edfaf5 100%);
       background-attachment:fixed; display:flex; justify-content:center;
-      padding:28px 18px 48px; -webkit-font-smoothing:antialiased;
+      padding:28px 16px 48px; -webkit-font-smoothing:antialiased;
     }
     .card {
-      width:100%; max-width:560px; background:var(--white); border-radius:28px;
-      padding:30px 24px 28px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+      width:100%; max-width:560px; background:var(--card); border:1px solid var(--card-border);
+      border-radius:30px; padding:30px 24px 28px; box-shadow:var(--soft-shadow);
+      position:relative; overflow:hidden; animation:cardIn .7s cubic-bezier(.2,.7,.2,1) both;
     }
     .card::before {
-      content:""; position:absolute; top:0; left:0; right:0; height:8px;
-      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep));
+      content:""; position:absolute; top:0; left:0; right:0; height:5px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep),var(--pink-deep));
+      background-size:200% 100%; animation:barShine 6s linear infinite;
     }
-    .back {
-      display:inline-block; font-size:0.82rem; font-weight:700;
-      color:var(--mint-deep); text-decoration:none; margin-bottom:14px;
-    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(26px) scale(.985);} to{opacity:1;transform:none;} }
+    @keyframes riseIn { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:none;} }
+    @keyframes barShine { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
+
+    .back { display:inline-block; font-size:0.82rem; font-weight:700; color:var(--mint-deep); text-decoration:none; margin-bottom:14px; }
     .back:hover { text-decoration:underline; }
     h1 { font-size:1.6rem; font-weight:800; text-align:center; }
     .subtitle {
@@ -49,31 +53,28 @@
       font-size:0.82rem; color:var(--mint-deep); margin-top:2px; margin-bottom:20px;
     }
 
-    /* ===== キャラグリッド ===== */
-    .chars {
-      display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
-    }
+    .chars { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
     @media (max-width:440px){ .chars { grid-template-columns:repeat(2, 1fr); } }
     .char {
-      background:#fff; border:2px solid var(--pink); border-radius:20px;
+      background:#fff; border:1.5px solid var(--pink); border-radius:20px;
       padding:10px 8px 12px; text-align:center;
+      animation:riseIn .55s cubic-bezier(.2,.7,.2,1) both;
+      transition:transform .15s ease, border-color .2s ease, box-shadow .2s ease;
     }
-    .char img {
-      width:100%; height:auto; display:block; border-radius:14px; background:#fff;
-    }
-    .char .name {
-      font-size:0.92rem; font-weight:800; color:var(--ink); margin-top:8px;
-    }
+    .char:hover { transform:translateY(-3px); border-color:var(--pink-deep); box-shadow:0 12px 22px -16px rgba(255,140,186,.7); }
+    .char:nth-child(1){animation-delay:.20s} .char:nth-child(2){animation-delay:.27s}
+    .char:nth-child(3){animation-delay:.34s} .char:nth-child(4){animation-delay:.41s}
+    .char:nth-child(5){animation-delay:.48s} .char:nth-child(6){animation-delay:.55s}
+    .char img { width:100%; height:auto; display:block; border-radius:14px; background:#fff; }
+    .char .name { font-size:0.92rem; font-weight:800; color:var(--ink); margin-top:8px; }
 
     .note {
       font-size:0.78rem; color:var(--ink-soft); text-align:center;
-      background:#fff5fa; border:2px dashed var(--pink); border-radius:16px;
+      background:#fff5fa; border:1.5px dashed var(--pink); border-radius:16px;
       padding:12px 14px; margin-top:22px;
     }
-    footer {
-      margin-top:26px; text-align:center; font-family:'Quicksand',sans-serif;
-      font-size:0.78rem; color:var(--ink-soft);
-    }
+    footer { margin-top:26px; text-align:center; font-family:'Quicksand',sans-serif; font-size:0.78rem; color:var(--ink-soft); }
+    @media (prefers-reduced-motion:reduce){ *{animation:none!important;} .char{transition:none;} }
   </style>
 </head>
 <body>
