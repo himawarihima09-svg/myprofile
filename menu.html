@@ -17,31 +17,35 @@
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== Sugar Mist パレット（A案） ===== */
     :root {
       --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
-      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84; --white:#fffdfa;
-      --shadow:0 8px 20px rgba(255,140,186,0.25);
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84;
+      --card:#fffdfb; --card-border:#fbe4ee; --soft-shadow:0 22px 50px -24px rgba(255,140,186,.45);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
       color:var(--ink); line-height:1.8; min-height:100vh;
-      background:linear-gradient(160deg,var(--pink) 0%,var(--yellow) 50%,var(--mint) 100%);
+      background:linear-gradient(165deg,#fff6fa 0%,#fdeef4 52%,#edfaf5 100%);
       background-attachment:fixed; display:flex; justify-content:center;
-      padding:28px 18px 48px; -webkit-font-smoothing:antialiased;
+      padding:28px 16px 48px; -webkit-font-smoothing:antialiased;
     }
     .card {
-      width:100%; max-width:520px; background:var(--white); border-radius:28px;
-      padding:30px 24px 28px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+      width:100%; max-width:520px; background:var(--card); border:1px solid var(--card-border);
+      border-radius:30px; padding:30px 24px 28px; box-shadow:var(--soft-shadow);
+      position:relative; overflow:hidden; animation:cardIn .7s cubic-bezier(.2,.7,.2,1) both;
     }
     .card::before {
-      content:""; position:absolute; top:0; left:0; right:0; height:8px;
-      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep));
+      content:""; position:absolute; top:0; left:0; right:0; height:5px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep),var(--pink-deep));
+      background-size:200% 100%; animation:barShine 6s linear infinite;
     }
-    .back {
-      display:inline-block; font-size:0.82rem; font-weight:700;
-      color:var(--mint-deep); text-decoration:none; margin-bottom:14px;
-    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(26px) scale(.985);} to{opacity:1;transform:none;} }
+    @keyframes barShine { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
+    @keyframes pop { 0%{transform:scale(.96);opacity:0;} 60%{transform:scale(1.02);} 100%{transform:scale(1);opacity:1;} }
+
+    .back { display:inline-block; font-size:0.82rem; font-weight:700; color:var(--mint-deep); text-decoration:none; margin-bottom:14px; }
     .back:hover { text-decoration:underline; }
     h1 { font-size:1.6rem; font-weight:800; text-align:center; }
     .subtitle {
@@ -51,36 +55,33 @@
 
     /* ===== おみくじ ===== */
     .omikuji {
-      background:#fff5fa; border:2px solid var(--pink); border-radius:22px;
+      background:#fff5fa; border:1.5px solid var(--pink); border-radius:22px;
       padding:18px 18px 20px; margin:18px 0 26px; text-align:center;
     }
     .omikuji h2 { font-size:1.1rem; font-weight:800; color:var(--pink-deep); }
     .omikuji .desc { font-size:0.82rem; color:var(--ink-soft); margin:6px 0 14px; }
     .omikuji-btn {
-      font-family:inherit; font-size:1.05rem; font-weight:800; color:var(--ink);
-      background:var(--mint); border:none; border-radius:999px; padding:11px 30px;
-      box-shadow:0 4px 0 var(--mint-deep); cursor:pointer;
-      transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+      font-family:inherit; font-size:1.05rem; font-weight:800; color:var(--pink-deep);
+      background:#fff; border:1.5px solid var(--pink); border-radius:999px; padding:11px 30px;
+      cursor:pointer; transition:transform 0.15s ease, background 0.2s ease;
     }
-    .omikuji-btn:hover { transform:translateY(-2px); box-shadow:0 6px 0 var(--mint-deep); background:var(--yellow); }
-    .omikuji-btn:active { transform:translateY(2px); box-shadow:0 2px 0 var(--mint-deep); }
+    .omikuji-btn:hover { transform:translateY(-2px); background:#fff6fa; }
+    .omikuji-btn:active { transform:translateY(0); }
 
-    .omikuji-result { margin-top:18px; }
+    .omikuji-result { margin-top:18px; animation:pop .5s cubic-bezier(.2,.8,.3,1.1) both; }
     .omikuji-result .rank { font-size:2.4rem; line-height:1; }
     .omikuji-result .fortune { font-size:1.05rem; font-weight:800; color:var(--pink-deep); margin-top:4px; }
-    .omikuji-result .song {
-      font-size:1rem; font-weight:800; margin:10px 0 4px; color:var(--ink);
-    }
+    .omikuji-result .song { font-size:1rem; font-weight:800; margin:10px 0 4px; color:var(--ink); }
     .omikuji-result .msg { font-size:0.84rem; color:var(--ink-soft); }
     .omikuji-actions { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px; }
     .omikuji-actions a {
       display:inline-flex; align-items:center; gap:6px;
       font-size:0.85rem; font-weight:700; text-decoration:none;
-      border-radius:999px; padding:8px 18px;
+      border-radius:999px; padding:8px 18px; transition:transform .15s ease, background .2s ease;
     }
-    .listen-link { color:var(--ink); background:var(--mint); }
-    .listen-link:hover { background:var(--yellow); }
-    /* SNS投稿リンク（"share"の語を避けた名前でブロッカー対策） */
+    .omikuji-actions a:hover { transform:translateY(-2px); }
+    .listen-link { color:var(--mint-deep); background:#fff; border:1.5px solid #cdeee6; }
+    .listen-link:hover { background:#f1fbf8; }
     .xpost-link { color:#fff; background:var(--pink-deep); }
     .xpost-link:hover { filter:brightness(1.05); }
 
@@ -91,32 +92,20 @@
     .menu-row { display:flex; align-items:baseline; gap:8px; }
     .menu-name { font-size:0.98rem; font-weight:800; color:var(--ink); white-space:nowrap; }
     .menu-dots { flex:1 1 auto; border-bottom:2px dotted var(--pink); transform:translateY(-3px); min-width:20px; }
-    .menu-listen {
-      font-size:0.8rem; font-weight:700; color:var(--mint-deep);
-      text-decoration:none; white-space:nowrap;
-    }
+    .menu-listen { font-size:0.8rem; font-weight:700; color:var(--mint-deep); text-decoration:none; white-space:nowrap; }
     .menu-listen:hover { text-decoration:underline; }
     .menu-flavor { font-size:0.78rem; color:var(--ink-soft); margin-top:4px; }
-    .menu-flavor .tag {
-      font-family:'Quicksand',sans-serif; font-weight:600; color:var(--mint-deep);
-    }
+    .menu-flavor .tag { font-family:'Quicksand',sans-serif; font-weight:600; color:var(--mint-deep); }
 
-    /* 本日のコース（MIX）強調 */
-    .course {
-      margin-top:20px; background:#fffaf0; border:2px solid var(--yellow);
-      border-radius:18px; padding:14px 16px;
-    }
+    .course { margin-top:20px; background:#fffaf0; border:1.5px solid var(--yellow); border-radius:18px; padding:14px 16px; }
     .course .label {
       display:inline-block; font-size:0.7rem; font-weight:800; color:#b58900;
       background:var(--yellow); border-radius:999px; padding:2px 12px; margin-bottom:8px;
     }
     .course .menu-name { display:block; margin-bottom:4px; white-space:normal; }
 
-    footer {
-      margin-top:28px; text-align:center; font-family:'Quicksand',sans-serif;
-      font-size:0.78rem; color:var(--ink-soft);
-    }
-    @media (prefers-reduced-motion:reduce) { .omikuji-btn { transition:none; } }
+    footer { margin-top:28px; text-align:center; font-family:'Quicksand',sans-serif; font-size:0.78rem; color:var(--ink-soft); }
+    @media (prefers-reduced-motion:reduce){ *{animation:none!important;} .omikuji-btn{transition:none;} }
   </style>
 </head>
 <body>
@@ -157,7 +146,6 @@
     </div>
 
     <!-- COURSE_START -->
-      <!-- 本日のコース（作業用MIX） -->
       <div class="course">
         <span class="label">本日のコース 🍽</span>
         <span class="menu-name">🌸 Spring Sweets MIX Vol.1（作業用BGM・1時間）</span>
@@ -174,7 +162,6 @@
     (function () {
       var SITE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
 
-      // おみくじ対象の楽曲（1曲もの）
       var SONGS = [
         // OMIKUJI_SONGS_START
         { n: '🍓 Fruit Groove', id: 'n4wGXMyX78k' },
@@ -194,7 +181,6 @@
         // OMIKUJI_SONGS_END
       ];
 
-      // スイーツ占い（運勢）
       var FORTUNES = [
         { r: '🍰', f: '大吉', m: '今日は最高のスイーツ日和！この曲でテンション爆上げでいこう✨' },
         { r: '🍓', f: '中吉', m: 'ふんわり良い一日になりそう。この曲でひと息ついて🍓' },
@@ -211,7 +197,6 @@
         var fortune = FORTUNES[Math.floor(Math.random() * FORTUNES.length)];
         var watch = 'https://www.youtube.com/watch?v=' + song.id;
 
-        // Xポスト用テキスト（"share"の語は使わない）
         var postText = '今日のラッキー曲は ' + song.n + ' 🎵\n' + fortune.f + '！' + fortune.m + '\n#しんたや #KawaiiFutureBass';
         var xUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(postText) + '&url=' + encodeURIComponent(SITE_URL);
 
@@ -225,6 +210,8 @@
             '<a class="xpost-link" href="' + xUrl + '" target="_blank" rel="noopener">𝕏 でポスト</a>' +
           '</div>';
         box.hidden = false;
+        // 再描画でアニメをやり直す
+        box.style.animation = 'none'; void box.offsetWidth; box.style.animation = '';
         btn.textContent = 'もう一度占う 🍰';
       });
     })();
