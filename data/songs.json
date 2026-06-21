@@ -1,17 +1,130 @@
 [
-  { "id": "n4wGXMyX78k", "emoji": "🍓", "name": "Fruit Groove", "genre": "Liquid DnB Remix", "tagline": "朝を駆けるフルーツティーの疾走感", "mix": false },
-  { "id": "LSNGP28OcCE", "emoji": "🌊", "name": "クリスタル・マリンバ", "genre": "Kawaii Future Bass × マリンバ", "tagline": "透明な夏の始まりアンセム", "mix": false },
-  { "id": "JpEURMQzadk", "emoji": "⚡", "name": "サンダー・サーキット", "genre": "Future Bass × EDM Pop", "tagline": "思考回路フル回転の集中アンセム", "mix": false },
-  { "id": "iK-tNGjyxGA", "emoji": "🌟", "name": "ステラ・ギター", "genre": "Kawaii Future Bass × アコギ", "tagline": "星空の下の小さなコンサート", "mix": false },
-  { "id": "0xoa-W5gE7g", "emoji": "💥", "name": "フラッシュ・オーバードライブ", "genre": "Future Bass × EDM Pop", "tagline": "限界の先へ突き抜けるアンセム", "mix": false },
-  { "id": "rot1705CwZQ", "emoji": "🍬", "name": "マシュマロ・ファンファーレ", "genre": "Kawaii Future Bass × Brass", "tagline": "小さな勝利を祝う応援歌", "mix": false },
-  { "id": "VTEKOVDvXcE", "emoji": "🌙", "name": "ミッドナイト・イグニション", "genre": "Future Bass × EDM Pop", "tagline": "真夜中に自分を再起動するアンセム", "mix": false },
-  { "id": "4X1WyrkROqE", "emoji": "🎮", "name": "ピクセル・ドリーム", "genre": "Kawaii Future Bass × 8bit", "tagline": "人生をリスタートする応援歌", "mix": false },
-  { "id": "Yymnf8yRocY", "emoji": "⚡", "name": "ネオン・チェイサー", "genre": "Future Bass × EDM Pop", "tagline": "夜の街を切り裂くアンセム", "mix": false },
-  { "id": "a7WenL6z1kY", "emoji": "✨", "name": "シュガー・ストリングス", "genre": "Kawaii Future Bass × Strings", "tagline": "甘い涙のメロディ", "mix": false },
-  { "id": "ctxMGMVKk3Q", "emoji": "🎀", "name": "ボルテージ・ガール", "genre": "Kawaii Future Bass × EDM Pop", "tagline": "Voltage Girl", "mix": false },
-  { "id": "8tBR8a8z5AQ", "emoji": "🍿", "name": "ポップコーン・アンセム", "genre": "Kawaii Future Bass", "tagline": "毎日を吹っ飛ばすはじけるアンセム", "mix": false },
-  { "id": "89dMDM9NG1g", "emoji": "🍬", "name": "シュガーコート・バイバイ", "genre": "Kawaii Future Bass × Future Pop", "tagline": "甘くコーティングしたサヨナラ", "mix": false },
-  { "id": "WE7GKgB4J-o", "emoji": "💔", "name": "グリッチ・ラブレター", "genre": "Kawaii Future Bass × J-Pop EDM", "tagline": "壊れたまま叫ぶ感情ドロップ", "mix": false },
-  { "id": "mNFJtN_IuiA", "emoji": "🌸", "name": "Spring Sweets MIX Vol.1（作業用BGM・1時間）", "genre": "Kawaii Future Bass MIX", "tagline": "春のスイーツ世界を朝から夜まで巡る10曲", "mix": true }
+  {
+    "emoji": "🌅🌊✨",
+    "name": "あさやけ渚",
+    "genre": "夏の夜明けを告げる Kawaii Future Bass",
+    "tagline": "",
+    "mix": false,
+    "id": "oyermvJUQhY"
+  },
+  {
+    "id": "n4wGXMyX78k",
+    "emoji": "🍓",
+    "name": "Fruit Groove",
+    "genre": "Liquid DnB Remix",
+    "tagline": "朝を駆けるフルーツティーの疾走感",
+    "mix": false
+  },
+  {
+    "id": "LSNGP28OcCE",
+    "emoji": "🌊",
+    "name": "クリスタル・マリンバ",
+    "genre": "Kawaii Future Bass × マリンバ",
+    "tagline": "透明な夏の始まりアンセム",
+    "mix": false
+  },
+  {
+    "id": "JpEURMQzadk",
+    "emoji": "⚡",
+    "name": "サンダー・サーキット",
+    "genre": "Future Bass × EDM Pop",
+    "tagline": "思考回路フル回転の集中アンセム",
+    "mix": false
+  },
+  {
+    "id": "iK-tNGjyxGA",
+    "emoji": "🌟",
+    "name": "ステラ・ギター",
+    "genre": "Kawaii Future Bass × アコギ",
+    "tagline": "星空の下の小さなコンサート",
+    "mix": false
+  },
+  {
+    "id": "0xoa-W5gE7g",
+    "emoji": "💥",
+    "name": "フラッシュ・オーバードライブ",
+    "genre": "Future Bass × EDM Pop",
+    "tagline": "限界の先へ突き抜けるアンセム",
+    "mix": false
+  },
+  {
+    "id": "rot1705CwZQ",
+    "emoji": "🍬",
+    "name": "マシュマロ・ファンファーレ",
+    "genre": "Kawaii Future Bass × Brass",
+    "tagline": "小さな勝利を祝う応援歌",
+    "mix": false
+  },
+  {
+    "id": "VTEKOVDvXcE",
+    "emoji": "🌙",
+    "name": "ミッドナイト・イグニション",
+    "genre": "Future Bass × EDM Pop",
+    "tagline": "真夜中に自分を再起動するアンセム",
+    "mix": false
+  },
+  {
+    "id": "4X1WyrkROqE",
+    "emoji": "🎮",
+    "name": "ピクセル・ドリーム",
+    "genre": "Kawaii Future Bass × 8bit",
+    "tagline": "人生をリスタートする応援歌",
+    "mix": false
+  },
+  {
+    "id": "Yymnf8yRocY",
+    "emoji": "⚡",
+    "name": "ネオン・チェイサー",
+    "genre": "Future Bass × EDM Pop",
+    "tagline": "夜の街を切り裂くアンセム",
+    "mix": false
+  },
+  {
+    "id": "a7WenL6z1kY",
+    "emoji": "✨",
+    "name": "シュガー・ストリングス",
+    "genre": "Kawaii Future Bass × Strings",
+    "tagline": "甘い涙のメロディ",
+    "mix": false
+  },
+  {
+    "id": "ctxMGMVKk3Q",
+    "emoji": "🎀",
+    "name": "ボルテージ・ガール",
+    "genre": "Kawaii Future Bass × EDM Pop",
+    "tagline": "Voltage Girl",
+    "mix": false
+  },
+  {
+    "id": "8tBR8a8z5AQ",
+    "emoji": "🍿",
+    "name": "ポップコーン・アンセム",
+    "genre": "Kawaii Future Bass",
+    "tagline": "毎日を吹っ飛ばすはじけるアンセム",
+    "mix": false
+  },
+  {
+    "id": "89dMDM9NG1g",
+    "emoji": "🍬",
+    "name": "シュガーコート・バイバイ",
+    "genre": "Kawaii Future Bass × Future Pop",
+    "tagline": "甘くコーティングしたサヨナラ",
+    "mix": false
+  },
+  {
+    "id": "WE7GKgB4J-o",
+    "emoji": "💔",
+    "name": "グリッチ・ラブレター",
+    "genre": "Kawaii Future Bass × J-Pop EDM",
+    "tagline": "壊れたまま叫ぶ感情ドロップ",
+    "mix": false
+  },
+  {
+    "id": "mNFJtN_IuiA",
+    "emoji": "🌸",
+    "name": "Spring Sweets MIX Vol.1（作業用BGM・1時間）",
+    "genre": "Kawaii Future Bass MIX",
+    "tagline": "春のスイーツ世界を朝から夜まで巡る10曲",
+    "mix": true
+  }
 ]
