@@ -81,6 +81,23 @@
 
     .reveal { animation: riseIn .6s cubic-bezier(.2,.7,.2,1) both; }
 
+    /* ===== 季節ビジュアル（夏） ===== */
+    .season {
+      margin-top: 18px;
+      background: #f1fbff;
+      border: 1.5px solid #cdeef5;
+      border-radius: 22px;
+      padding: 12px 12px 14px;
+    }
+    .season-img { display: block; width: 100%; height: auto; border-radius: 16px; }
+    .season-comment {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
     /* ===== 言語切替ボタン ===== */
     .lang-toggle-wrap { text-align: right; margin: 0 0 2px; }
     .lang-toggle {
@@ -307,6 +324,16 @@
       <span class="lang-ja">AIで紡ぐ、甘くてかわいい音楽世界</span>
       <span class="lang-en" lang="en" hidden>Weaving sweet, kawaii music with AI</span>
     </p>
+
+    <!-- ===== 夏の季節ビジュアル（はる＆なつ） ===== -->
+    <section class="season reveal" style="animation-delay:.2s" aria-label="夏のごあいさつ">
+      <img class="season-img" src="images/summer_haru_natu.jpg" width="900" height="900"
+           alt="はるちゃんとなつちゃんの夏イラスト（プールで指ハート）" decoding="async">
+      <p class="season-comment">
+        <span class="lang-ja">🌊☀️ 夏、はじまりました！<br>はる＆なつと一緒に、今年も甘くて涼しい音楽をお届けします🍧💕</span>
+        <span class="lang-en" hidden>🌊☀️ Summer is here!<br>With Haru &amp; Natu, here's to a sweet &amp; cool summer of music🍧💕</span>
+      </p>
+    </section>
 
     <!-- ===== お知らせ ===== -->
     <section class="news reveal" style="animation-delay:.3s" aria-label="お知らせ">
