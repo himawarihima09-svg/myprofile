@@ -9,6 +9,7 @@ import json
 import os
 import re
 import html
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -20,16 +21,27 @@ NS = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/sche
 
 
 def fetch_rss():
-    """[(videoId, title), ...] を新しい順で返す。"""
+    """[(videoId, title), ...] を新しい順で返す。
+    一時的な失敗（404/タイムアウト等）はリトライ。最終的に失敗したら空リストを返す
+    （その場合は新曲追加をスキップし、既存 songs.json から再生成するだけ）。"""
     req = urllib.request.Request(FEED_URL, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as res:
-        root = ET.fromstring(res.read())
-    out = []
-    for e in root.findall("a:entry", NS):
-        vid = e.find("yt:videoId", NS).text
-        title = (e.find("a:title", NS).text or "").strip()
-        out.append((vid, title))
-    return out
+    last_err = None
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as res:
+                root = ET.fromstring(res.read())
+            out = []
+            for e in root.findall("a:entry", NS):
+                vid = e.find("yt:videoId", NS).text
+                title = (e.find("a:title", NS).text or "").strip()
+                out.append((vid, title))
+            return out
+        except Exception as e:  # noqa: BLE001 一時的失敗を握りつぶしてリトライ
+            last_err = e
+            if attempt < 3:
+                time.sleep(5 * (attempt + 1))
+    print(f"RSS取得に一時的に失敗（新曲追加はスキップ）: {last_err}")
+    return []
 
 
 def parse_title(title):
