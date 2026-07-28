@@ -257,6 +257,12 @@
     }
     .work-card:hover { transform: translateY(-2px); border-color: var(--pink-deep); }
     .work-img { flex: 0 0 auto; width: 84px; height: 84px; object-fit: contain; }
+    .work-icon {
+      flex: 0 0 auto; width: 84px; height: 84px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 20px; font-size: 2.4rem;
+    }
+    .work-icon--sleepfade { background: linear-gradient(160deg, #7d8be0, #2b2f66); }
     .work-title { font-size: 0.98rem; font-weight: 800; color: var(--ink); margin-bottom: 5px; }
     .work-desc { font-size: 0.79rem; line-height: 1.5; color: var(--ink-soft); margin-bottom: 8px; }
     .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -432,9 +438,6 @@
       <a class="link-btn" href="wallpaper.html">
         <span class="ico" aria-hidden="true">🖼</span><span class="lang-ja">壁紙プレゼント</span><span class="lang-en" hidden>Wallpapers</span>
       </a>
-      <a class="link-btn beta" href="https://play.google.com/apps/testing/com.sleepfade.app" target="_blank" rel="noopener">
-        <span class="ico" aria-hidden="true">🌙</span>SleepFade（Beta）
-      </a>
       <a class="link-btn" href="https://x.com/shintaya990654" target="_blank" rel="noopener">
         <span class="ico" aria-hidden="true">✨</span>X（Twitter）
       </a>
@@ -490,6 +493,29 @@
         <p class="work-more">
           <span class="lang-ja">タップで詳細・できることを見る ▸</span>
           <span class="lang-en" hidden>Tap to see what it can do ▸</span>
+        </p>
+      </div>
+    </a>
+
+    <a class="work-card" href="https://play.google.com/apps/testing/com.sleepfade.app" target="_blank" rel="noopener">
+      <span class="work-icon work-icon--sleepfade" aria-hidden="true">🌙</span>
+      <div>
+        <p class="work-title">
+          <span class="lang-ja">🌙 SleepFade（Beta）</span>
+          <span class="lang-en" hidden>🌙 SleepFade (Beta)</span>
+        </p>
+        <p class="work-desc">
+          <span class="lang-ja">音楽や環境音を少しずつフェードアウトさせて、心地よく眠りにつける Android 用スリープタイマーアプリ。現在クローズドベータでテスターを募集中です。</span>
+          <span class="lang-en" hidden>An Android sleep-timer app that gently fades out music and ambient sounds so you can drift off comfortably. Currently in closed beta — testers welcome.</span>
+        </p>
+        <p class="work-tags">
+          <span>Android</span>
+          <span><span class="lang-ja">スリープタイマー</span><span class="lang-en" hidden>Sleep timer</span></span>
+          <span>Beta</span>
+        </p>
+        <p class="work-more">
+          <span class="lang-ja">Google Play でテスターに参加 ▸</span>
+          <span class="lang-en" hidden>Join the beta on Google Play ▸</span>
         </p>
       </div>
     </a>
