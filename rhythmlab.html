@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 リズラボ（音ゲー練習プレイヤー）｜しんたや 制作物</title>
+  <meta name="description" content="音楽ゲームの画面収録を、ゆっくり再生と区間ループで見返すための iOS アプリ。苦手な数秒だけを繰り返し、タップの軌跡を光る線で確認できます。しんたやの制作物。">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="🎵 リズラボ（音ゲー練習プレイヤー）">
+  <meta property="og:description" content="音ゲーの画面収録を 0.25〜1.0 倍速と区間ループで見返す iOS アプリ。タップの軌跡も記録できます。">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Sugar Mist パレット（A案） ===== */
+    :root {
+      --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84;
+      --card:#fffdfb; --card-border:#fbe4ee; --soft-shadow:0 22px 50px -24px rgba(255,140,186,.45);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
+      color:var(--ink); line-height:1.8; min-height:100vh;
+      background:linear-gradient(165deg,#fff6fa 0%,#fdeef4 52%,#edfaf5 100%);
+      background-attachment:fixed; display:flex; justify-content:center;
+      padding:28px 16px 48px; -webkit-font-smoothing:antialiased;
+    }
+    .card {
+      width:100%; max-width:560px; background:var(--card); border:1px solid var(--card-border);
+      border-radius:30px; padding:30px 24px 28px; box-shadow:var(--soft-shadow);
+      position:relative; overflow:hidden; animation:cardIn .7s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:5px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep),var(--pink-deep));
+      background-size:200% 100%; animation:barShine 6s linear infinite;
+    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(26px) scale(.985);} to{opacity:1;transform:none;} }
+    @keyframes floaty { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-7px);} }
+    @keyframes barShine { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
+
+    .back {
+      display:inline-block; font-size:0.82rem; font-weight:700;
+      color:var(--mint-deep); text-decoration:none; margin-bottom:14px;
+    }
+    .back:hover { text-decoration:underline; }
+
+    .app-head { display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+    .app-head .glyph {
+      width:96px; height:96px; flex:0 0 auto; display:block; border-radius:26px;
+      animation:floaty 4s ease-in-out infinite;
+      box-shadow:0 16px 34px -20px rgba(111,214,194,.95);
+    }
+    h1 { font-size:1.4rem; font-weight:800; line-height:1.4; }
+    .lead { font-size:0.9rem; color:var(--ink); margin:14px 0 6px; }
+
+    h2 {
+      font-size:1.05rem; font-weight:800; color:var(--pink-deep);
+      margin:26px 0 12px; padding-bottom:6px; border-bottom:1.5px dotted var(--pink);
+    }
+
+    table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #f6e1ea; vertical-align:top; }
+    th { white-space:nowrap; color:var(--pink-deep); font-weight:800; }
+
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .tags span {
+      font-family:'Quicksand',sans-serif; font-size:0.72rem; font-weight:600;
+      color:var(--mint-deep); background:#e6faf4; border-radius:999px; padding:3px 12px;
+    }
+
+    .note {
+      font-size:0.8rem; color:var(--ink-soft); background:#fff5fa;
+      border:1.5px solid var(--pink); border-radius:16px; padding:12px 14px; margin-top:20px;
+    }
+    .note a { color:var(--mint-deep); font-weight:700; }
+
+    footer { margin-top:28px; text-align:center; font-family:'Quicksand',sans-serif; font-size:0.78rem; color:var(--ink-soft); }
+    @media (prefers-reduced-motion:reduce){ *{animation:none!important;} }
+    @media (max-width:420px){
+      .app-head { flex-direction:column; align-items:flex-start; gap:12px; }
+      th { white-space:normal; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+
+    <a class="back" href="index.html">← ポータルに戻る</a>
+
+    <div class="app-head">
+      <svg class="glyph" viewBox="0 0 64 64" role="img" aria-label="リズラボ のアイコン">
+        <defs>
+          <linearGradient id="g" x1="0" y1="64" x2="64" y2="0">
+            <stop offset="0" stop-color="#ffb0d0"/>
+            <stop offset=".55" stop-color="#9fe4dd"/>
+            <stop offset="1" stop-color="#6fd6c2"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="18" fill="url(#g)"/>
+        <path d="M32 15a17 17 0 1 0 12.02 4.98" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M42.5 12.5 L50 20 L40.5 23.5 Z" fill="#ffffff"/>
+        <path d="M27.5 25.5 L40 32 L27.5 38.5 Z" fill="#fff3b0"/>
+      </svg>
+      <h1>🎵 リズラボ<br>（音ゲー練習プレイヤー）</h1>
+    </div>
+
+    <p class="lead">音楽ゲームの<strong>画面収録</strong>を、<strong>ゆっくり再生</strong>と<strong>区間ループ</strong>で見返すための iPhone / iPad アプリ。苦手な数秒だけを何度も繰り返して、指の動きを光る軌跡で確認できます。</p>
+
+    <div class="tags">
+      <span>iPhone / iPad</span>
+      <span>iOS 17 以降</span>
+      <span>SwiftUI</span>
+      <span>横画面専用</span>
+      <span>RhythmLab</span>
+      <span>日本語 / English</span>
+    </div>
+
+    <h2>✨ できること</h2>
+    <table>
+      <tr><th>🐢 ゆっくり</th><td>0.25〜1.0 倍速で再生。<strong>音程は変わらない</strong>ので、曲と譜面のずれを感じずに追える</td></tr>
+      <tr><th>🔁 区間ループ</th><td>苦手な場面を <strong>最大 4 か所</strong>登録して、その部分だけを繰り返し再生。ボタンひとつで切り替え</td></tr>
+      <tr><th>🎚 微調整</th><td>区間の始まり・終わりを 0.1 秒ずつずらせる。「前振り」で少し手前から流し始めることも可能</td></tr>
+      <tr><th>📈 周回ごとに加速</th><td>ゆっくりから始めて、1 周まわるたびに少しずつ速く。最終的に 1.0 倍速まで自動で上がる</td></tr>
+      <tr><th>✋ 光る軌跡</th><td>触れた場所が光り、なぞった道筋が線になって少しずつ消える。<strong>最大 4 本指</strong>、アークノーツの 2 本同時にも対応</td></tr>
+      <tr><th>⏺ 軌跡の録画</th><td>自分のタップを記録して、あとから映像に重ねて見返せる。何テイクでも保存可能</td></tr>
+      <tr><th>🔤 曲名の自動入力</th><td>動画の冒頭を文字認識して、<strong>曲名・コンポーザー・BPM</strong> を自動で入力（端末内で処理）</td></tr>
+      <tr><th>📁 ゲーム別フォルダ</th><td>Arcaea / Deemo / プロセカ など、ゲームごとにフォルダを作って動画を整理</td></tr>
+      <tr><th>🔈 タップ音</th><td>タップした瞬間に音を鳴らす機能。ON / OFF 切替可</td></tr>
+    </table>
+
+    <h2>🕹 使い方（ざっくり）</h2>
+    <table>
+      <tr><th>取り込む</th><td>画面収録した動画を「写真から選ぶ」。曲名・BPM は自動で入るので、違っていればその場で直す</td></tr>
+      <tr><th>遅くする</th><td>0.5 倍などに落として、ノーツの流れをじっくり目で追う</td></tr>
+      <tr><th>区間を切る</th><td>苦手な場面に来たら <strong>IN</strong>、抜けたら <strong>OUT</strong>。その区間だけが自動でループする</td></tr>
+      <tr><th>速くする</th><td>慣れてきたら「周回ごとに加速」を ON にして、本来の速さまで少しずつ戻していく</td></tr>
+      <tr><th>見返す</th><td>タップ軌跡を録画して、自分の指の動きを映像に重ねて確認する</td></tr>
+      <tr><th>全画面</th><td>左上の歯車で操作パネルを閉じると、映像だけの全画面で練習できる</td></tr>
+    </table>
+
+    <h2>🎀 作ったきっかけ</h2>
+    <p style="font-size:0.85rem;">Arcaea の難しい譜面を、自分のプレイ動画で見返したかったのが始まりです。標準の動画アプリだと「音程を変えずにゆっくり流す」「苦手な数秒だけを正確に繰り返す」「どこを触ったか見る」ができず、練習には使えませんでした。そこで、その 3 つだけに絞ったプレイヤーを自作しました。Arcaea 専用の仕組みは入れていないので、Deemo・プロセカ・Muse Dash など<strong>どのリズムゲームの録画でも同じように使えます</strong>。</p>
+
+    <h2>🔒 プライバシー</h2>
+    <p style="font-size:0.85rem;">ネットワーク通信は行いません。動画・練習区間の設定・タップの記録は、すべて端末の中だけに保存されます。曲名の文字認識も端末内で完結し、画像やテキストが外に出ることはありません。</p>
+
+    <div class="note">
+      ※ 現在 <strong>App Store への申請を準備中</strong>です。公開できたら、このページにダウンロードリンクを追加します。<br>
+      プライバシーポリシーは <a href="https://gist.github.com/himawarihima09-svg/6dbdc82a4b9ba35d677d609dd27ea73d" target="_blank" rel="noopener">こちら</a> をご覧ください。
+    </div>
+
+    <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
+
+  </main>
+</body>
+</html>
