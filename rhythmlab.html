@@ -76,6 +76,31 @@
       color:var(--mint-deep); background:#e6faf4; border-radius:999px; padding:3px 12px;
     }
 
+    /* ===== 画面ギャラリー（横スクロール）===== */
+    .shots {
+      display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory;
+      padding:2px 0 8px; margin:0 -2px; -webkit-overflow-scrolling:touch;
+      scrollbar-width:thin; scrollbar-color:var(--pink) transparent;
+    }
+    .shots::-webkit-scrollbar { height:6px; }
+    .shots::-webkit-scrollbar-thumb { background:var(--pink); border-radius:999px; }
+    .shot { flex:0 0 78%; scroll-snap-align:center; margin:0; }
+    .shot a {
+      display:block; border-radius:16px; overflow:hidden;
+      border:1.5px solid var(--card-border);
+      box-shadow:0 12px 26px -18px rgba(255,140,186,.75);
+    }
+    .shot a:focus-visible { outline:2px solid var(--mint-deep); outline-offset:3px; }
+    .shot img { display:block; width:100%; height:auto; background:#0e1b26; }
+    .shot figcaption {
+      font-size:0.76rem; line-height:1.55; color:var(--ink-soft);
+      text-align:center; margin-top:7px;
+    }
+    .shots-hint {
+      font-size:0.72rem; color:var(--ink-soft); text-align:right; margin:2px 0 0;
+    }
+    @media (min-width:520px) { .shot { flex:0 0 68%; } }
+
     .note {
       font-size:0.8rem; color:var(--ink-soft); background:#fff5fa;
       border:1.5px solid var(--pink); border-radius:16px; padding:12px 14px; margin-top:20px;
@@ -122,6 +147,60 @@
       <span>RhythmLab</span>
       <span>日本語 / English</span>
     </div>
+
+
+    <h2>📱 画面</h2>
+    <div class="shots">
+      <figure class="shot">
+        <a href="images/rhythmlab/01_loop.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/01_loop.jpg" width="1200" height="900" alt="区間1をループ再生している画面" decoding="async">
+        </a>
+        <figcaption>苦手な数秒だけを、何度でも</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/02_trail.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/02_trail.jpg" width="1200" height="900" alt="全画面で指の軌跡が光っている画面" loading="lazy" decoding="async">
+        </a>
+        <figcaption>どこを触ったか、ひと目でわかる</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/03_speed.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/03_speed.jpg" width="1200" height="900" alt="速度と周回ごとの加速の設定画面" loading="lazy" decoding="async">
+        </a>
+        <figcaption>ゆっくりから、少しずつ本来の速さへ</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/04_take.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/04_take.jpg" width="1200" height="900" alt="記録したタップが映像に重なっている画面" loading="lazy" decoding="async">
+        </a>
+        <figcaption>自分のタップを録って、あとから見返す</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/05_library.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/05_library.jpg" width="1200" height="900" alt="動画ライブラリの画面" loading="lazy" decoding="async">
+        </a>
+        <figcaption>ゲームごとにフォルダで整理</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/06_folder.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/06_folder.jpg" width="1200" height="900" alt="フォルダの中の曲一覧" loading="lazy" decoding="async">
+        </a>
+        <figcaption>曲名・アーティスト・BPM は動画から自動で読み取り</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/07_detail.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/07_detail.jpg" width="1200" height="900" alt="動画の詳細とテイク一覧" loading="lazy" decoding="async">
+        </a>
+        <figcaption>テイクも容量も、ここで管理</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="images/rhythmlab/08_help.jpg" target="_blank" rel="noopener">
+          <img src="images/rhythmlab/08_help.jpg" width="1200" height="900" alt="使い方とクレジットの画面" loading="lazy" decoding="async">
+        </a>
+        <figcaption>使い方はアプリの中に</figcaption>
+      </figure>
+    </div>
+    <p class="shots-hint">横にスワイプ／タップで拡大</p>
 
     <h2>✨ できること</h2>
     <table>
