@@ -135,22 +135,27 @@
     .name .en { font-family: 'Quicksand', sans-serif; color: var(--pink-deep); }
     .catch { margin-top: 9px; font-size: 1rem; font-weight: 700; color: var(--ink); }
     .catch .lang-en { font-family: 'Quicksand', sans-serif; color: var(--mint-deep); }
-    .comic-top-link {
-      display: inline-flex;
+    .latest-comic {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr) auto;
       align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      padding: 8px 15px;
+      gap: 12px;
+      max-width: 430px;
+      margin: 18px auto 0;
+      padding: 10px;
       border: 1.5px solid #bfeee3;
-      border-radius: 999px;
-      background: #f1fffb;
-      color: var(--mint-deep);
-      font-size: .84rem;
-      font-weight: 800;
+      border-radius: 18px;
+      background: linear-gradient(120deg, #fff8fc, #effff9);
+      color: var(--ink);
+      text-align: left;
       text-decoration: none;
       transition: transform .15s ease, border-color .2s ease;
     }
-    .comic-top-link:hover { transform: translateY(-2px); border-color: var(--mint-deep); }
+    .latest-comic:hover { transform: translateY(-2px); border-color: var(--mint-deep); }
+    .latest-comic img { display:block; width:76px; height:100px; object-fit:cover; border-radius:11px; }
+    .latest-comic-kicker { display:block; color:var(--mint-deep); font-size:.72rem; font-weight:800; }
+    .latest-comic-title { display:block; margin-top:2px; font-size:.9rem; font-weight:800; line-height:1.55; }
+    .latest-comic-more { color:var(--mint-deep); font-size:.78rem; font-weight:800; white-space:nowrap; }
 
     /* ===== URL共有ボタン ===== */
     .copyurl-wrap { margin-top: 16px; }
@@ -354,8 +359,13 @@
       <span class="lang-ja">AIで紡ぐ、甘くてかわいい音楽世界 🎵✨</span>
       <span class="lang-en" lang="en" hidden>Weaving sweet, kawaii music with AI 🎵✨</span>
     </p>
-    <a class="comic-top-link" href="comic.html">
-      <span aria-hidden="true">📖</span><span class="lang-ja">キャラクターの日常・2コマ漫画を読む</span><span class="lang-en" lang="en" hidden>Read Everyday 2-panel Comics</span>
+    <a class="latest-comic" href="comic.html?comic=tenshi-akuma#reader">
+      <img src="images/comics/tenshi_akuma_matching_filter.png" width="1152" height="1536" alt="天使ちゃんと悪魔ちゃんの2コマ漫画「おそろいフィルター」" decoding="async">
+      <span>
+        <span class="latest-comic-kicker"><span class="lang-ja">📖 最新の2コマ漫画</span><span class="lang-en" lang="en" hidden>📖 Latest 2-panel Comic</span></span>
+        <span class="latest-comic-title"><span class="lang-ja">天使ちゃん＆悪魔ちゃん<br>「おそろいフィルター」</span><span class="lang-en" lang="en" hidden>Angel &amp; Devil<br>“Matching Filter”</span></span>
+      </span>
+      <span class="latest-comic-more"><span class="lang-ja">読む ▸</span><span class="lang-en" lang="en" hidden>Read ▸</span></span>
     </a>
 
     <!-- ===== お知らせ ===== -->

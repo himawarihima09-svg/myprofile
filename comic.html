@@ -40,6 +40,12 @@
     .comic-image-button img { display:block; width:100%; height:auto; }
     .reader-caption { margin:11px 0 0; font-size:1rem; font-weight:800; text-align:center; }
     .expand-note { margin:4px 0 0; color:var(--mint-deep); font-size:.78rem; font-weight:700; text-align:center; }
+    .reader-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .reader-action { min-height:40px; padding:8px 13px; border:1.5px solid #cdeee6; border-radius:999px; background:#fff; color:var(--mint-deep); font:800 .83rem 'M PLUS Rounded 1c',sans-serif; cursor:pointer; transition:transform .15s ease,border-color .2s ease,background .2s ease; }
+    .reader-action:hover { transform:translateY(-2px); border-color:var(--mint-deep); background:#f1fffb; }
+    .reader-action--random { border-color:var(--pink); color:var(--pink-deep); background:#fff7fb; }
+    .reader-action--random:hover { border-color:var(--pink-deep); background:#fff0f6; }
+    .reader-action:focus-visible { outline:3px solid var(--pink-deep); outline-offset:3px; }
     .comic-list { max-width:650px; margin:30px auto 0; padding-top:24px; border-top:1.5px dashed var(--pink); }
     .comic-list h2 { margin:0 0 8px; font-size:1.05rem; }
     .comic-list p { margin:0 0 12px; color:var(--ink-soft); font-size:.85rem; }
@@ -80,6 +86,11 @@
       </button>
       <p class="reader-caption" id="viewerCaption">🍪 しろちゃん＆くろちゃん「今日のおやつ」</p>
       <p class="expand-note"><span class="lang-ja">🔍 画像をクリックして拡大</span><span class="lang-en" lang="en" hidden>🔍 Click to expand</span></p>
+      <div class="reader-actions" aria-label="漫画を切り替える">
+        <button class="reader-action" id="previousComic" type="button"><span class="lang-ja">← 前の作品</span><span class="lang-en" lang="en" hidden>← Previous</span></button>
+        <button class="reader-action reader-action--random" id="randomComic" type="button"><span class="lang-ja">🎲 ランダムで読む</span><span class="lang-en" lang="en" hidden>🎲 Random comic</span></button>
+        <button class="reader-action" id="nextComic" type="button"><span class="lang-ja">次の作品 →</span><span class="lang-en" lang="en" hidden>Next →</span></button>
+      </div>
     </section>
 
     <section class="comic-list" aria-label="作品を選ぶ">
@@ -110,6 +121,7 @@
         fuyu: { src:'images/comics/fuyu_canned_coffee_warmth.png', alt:'ふゆちゃんの2コマ漫画「冬の小さなごほうび」', ja:'☕ ふゆちゃん「冬の小さなごほうび」', en:'☕ Fuyu: A Little Winter Treat' },
         'tenshi-akuma': { src:'images/comics/tenshi_akuma_matching_filter.png', alt:'天使ちゃんと悪魔ちゃんの2コマ漫画「おそろいフィルター」', ja:'💜 天使ちゃん＆悪魔ちゃん「おそろいフィルター」', en:'💜 Angel & Devil: Matching Filter' }
       };
+      var comicOrder = ['shiro-kuro', 'haru', 'natu', 'aki', 'fuyu', 'tenshi-akuma'];
       var root = document.documentElement;
       var toggle = document.getElementById('langToggle');
       var viewerImage = document.getElementById('viewerImage');
@@ -118,6 +130,9 @@
       var dialog = document.getElementById('comicDialog');
       var dialogImage = document.getElementById('dialogImage');
       var dialogClose = document.getElementById('dialogClose');
+      var previousButton = document.getElementById('previousComic');
+      var randomButton = document.getElementById('randomComic');
+      var nextButton = document.getElementById('nextComic');
       var activeComic = 'shiro-kuro';
       var lang = 'ja';
 
@@ -135,6 +150,16 @@
           if (links[i].getAttribute('data-comic') === key) links[i].setAttribute('aria-current', 'page');
           else links[i].removeAttribute('aria-current');
         }
+      }
+
+      function selectComic(key) {
+        showComic(key);
+        history.pushState({}, '', '?comic=' + key + '#reader');
+      }
+
+      function stepComic(direction) {
+        var index = comicOrder.indexOf(activeComic);
+        selectComic(comicOrder[(index + direction + comicOrder.length) % comicOrder.length]);
       }
 
       function applyLang(nextLang) {
@@ -160,11 +185,16 @@
         if (!link) return;
         event.preventDefault();
         var key = link.getAttribute('data-comic');
-        showComic(key);
-        history.pushState({}, '', link.getAttribute('href'));
+        selectComic(key);
         document.getElementById('reader').scrollIntoView({ behavior:'smooth', block:'start' });
       });
       window.addEventListener('popstate', function () { var key = new URLSearchParams(window.location.search).get('comic'); showComic(comics[key] ? key : 'shiro-kuro'); });
+      previousButton.addEventListener('click', function () { stepComic(-1); });
+      nextButton.addEventListener('click', function () { stepComic(1); });
+      randomButton.addEventListener('click', function () {
+        var choices = comicOrder.filter(function (key) { return key !== activeComic; });
+        selectComic(choices[Math.floor(Math.random() * choices.length)]);
+      });
       viewerButton.addEventListener('click', function () { dialog.showModal(); });
       dialogClose.addEventListener('click', function () { dialog.close(); });
       dialog.addEventListener('click', function (event) { if (event.target === dialog) dialog.close(); });
