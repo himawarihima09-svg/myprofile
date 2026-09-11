@@ -135,6 +135,22 @@
     .name .en { font-family: 'Quicksand', sans-serif; color: var(--pink-deep); }
     .catch { margin-top: 9px; font-size: 1rem; font-weight: 700; color: var(--ink); }
     .catch .lang-en { font-family: 'Quicksand', sans-serif; color: var(--mint-deep); }
+    .comic-top-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 8px 15px;
+      border: 1.5px solid #bfeee3;
+      border-radius: 999px;
+      background: #f1fffb;
+      color: var(--mint-deep);
+      font-size: .84rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .15s ease, border-color .2s ease;
+    }
+    .comic-top-link:hover { transform: translateY(-2px); border-color: var(--mint-deep); }
 
     /* ===== URL共有ボタン ===== */
     .copyurl-wrap { margin-top: 16px; }
@@ -193,6 +209,11 @@
       border-radius: 50%; background: #ffeef5; font-size: 1.05rem;
     }
     .link-btn.beta .ico { background: #e6faf4; }
+    .link-btn--comics {
+      background: linear-gradient(110deg, #fff7fb, #f1fffb);
+      border-color: #bfeee3;
+    }
+    .link-btn--comics .ico { background: #e6faf4; }
 
     /* ===== セクション見出し ===== */
     .section-title {
@@ -256,6 +277,8 @@
       transition: transform 0.15s ease, border-color 0.2s ease;
     }
     .work-card:hover { transform: translateY(-2px); border-color: var(--pink-deep); }
+    .work-card--stamp { border-color: #bfeee3; background: linear-gradient(135deg, #ffffff, #f4fffb); }
+    .work-card--stamp:hover { border-color: var(--mint-deep); }
     .work-img { flex: 0 0 auto; width: 84px; height: 84px; object-fit: contain; }
     .work-icon {
       flex: 0 0 auto; width: 84px; height: 84px;
@@ -331,6 +354,9 @@
       <span class="lang-ja">AIで紡ぐ、甘くてかわいい音楽世界 🎵✨</span>
       <span class="lang-en" lang="en" hidden>Weaving sweet, kawaii music with AI 🎵✨</span>
     </p>
+    <a class="comic-top-link" href="comic.html">
+      <span aria-hidden="true">📖</span><span class="lang-ja">キャラクターの日常・2コマ漫画を読む</span><span class="lang-en" lang="en" hidden>Read Everyday 2-panel Comics</span>
+    </a>
 
     <!-- ===== お知らせ ===== -->
     <section class="news reveal" style="animation-delay:.3s" aria-label="お知らせ">
@@ -436,6 +462,9 @@
       <a class="link-btn" href="zukan.html">
         <span class="ico" aria-hidden="true">🎴</span><span class="lang-ja">キャラクター図鑑</span><span class="lang-en" hidden>Characters</span>
       </a>
+      <a class="link-btn link-btn--comics" href="comic.html">
+        <span class="ico" aria-hidden="true">📖</span><span class="lang-ja">キャラクターの日常・2コマ漫画</span><span class="lang-en" hidden>Everyday 2-panel Comics</span>
+      </a>
       <a class="link-btn" href="wallpaper.html">
         <span class="ico" aria-hidden="true">🖼</span><span class="lang-ja">壁紙プレゼント</span><span class="lang-en" hidden>Wallpapers</span>
       </a>
@@ -474,6 +503,30 @@
 
     <!-- ===== 制作物 ===== -->
     <h2 class="section-title"><span class="lang-ja">🛠 制作物</span><span class="lang-en" hidden>🛠 Works</span></h2>
+    <a class="work-card work-card--stamp" href="https://line.me/S/sticker/34130066" target="_blank" rel="noopener">
+      <img class="work-img" src="images/chars/shiro.png" width="260" height="260"
+           alt="しろちゃんのLINEスタンプ" decoding="async">
+      <div>
+        <p class="work-title">
+          <span class="lang-ja">🤍 しろちゃんのLINEスタンプ</span>
+          <span class="lang-en" hidden>🤍 Shiro's LINE Stickers</span>
+        </p>
+        <p class="work-desc">
+          <span class="lang-ja">しろちゃんの、毎日のトークにそのまま使える甘くてかわいいスタンプです。</span>
+          <span class="lang-en" hidden>Sweet, kawaii Shiro stickers made for your everyday chats.</span>
+        </p>
+        <p class="work-tags">
+          <span>LINE</span>
+          <span><span class="lang-ja">スタンプ</span><span class="lang-en" hidden>Stickers</span></span>
+          <span>Shiro</span>
+        </p>
+        <p class="work-more">
+          <span class="lang-ja">LINE STORE でしろちゃんを見る ▸</span>
+          <span class="lang-en" hidden>See Shiro on LINE STORE ▸</span>
+        </p>
+      </div>
+    </a>
+
     <a class="work-card" href="app.html">
       <img class="work-img" src="images/haru_works.png" width="260" height="260"
            alt="自作マスコット haru ちゃん" decoding="async">
@@ -540,30 +593,6 @@
         <p class="work-more">
           <span class="lang-ja">タップで詳細・できることを見る ▸</span>
           <span class="lang-en" hidden>Tap to see what it can do ▸</span>
-        </p>
-      </div>
-    </a>
-
-    <a class="work-card" href="https://line.me/S/sticker/34130066" target="_blank" rel="noopener">
-      <img class="work-img" src="images/shiro_kuro.png" width="260" height="260"
-           alt="しろちゃん・くろちゃんのLINEスタンプ" decoding="async">
-      <div>
-        <p class="work-title">
-          <span class="lang-ja">💚 LINEスタンプ販売中！</span>
-          <span class="lang-en" hidden>💚 LINE Stickers</span>
-        </p>
-        <p class="work-desc">
-          <span class="lang-ja">看板娘「しろちゃん・くろちゃん」の LINE スタンプ。毎日のトークにそのまま使える、甘くてかわいい表情がいっぱいです。</span>
-          <span class="lang-en" hidden>LINE stickers of the mascots "Shiro" &amp; "Kuro" — sweet, kawaii expressions ready for your everyday chats.</span>
-        </p>
-        <p class="work-tags">
-          <span>LINE</span>
-          <span><span class="lang-ja">スタンプ</span><span class="lang-en" hidden>Stickers</span></span>
-          <span><span class="lang-ja">看板娘</span><span class="lang-en" hidden>Mascots</span></span>
-        </p>
-        <p class="work-more">
-          <span class="lang-ja">タップして LINE STORE で見る ▸</span>
-          <span class="lang-en" hidden>Tap to view on LINE STORE ▸</span>
         </p>
       </div>
     </a>
