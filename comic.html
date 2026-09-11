@@ -33,14 +33,26 @@
     .stamp-copy strong { display:block; font-size:1rem; }
     .stamp-copy span { display:block; margin-top:2px; color:var(--ink-soft); font-size:.82rem; line-height:1.55; }
     .stamp-more { margin-left:auto; flex:0 0 auto; color:var(--mint-deep); font-size:.82rem; font-weight:800; white-space:nowrap; }
-    .comic-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
-    .comic { margin:0; overflow:hidden; border:1.5px solid var(--card-border); border-radius:18px; background:#fff; box-shadow:0 10px 22px -18px rgba(91,74,85,.55); }
-    .comic img { display:block; width:100%; height:auto; }
-    .comic figcaption { padding:11px 13px 13px; font-size:.91rem; font-weight:800; text-align:center; }
+    .reader { max-width:650px; margin:0 auto; }
+    .reader-label { margin:0 0 10px; color:var(--ink-soft); font-size:.84rem; font-weight:700; text-align:center; }
+    .comic-image-button { display:block; width:100%; padding:0; overflow:hidden; border:1.5px solid var(--card-border); border-radius:18px; background:#fff; cursor:zoom-in; box-shadow:0 10px 22px -18px rgba(91,74,85,.55); }
+    .comic-image-button:focus-visible, .comic-link:focus-visible, .dialog-close:focus-visible { outline:3px solid var(--pink-deep); outline-offset:3px; }
+    .comic-image-button img { display:block; width:100%; height:auto; }
+    .reader-caption { margin:11px 0 0; font-size:1rem; font-weight:800; text-align:center; }
+    .expand-note { margin:4px 0 0; color:var(--mint-deep); font-size:.78rem; font-weight:700; text-align:center; }
+    .comic-list { max-width:650px; margin:30px auto 0; padding-top:24px; border-top:1.5px dashed var(--pink); }
+    .comic-list h2 { margin:0 0 8px; font-size:1.05rem; }
+    .comic-list p { margin:0 0 12px; color:var(--ink-soft); font-size:.85rem; }
+    .comic-links { display:flex; flex-wrap:wrap; gap:8px 14px; margin:0; padding:0; list-style:none; }
+    .comic-link { color:var(--mint-deep); font-size:.93rem; font-weight:800; text-decoration:underline; text-decoration-color:#bfeee3; text-underline-offset:3px; }
+    .comic-link:hover, .comic-link[aria-current="page"] { color:var(--pink-deep); text-decoration-color:var(--pink-deep); }
+    dialog { width:min(94vw,900px); max-width:900px; max-height:94vh; padding:12px; border:1.5px solid var(--card-border); border-radius:18px; background:var(--card); box-shadow:0 28px 80px rgba(54,33,46,.35); }
+    dialog::backdrop { background:rgba(47,34,42,.62); }
+    .dialog-close { display:block; margin:0 0 8px auto; padding:7px 12px; border:1.5px solid var(--pink); border-radius:999px; background:#fff; color:var(--ink); font:800 .82rem 'M PLUS Rounded 1c',sans-serif; cursor:pointer; }
+    .dialog-image { display:block; max-width:100%; max-height:82vh; margin:0 auto; border-radius:10px; }
     footer { margin-top:28px; text-align:center; color:var(--ink-soft); font:600 .78rem 'Quicksand',sans-serif; }
     [hidden] { display:none !important; }
-    @media (max-width:780px) { .comic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:520px) { body { padding:18px 10px 32px; } .page { padding:22px 14px 24px; border-radius:24px; } .comic-grid { grid-template-columns:1fr; gap:18px; } .stamp-callout { padding:12px; gap:10px; } .stamp-callout img { width:58px; height:58px; } .stamp-more { display:none; } }
+    @media (max-width:520px) { body { padding:18px 10px 32px; } .page { padding:22px 14px 24px; border-radius:24px; } .stamp-callout { padding:12px; gap:10px; } .stamp-callout img { width:58px; height:58px; } .stamp-more { display:none; } .comic-links { display:block; } .comic-links li { margin:0 0 9px; } }
   </style>
 </head>
 <body>
@@ -61,32 +73,101 @@
       <span class="stamp-more"><span class="lang-ja">LINE STOREへ ▸</span><span class="lang-en" lang="en" hidden>LINE STORE ▸</span></span>
     </a>
 
-    <section class="comic-grid" aria-label="2コマ漫画一覧">
-      <figure class="comic"><img src="images/comics/shiro_kuro_cookie_fair_share.png" width="1152" height="1536" alt="しろちゃんとくろちゃんの2コマ漫画「今日のおやつ」"><figcaption><span class="lang-ja">🍪 しろちゃん＆くろちゃん「今日のおやつ」</span><span class="lang-en" lang="en" hidden>🍪 Shiro &amp; Kuro: Today's Snack</span></figcaption></figure>
-      <figure class="comic"><img src="images/comics/haru_selfie_practice.png" width="1152" height="1536" alt="はるちゃんの2コマ漫画「写真の日」" loading="lazy"><figcaption><span class="lang-ja">📸 はるちゃん「写真の日」</span><span class="lang-en" lang="en" hidden>📸 Haru: Photo Day</span></figcaption></figure>
-      <figure class="comic"><img src="images/comics/natu_morning_switch.png" width="1152" height="1536" alt="なつちゃんの2コマ漫画「朝のスイッチ」" loading="lazy"><figcaption><span class="lang-ja">🎵 なつちゃん「朝のスイッチ」</span><span class="lang-en" lang="en" hidden>🎵 Natsu: Morning Switch</span></figcaption></figure>
-      <figure class="comic"><img src="images/comics/aki_autumn_reading.png" width="1152" height="1536" alt="あきちゃんの2コマ漫画「読書の秋」" loading="lazy"><figcaption><span class="lang-ja">🍁 あきちゃん「読書の秋」</span><span class="lang-en" lang="en" hidden>🍁 Aki: Autumn Reading</span></figcaption></figure>
-      <figure class="comic"><img src="images/comics/fuyu_canned_coffee_warmth.png" width="1152" height="1536" alt="ふゆちゃんの2コマ漫画「冬の小さなごほうび」" loading="lazy"><figcaption><span class="lang-ja">☕ ふゆちゃん「冬の小さなごほうび」</span><span class="lang-en" lang="en" hidden>☕ Fuyu: A Little Winter Treat</span></figcaption></figure>
-      <figure class="comic"><img src="images/comics/tenshi_akuma_matching_filter.png" width="1152" height="1536" alt="天使ちゃんと悪魔ちゃんの2コマ漫画「おそろいフィルター」" loading="lazy"><figcaption><span class="lang-ja">💜 天使ちゃん＆悪魔ちゃん「おそろいフィルター」</span><span class="lang-en" lang="en" hidden>💜 Angel &amp; Devil: Matching Filter</span></figcaption></figure>
+    <section class="reader" id="reader" aria-label="2コマ漫画を読む">
+      <p class="reader-label"><span class="lang-ja">画像を押すと大きく表示できます</span><span class="lang-en" lang="en" hidden>Tap the image to view it larger.</span></p>
+      <button class="comic-image-button" id="comicImageButton" type="button" aria-label="漫画を拡大して表示">
+        <img id="viewerImage" src="images/comics/shiro_kuro_cookie_fair_share.png" width="1152" height="1536" alt="しろちゃんとくろちゃんの2コマ漫画「今日のおやつ」">
+      </button>
+      <p class="reader-caption" id="viewerCaption">🍪 しろちゃん＆くろちゃん「今日のおやつ」</p>
+      <p class="expand-note"><span class="lang-ja">🔍 画像をクリックして拡大</span><span class="lang-en" lang="en" hidden>🔍 Click to expand</span></p>
+    </section>
+
+    <section class="comic-list" aria-label="作品を選ぶ">
+      <h2><span class="lang-ja">作品を選ぶ</span><span class="lang-en" lang="en" hidden>Choose a comic</span></h2>
+      <p><span class="lang-ja">タイトルを押すと、その作品を1枚ずつ読めます。</span><span class="lang-en" lang="en" hidden>Select a title to read one comic at a time.</span></p>
+      <ul class="comic-links" id="comicLinks">
+        <li><a class="comic-link" href="?comic=shiro-kuro#reader" data-comic="shiro-kuro">🍪 しろちゃん＆くろちゃん「今日のおやつ」</a></li>
+        <li><a class="comic-link" href="?comic=haru#reader" data-comic="haru">📸 はるちゃん「写真の日」</a></li>
+        <li><a class="comic-link" href="?comic=natu#reader" data-comic="natu">🎵 なつちゃん「朝のスイッチ」</a></li>
+        <li><a class="comic-link" href="?comic=aki#reader" data-comic="aki">🍁 あきちゃん「読書の秋」</a></li>
+        <li><a class="comic-link" href="?comic=fuyu#reader" data-comic="fuyu">☕ ふゆちゃん「冬の小さなごほうび」</a></li>
+        <li><a class="comic-link" href="?comic=tenshi-akuma#reader" data-comic="tenshi-akuma">💜 天使ちゃん＆悪魔ちゃん「おそろいフィルター」</a></li>
+      </ul>
     </section>
     <footer>© 2026 shintaya. Made with AI ✨</footer>
   </main>
+  <dialog id="comicDialog" aria-label="漫画の拡大表示">
+    <button class="dialog-close" id="dialogClose" type="button">閉じる ×</button>
+    <img class="dialog-image" id="dialogImage" src="images/comics/shiro_kuro_cookie_fair_share.png" width="1152" height="1536" alt="">
+  </dialog>
   <script>
     (function () {
+      var comics = {
+        'shiro-kuro': { src:'images/comics/shiro_kuro_cookie_fair_share.png', alt:'しろちゃんとくろちゃんの2コマ漫画「今日のおやつ」', ja:'🍪 しろちゃん＆くろちゃん「今日のおやつ」', en:'🍪 Shiro & Kuro: Today\'s Snack' },
+        haru: { src:'images/comics/haru_selfie_practice.png', alt:'はるちゃんの2コマ漫画「写真の日」', ja:'📸 はるちゃん「写真の日」', en:'📸 Haru: Photo Day' },
+        natu: { src:'images/comics/natu_morning_switch.png', alt:'なつちゃんの2コマ漫画「朝のスイッチ」', ja:'🎵 なつちゃん「朝のスイッチ」', en:'🎵 Natsu: Morning Switch' },
+        aki: { src:'images/comics/aki_autumn_reading.png', alt:'あきちゃんの2コマ漫画「読書の秋」', ja:'🍁 あきちゃん「読書の秋」', en:'🍁 Aki: Autumn Reading' },
+        fuyu: { src:'images/comics/fuyu_canned_coffee_warmth.png', alt:'ふゆちゃんの2コマ漫画「冬の小さなごほうび」', ja:'☕ ふゆちゃん「冬の小さなごほうび」', en:'☕ Fuyu: A Little Winter Treat' },
+        'tenshi-akuma': { src:'images/comics/tenshi_akuma_matching_filter.png', alt:'天使ちゃんと悪魔ちゃんの2コマ漫画「おそろいフィルター」', ja:'💜 天使ちゃん＆悪魔ちゃん「おそろいフィルター」', en:'💜 Angel & Devil: Matching Filter' }
+      };
       var root = document.documentElement;
       var toggle = document.getElementById('langToggle');
-      function applyLang(lang) {
+      var viewerImage = document.getElementById('viewerImage');
+      var viewerCaption = document.getElementById('viewerCaption');
+      var viewerButton = document.getElementById('comicImageButton');
+      var dialog = document.getElementById('comicDialog');
+      var dialogImage = document.getElementById('dialogImage');
+      var dialogClose = document.getElementById('dialogClose');
+      var activeComic = 'shiro-kuro';
+      var lang = 'ja';
+
+      function showComic(key) {
+        if (!comics[key]) return;
+        activeComic = key;
+        var comic = comics[key];
+        viewerImage.src = comic.src;
+        viewerImage.alt = comic.alt;
+        dialogImage.src = comic.src;
+        dialogImage.alt = comic.alt;
+        viewerCaption.textContent = comic[lang];
+        var links = document.querySelectorAll('.comic-link');
+        for (var i = 0; i < links.length; i++) {
+          if (links[i].getAttribute('data-comic') === key) links[i].setAttribute('aria-current', 'page');
+          else links[i].removeAttribute('aria-current');
+        }
+      }
+
+      function applyLang(nextLang) {
+        lang = nextLang;
         root.lang = lang;
         var ja = document.querySelectorAll('.lang-ja');
         var en = document.querySelectorAll('.lang-en');
         for (var i = 0; i < ja.length; i++) ja[i].hidden = lang === 'en';
         for (var j = 0; j < en.length; j++) en[j].hidden = lang !== 'en';
         toggle.textContent = lang === 'en' ? '🌐 日本語' : '🌐 English';
+        viewerButton.setAttribute('aria-label', lang === 'en' ? 'Open the comic larger' : '漫画を拡大して表示');
+        dialogClose.textContent = lang === 'en' ? 'Close ×' : '閉じる ×';
+        showComic(activeComic);
       }
-      var lang = 'ja';
+
       try { lang = localStorage.getItem('lang') === 'en' ? 'en' : 'ja'; } catch (e) {}
       applyLang(lang);
-      toggle.addEventListener('click', function () { lang = lang === 'en' ? 'ja' : 'en'; try { localStorage.setItem('lang', lang); } catch (e) {} applyLang(lang); });
+      var requested = new URLSearchParams(window.location.search).get('comic');
+      showComic(comics[requested] ? requested : activeComic);
+      toggle.addEventListener('click', function () { var next = lang === 'en' ? 'ja' : 'en'; try { localStorage.setItem('lang', next); } catch (e) {} applyLang(next); });
+      document.getElementById('comicLinks').addEventListener('click', function (event) {
+        var link = event.target.closest('.comic-link');
+        if (!link) return;
+        event.preventDefault();
+        var key = link.getAttribute('data-comic');
+        showComic(key);
+        history.pushState({}, '', link.getAttribute('href'));
+        document.getElementById('reader').scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+      window.addEventListener('popstate', function () { var key = new URLSearchParams(window.location.search).get('comic'); showComic(comics[key] ? key : 'shiro-kuro'); });
+      viewerButton.addEventListener('click', function () { dialog.showModal(); });
+      dialogClose.addEventListener('click', function () { dialog.close(); });
+      dialog.addEventListener('click', function (event) { if (event.target === dialog) dialog.close(); });
     }());
   </script>
 </body>
