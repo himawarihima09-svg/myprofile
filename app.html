@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌸 輝度＆オーディオ切替アプリ（haru ちゃん付き）｜しんたや 制作物</title>
-  <meta name="description" content="画面輝度と音声デバイスをワンタッチ切替できるWindows用ユーティリティ。自作マスコット haru ちゃんが操作に反応します。しんたやの制作物。">
+  <title>🌸 輝度＆オーディオ切替アプリ（haru ちゃん・Natu ちゃん付き）｜しんたや 制作物</title>
+  <meta name="description" content="画面輝度と音声デバイスをワンタッチ切替できるWindows用ユーティリティ。自作マスコット haru ちゃん・Natu ちゃんが操作に反応してコマアニメで動きます。しんたやの制作物。">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="🌸 輝度＆オーディオ切替アプリ（haru ちゃん付き）">
-  <meta property="og:description" content="画面輝度と音声デバイスをワンタッチ切替できるWindows用ユーティリティ。自作マスコット haru ちゃん付き。">
+  <meta property="og:title" content="🌸 輝度＆オーディオ切替アプリ（haru ちゃん・Natu ちゃん付き）">
+  <meta property="og:description" content="画面輝度と音声デバイスをワンタッチ切替できるWindows用ユーティリティ。自作マスコット haru ちゃん・Natu ちゃん付き。">
   <meta property="og:locale" content="ja_JP">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
@@ -77,6 +77,28 @@
       border:1.5px solid var(--pink); border-radius:16px; padding:12px 14px; margin-top:20px;
     }
     footer { margin-top:28px; text-align:center; font-family:'Quicksand',sans-serif; font-size:0.78rem; color:var(--ink-soft); }
+    /* ===== キャラ切替＆ポーズギャラリー ===== */
+    .chara-tabs { display:flex; gap:8px; margin:4px 0 12px; }
+    .chara-tabs button {
+      font:inherit; font-size:0.85rem; font-weight:800; cursor:pointer;
+      border:1.5px solid var(--pink); background:#fff; color:var(--ink-soft);
+      border-radius:999px; padding:5px 16px; transition:all .2s ease;
+    }
+    .chara-tabs button[aria-pressed="true"] { background:var(--pink-deep); border-color:var(--pink-deep); color:#fff; }
+    .chara-tabs button[data-c="natu"][aria-pressed="true"] { background:var(--mint-deep); border-color:var(--mint-deep); }
+    .chara-intro { font-size:0.83rem; margin-bottom:12px; }
+    .poses { display:grid; grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); gap:10px; }
+    .poses figure {
+      background:linear-gradient(170deg,#fff7fb,#f3fdf9); border:1px solid var(--card-border);
+      border-radius:18px; padding:8px 6px 6px; text-align:center;
+    }
+    .poses img { display:block; width:100%; height:auto; aspect-ratio:1; }
+    .poses figcaption { font-size:0.72rem; font-weight:700; color:var(--ink-soft); line-height:1.4; margin-top:2px; }
+    .poses[hidden], .chara-intro[hidden] { display:none; }
+    .news { list-style:none; font-size:0.83rem; }
+    .news li { padding:6px 0; border-bottom:1px dashed #f6e1ea; }
+    .badge { display:inline-block; font-family:'Quicksand',sans-serif; font-size:0.66rem; font-weight:700; color:#fff;
+      background:linear-gradient(90deg,var(--pink-deep),var(--mint-deep)); border-radius:999px; padding:1px 9px; margin-left:6px; vertical-align:3px; }
     @media (prefers-reduced-motion:reduce){ *{animation:none!important;} }
   </style>
 </head>
@@ -86,11 +108,11 @@
     <a class="back" href="index.html">← ポータルに戻る</a>
 
     <div class="app-head">
-      <img src="images/haru_works.png" width="260" height="260" alt="自作マスコット haru ちゃん" decoding="async">
-      <h1>🌸 輝度＆オーディオ切替アプリ<br>（haru ちゃん付き）</h1>
+      <img src="images/app/natu_idle.webp" width="300" height="300" alt="自作マスコット Natu ちゃん" decoding="async">
+      <h1>🌸 輝度＆オーディオ切替アプリ<br>（haru ちゃん・Natu ちゃん付き）<span class="badge">UPDATE</span></h1>
     </div>
 
-    <p class="lead">画面の<strong>輝度</strong>と<strong>オーディオ（出力・マイク・音量）</strong>をワンタッチで切り替えられる、Windows 用のかわいいユーティリティ。自作キャラ「haru ちゃん」がマスコットとして操作に反応します。</p>
+    <p class="lead">画面の<strong>輝度</strong>と<strong>オーディオ（出力・マイク・音量）</strong>をワンタッチで切り替えられる、Windows 用のかわいいユーティリティ。自作キャラ「haru ちゃん」と、新しく仲間入りした「Natu ちゃん」から好きな子を選べて、操作に反応して<strong>コマアニメで動きます</strong>。</p>
 
     <div class="tags">
       <span>Windows 10 / 11</span>
@@ -99,6 +121,17 @@
       <span>自作マスコット</span>
     </div>
 
+    <h2>🆕 2026年10月のアップデート</h2>
+    <ul class="news">
+      <li>⭐ 2人目のマスコット<strong>「Natu ちゃん」</strong>が登場！設定タブで haru ちゃんと切り替えられます</li>
+      <li>🎞 haru ちゃん・Natu ちゃんとも<strong>全ポーズがコマアニメで動く</strong>ように（まばたき・本めくり・ダンス・寝息など）</li>
+      <li>☕ 何もしていない時の<strong>待機ポーズ</strong>が自動で切り替わる（お茶・ゲーム・ごはん・料理など）</li>
+      <li>🎨 テーマが3色に（🩷 ピンク／🩵 水色／⭐ ミント）＋ダークモードは Windows 11 のすりガラス</li>
+      <li>🪄 ミニ状態にガラス風の操作パネル（輝度・音量スライダー付き）</li>
+      <li>🖥 マルチモニター対応、Windows の音量キー等で変えた値もスライダーに反映</li>
+      <li>⚡ 軽量化：メモリ 約1/3、起動 約3秒に高速化</li>
+    </ul>
+
     <h2>✨ できること</h2>
     <table>
       <tr><th>🖥 輝度</th><td>「明るい／暗い」トグル＋スライダー微調整（プリセット値は変更可・内蔵ディスプレイ対象）</td></tr>
@@ -106,8 +139,12 @@
       <tr><th>🔈 音量</th><td>音量スライダー＋ミュート切替</td></tr>
       <tr><th>🎤 マイク</th><td>マイクを A ⇔ B 切替／全マイクから選択</td></tr>
       <tr><th>🎬 シーン</th><td>「作業／動画／音楽制作」など、輝度＋出力＋マイク＋音量を<strong>まとめてワンクリック適用</strong>。現在の状態を保存して呼び出せる</td></tr>
-      <tr><th>🎀 haru</th><td>操作でポーズ変化（明→ダンス／暗→おやすみ／音声→ヘッドホン）、右クリックや操作でおしゃべり</td></tr>
-      <tr><th>🪄 ミニ状態</th><td>デスクトップに常駐。クリックで復帰／ドラッグで移動／全操作ボタン＋デバイス選択ポップアップ付き</td></tr>
+      <tr><th>🎀 haru</th><td>操作でポーズ変化（明→ダンス／暗→おやすみ／出力→ヘッドホン／マイク→マイク）、右クリックや操作でおしゃべり</td></tr>
+      <tr><th>⭐ Natu</th><td>操作でポーズ変化（明→応援／暗→星のクッションでおやすみ／出力→リズム／マイク→星マイク＋ピース／ミュート→「シーッ」）</td></tr>
+      <tr><th>☕ 待機</th><td>何もしていない時は待機ポーズを自動で切替（おまかせ 5〜60分ごと／固定も可）</td></tr>
+      <tr><th>🪄 ミニ状態</th><td>デスクトップに常駐。クリックで復帰／ドラッグで移動／ガラス風の操作パネル（輝度・音量スライダー＋ボタン＋デバイス選択）</td></tr>
+      <tr><th>🖥 マルチ<br>モニター</th><td>どのモニターにキャラ・ウィンドウを置いてもOK。メニューはキャラのいる画面に出る</td></tr>
+      <tr><th>🔄 連動</th><td>Windows のクイック設定や音量キーで変えた値もスライダーに反映</td></tr>
     </table>
 
     <h2>🕹 使い方（ざっくり）</h2>
@@ -119,15 +156,55 @@
       <tr><th>自動起動</th><td>Windows 起動時に自動で「ミニ状態」で立ち上がる（スタートアップ登録済み）</td></tr>
     </table>
 
-    <h2>🎀 haru ちゃんについて</h2>
-    <p style="font-size:0.85rem;">操作に合わせてポーズが変わる自作マスコット。読書ポーズでまばたき＆ページめくりのコマアニメも再生できます。デスクトップ常駐時は背景を透過して、ふわっと佇みます。</p>
+    <h2>🎀 マスコットたち（ぜんぶ動きます！）</h2>
+    <div class="chara-tabs" role="group" aria-label="キャラを選ぶ">
+      <button type="button" data-c="haru" aria-pressed="false">🎀 haru</button>
+      <button type="button" data-c="natu" aria-pressed="true">⭐ Natu <small>NEW</small></button>
+    </div>
+    <p class="chara-intro" id="intro-haru" hidden>読書好きでおっとりした、ゆめかわピンクの女の子。ボタン操作でポーズが変わり、何もしていない時は本を読んだりお茶を飲んだりしてくつろぎます。</p>
+    <p class="chara-intro" id="intro-natu">星モチーフのアイドル系の女の子。座る・寝転ぶ・応援など元気いっぱいの構図で、選ぶとアプリの配色も「⭐ ミント」に切り替わります。ミュート時の「シーッ」は Natu ちゃんだけ！</p>
+    <div class="poses" id="poses-haru" hidden>
+        <figure><img src="images/app/haru_idle.webp" width="300" height="300" alt="haru 📖 読書（待機）" loading="lazy" decoding="async"><figcaption>📖 読書（待機）</figcaption></figure>
+        <figure><img src="images/app/haru_bright.webp" width="300" height="300" alt="haru ☀ 明るい→ダンス" loading="lazy" decoding="async"><figcaption>☀ 明るい→ダンス</figcaption></figure>
+        <figure><img src="images/app/haru_dim.webp" width="300" height="300" alt="haru 🌙 暗い→おやすみ" loading="lazy" decoding="async"><figcaption>🌙 暗い→おやすみ</figcaption></figure>
+        <figure><img src="images/app/haru_audio.webp" width="300" height="300" alt="haru 🔁 出力→ヘッドホン" loading="lazy" decoding="async"><figcaption>🔁 出力→ヘッドホン</figcaption></figure>
+        <figure><img src="images/app/haru_mic.webp" width="300" height="300" alt="haru 🎤 マイク" loading="lazy" decoding="async"><figcaption>🎤 マイク</figcaption></figure>
+        <figure><img src="images/app/haru_tea.webp" width="300" height="300" alt="haru ☕ お茶" loading="lazy" decoding="async"><figcaption>☕ お茶</figcaption></figure>
+        <figure><img src="images/app/haru_game.webp" width="300" height="300" alt="haru 🎮 ゲーム" loading="lazy" decoding="async"><figcaption>🎮 ゲーム</figcaption></figure>
+        <figure><img src="images/app/haru_phone.webp" width="300" height="300" alt="haru 📱 スマホ" loading="lazy" decoding="async"><figcaption>📱 スマホ</figcaption></figure>
+        <figure><img src="images/app/haru_stretch.webp" width="300" height="300" alt="haru 🙆 のび" loading="lazy" decoding="async"><figcaption>🙆 のび</figcaption></figure>
+    </div>
+    <div class="poses" id="poses-natu">
+        <figure><img src="images/app/natu_idle.webp" width="300" height="300" alt="natu 🧸 ひとやすみ（待機）" loading="lazy" decoding="async"><figcaption>🧸 ひとやすみ（待機）</figcaption></figure>
+        <figure><img src="images/app/natu_bright.webp" width="300" height="300" alt="natu ☀ 明るい→応援" loading="lazy" decoding="async"><figcaption>☀ 明るい→応援</figcaption></figure>
+        <figure><img src="images/app/natu_dim.webp" width="300" height="300" alt="natu 🌙 暗い→おやすみ" loading="lazy" decoding="async"><figcaption>🌙 暗い→おやすみ</figcaption></figure>
+        <figure><img src="images/app/natu_audio.webp" width="300" height="300" alt="natu 🔁 出力→リズム" loading="lazy" decoding="async"><figcaption>🔁 出力→リズム</figcaption></figure>
+        <figure><img src="images/app/natu_mic.webp" width="300" height="300" alt="natu 🎤 星マイク＋ピース" loading="lazy" decoding="async"><figcaption>🎤 星マイク＋ピース</figcaption></figure>
+        <figure><img src="images/app/natu_mute.webp" width="300" height="300" alt="natu 🔇 ミュート→シーッ" loading="lazy" decoding="async"><figcaption>🔇 ミュート→シーッ</figcaption></figure>
+        <figure><img src="images/app/natu_eat.webp" width="300" height="300" alt="natu 🍙 ごはん" loading="lazy" decoding="async"><figcaption>🍙 ごはん</figcaption></figure>
+        <figure><img src="images/app/natu_cook.webp" width="300" height="300" alt="natu 🍳 料理" loading="lazy" decoding="async"><figcaption>🍳 料理</figcaption></figure>
+        <figure><img src="images/app/natu_study.webp" width="300" height="300" alt="natu ✏ 勉強" loading="lazy" decoding="async"><figcaption>✏ 勉強</figcaption></figure>
+        <figure><img src="images/app/natu_think.webp" width="300" height="300" alt="natu 🤔 考えごと" loading="lazy" decoding="async"><figcaption>🤔 考えごと</figcaption></figure>
+    </div>
+    <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:8px;">※ デスクトップ常駐時は背景を透過して、ふわっと佇みます。</p>
 
     <div class="note">
       ※ 現在は個人用に制作したアプリです。一般配布は未定。公開・配布できるようになったら、このページにダウンロードリンクを追加予定です。
     </div>
 
     <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
-
   </main>
+  <script>
+    document.querySelectorAll('.chara-tabs button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var c = b.dataset.c;
+        document.querySelectorAll('.chara-tabs button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        ['haru', 'natu'].forEach(function (k) {
+          document.getElementById('poses-' + k).hidden = (k !== c);
+          document.getElementById('intro-' + k).hidden = (k !== c);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
