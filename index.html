@@ -160,9 +160,10 @@
     .latest-work { border-color: var(--pink); }
     .latest-work:hover { border-color: var(--pink-deep); }
     .latest-work .latest-comic-kicker, .latest-work .latest-comic-more { color: var(--pink-deep); }
-    .latest-work-duo { display:flex; width:76px; height:76px; }
-    .latest-comic .latest-work-duo img { width:46px; height:76px; object-fit:contain; object-position:bottom; border-radius:0; }
-    .latest-work-duo img + img { margin-left:-16px; }
+    .latest-work { grid-template-columns: 116px minmax(0, 1fr) auto; padding: 6px 10px; }
+    .latest-work-duo { display:flex; width:116px; height:108px; }
+    .latest-comic .latest-work-duo img { width:72px; height:108px; object-fit:cover; object-position:center bottom; border-radius:0; }
+    .latest-work-duo img + img { margin-left:-28px; }
 
     /* ===== URL共有ボタン ===== */
     .copyurl-wrap { margin-top: 16px; }
