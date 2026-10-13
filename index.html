@@ -285,6 +285,14 @@
     .work-card--stamp { border-color: #bfeee3; background: linear-gradient(135deg, #ffffff, #f4fffb); }
     .work-card--stamp:hover { border-color: var(--mint-deep); }
     .work-img { flex: 0 0 auto; width: 84px; height: 84px; object-fit: contain; }
+    .work-duo { flex: 0 0 auto; display: flex; width: 96px; height: 84px; }
+    .work-duo img { width: 58px; height: 84px; object-fit: contain; object-position: bottom; }
+    .work-duo img + img { margin-left: -20px; }
+    .work-new {
+      display: inline-block; margin-left: 4px; padding: 1px 8px; vertical-align: 2px;
+      font-family: 'Quicksand', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: .04em;
+      color: #fff; background: linear-gradient(90deg, var(--pink-deep), var(--mint-deep)); border-radius: 999px;
+    }
     .work-icon {
       flex: 0 0 auto; width: 84px; height: 84px;
       display: flex; align-items: center; justify-content: center;
@@ -538,21 +546,26 @@
     </a>
 
     <a class="work-card" href="app.html">
-      <img class="work-img" src="images/haru_works.png" width="260" height="260"
-           alt="自作マスコット haru ちゃん" decoding="async">
+      <span class="work-duo">
+        <img src="images/app/haru_bright.webp" width="300" height="300"
+             alt="ダンスする haru ちゃん" decoding="async" loading="lazy">
+        <img src="images/app/natu_bright.webp" width="300" height="300"
+             alt="応援する Natu ちゃん" decoding="async" loading="lazy">
+      </span>
       <div>
         <p class="work-title">
           <span class="lang-ja">🌸 輝度＆オーディオ切替アプリ</span>
           <span class="lang-en" hidden>🌸 Brightness &amp; Audio Switcher</span>
+          <span class="work-new">UPDATE</span>
         </p>
         <p class="work-desc">
-          <span class="lang-ja">画面の明るさと音声デバイス（出力・マイク・音量）をワンタッチで切り替えできる Windows 用ユーティリティ。自作マスコット「haru ちゃん」が操作に反応して動きます。</span>
-          <span class="lang-en" hidden>A Windows utility to switch screen brightness and audio (output / mic / volume) in one tap. The original mascot "haru" reacts to your actions.</span>
+          <span class="lang-ja">画面の明るさと音声デバイス（出力・マイク・音量）をワンタッチで切り替えできる Windows 用ユーティリティ。2人目のマスコット「Natu ちゃん」が仲間入り！haru ちゃんと選べて、全ポーズがコマアニメで動きます。</span>
+          <span class="lang-en" hidden>A Windows utility to switch screen brightness and audio (output / mic / volume) in one tap. New mascot "Natu" joins "haru" — pick your favorite, and every pose is now animated!</span>
         </p>
         <p class="work-tags">
           <span>Windows 10 / 11</span>
           <span>Python</span>
-          <span><span class="lang-ja">自作マスコット</span><span class="lang-en" hidden>Original mascot</span></span>
+          <span>haru &amp; Natu</span>
         </p>
         <p class="work-more">
           <span class="lang-ja">タップで詳細・できることを見る ▸</span>
