@@ -146,6 +146,11 @@
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbxPfl5ekjMUsoX2_TZi_uPWyJNgSUqZIPB2800SyU0UJJ-r6pqCykfac2ro8Uj_vSYVWg/exec";
 
     const form = document.getElementById('letterForm');
+
+    // ?topic=rhythmlab で来た人には、本文を最初から入れておく
+    const topics = { rhythmlab: '【リズラボ公開のお知らせ希望】\n公開されたらメールで教えてください！\n（遊んでいる音ゲー：　　）' };
+    const topic = new URLSearchParams(location.search).get('topic');
+    if (topics[topic]) document.getElementById('message').value = topics[topic];
     const btn = document.getElementById('submitBtn');
     const errMsg = document.getElementById('errMsg');
 
