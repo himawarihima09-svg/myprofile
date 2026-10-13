@@ -156,6 +156,13 @@
     .latest-comic-kicker { display:block; color:var(--mint-deep); font-size:.72rem; font-weight:800; }
     .latest-comic-title { display:block; margin-top:2px; font-size:.9rem; font-weight:800; line-height:1.55; }
     .latest-comic-more { color:var(--mint-deep); font-size:.78rem; font-weight:800; white-space:nowrap; }
+    .latest-comic + .latest-comic { margin-top: 10px; }
+    .latest-work { border-color: var(--pink); }
+    .latest-work:hover { border-color: var(--pink-deep); }
+    .latest-work .latest-comic-kicker, .latest-work .latest-comic-more { color: var(--pink-deep); }
+    .latest-work-duo { display:flex; width:76px; height:76px; }
+    .latest-comic .latest-work-duo img { width:46px; height:76px; object-fit:contain; object-position:bottom; border-radius:0; }
+    .latest-work-duo img + img { margin-left:-16px; }
 
     /* ===== URL共有ボタン ===== */
     .copyurl-wrap { margin-top: 16px; }
@@ -374,6 +381,17 @@
         <span class="latest-comic-title"><span class="lang-ja">天使ちゃん＆悪魔ちゃん<br>「ケーキのひとくち」</span><span class="lang-en" lang="en" hidden>Angel &amp; Devil<br>“A Bite of Cake”</span></span>
       </span>
       <span class="latest-comic-more"><span class="lang-ja">読む ▸</span><span class="lang-en" lang="en" hidden>Read ▸</span></span>
+    </a>
+    <a class="latest-comic latest-work" href="app.html">
+      <span class="latest-work-duo">
+        <img src="images/app/haru_bright.webp" width="300" height="300" alt="ダンスする haru ちゃん" decoding="async">
+        <img src="images/app/natu_bright.webp" width="300" height="300" alt="応援する Natu ちゃん" decoding="async">
+      </span>
+      <span>
+        <span class="latest-comic-kicker"><span class="lang-ja">🛠 制作物アップデート</span><span class="lang-en" lang="en" hidden>🛠 Works Update</span></span>
+        <span class="latest-comic-title"><span class="lang-ja">輝度＆オーディオ切替アプリ<br>Natu ちゃん登場＆動くように！</span><span class="lang-en" lang="en" hidden>Brightness &amp; Audio Switcher<br>Natu joins &amp; now animated!</span></span>
+      </span>
+      <span class="latest-comic-more"><span class="lang-ja">見る ▸</span><span class="lang-en" lang="en" hidden>See ▸</span></span>
     </a>
 
     <!-- ===== お知らせ ===== -->
