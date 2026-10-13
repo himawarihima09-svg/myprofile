@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📜 キャラクター利用ガイドライン｜しんたや</title>
+  <meta name="description" content="しんたや（shintaya）のオリジナルキャラクター・イラスト・漫画の利用ガイドライン。できること・相談してほしいこと・禁止事項。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="📜 キャラクター利用ガイドライン｜しんたや">
+  <meta property="og:description" content="しんたやのキャラクターを楽しんでもらうためのルールです🍰 Character usage guidelines.">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://himawarihima09-svg.github.io/myprofile/images/ogp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Sugar Mist パレット（A案） ===== */
+    :root {
+      --pink:#ffd1e3; --pink-deep:#ff8cba; --mint:#b8f2e6; --mint-deep:#6fd6c2;
+      --yellow:#fff3b0; --ink:#5b4a55; --ink-soft:#8a7a84;
+      --card:#fffdfb; --card-border:#fbe4ee; --soft-shadow:0 22px 50px -24px rgba(255,140,186,.45);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'M PLUS Rounded 1c','Quicksand',sans-serif;
+      color:var(--ink); line-height:1.8; min-height:100vh;
+      background:linear-gradient(165deg,#fff6fa 0%,#fdeef4 52%,#edfaf5 100%);
+      background-attachment:fixed; display:flex; justify-content:center;
+      padding:28px 16px 48px; -webkit-font-smoothing:antialiased;
+    }
+    .card {
+      width:100%; max-width:560px; background:var(--card); border:1px solid var(--card-border);
+      border-radius:30px; padding:30px 24px 28px; box-shadow:var(--soft-shadow);
+      position:relative; overflow:hidden; animation:cardIn .7s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:5px;
+      background:linear-gradient(90deg,var(--pink-deep),var(--yellow),var(--mint-deep),var(--pink-deep));
+      background-size:200% 100%; animation:barShine 6s linear infinite;
+    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(26px) scale(.985);} to{opacity:1;transform:none;} }
+    @keyframes barShine { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
+    [hidden] { display:none !important; }
+
+    .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+    .back { font-size:0.82rem; font-weight:700; color:var(--mint-deep); text-decoration:none; }
+    .back:hover { text-decoration:underline; }
+    .lang-toggle {
+      font-family:'Quicksand',sans-serif; font-size:0.78rem; font-weight:700; color:var(--mint-deep);
+      background:#fff; border:1.5px solid #cdeee6; border-radius:999px; padding:6px 15px; cursor:pointer;
+    }
+    h1 { font-size:1.45rem; font-weight:800; text-align:center; line-height:1.4; }
+    .subtitle { text-align:center; font-family:'Quicksand',sans-serif; font-weight:600; font-size:0.82rem; color:var(--mint-deep); margin-top:2px; }
+    .lead { font-size:0.9rem; margin:18px 0 6px; }
+
+    .chars { display:flex; justify-content:center; flex-wrap:wrap; gap:4px; margin:16px 0 4px; }
+    .chars img { width:52px; height:52px; object-fit:contain; }
+
+    h2 {
+      display:flex; align-items:center; gap:8px;
+      font-size:1.05rem; font-weight:800; margin:26px 0 10px;
+    }
+    .box { border-radius:18px; padding:14px 16px; border:1.5px solid; }
+    .box ul { list-style:none; }
+    .box li { position:relative; padding-left:1.5em; font-size:0.88rem; margin:6px 0; }
+    .box li::before { position:absolute; left:0; top:0; }
+    .ok   { background:#f1fbf8; border-color:#bfeee3; }
+    .ok li::before   { content:"⭕"; font-size:.8em; top:.2em; }
+    .ask  { background:#fffbea; border-color:#fbe7a6; }
+    .ask li::before  { content:"💬"; font-size:.85em; top:.15em; }
+    .ng   { background:#fff5f8; border-color:var(--pink); }
+    .ng li::before   { content:"❌"; font-size:.75em; top:.25em; }
+    .box .hint { font-size:0.78rem; color:var(--ink-soft); margin-top:8px; }
+
+    .credit {
+      font-family:'Quicksand','M PLUS Rounded 1c',sans-serif; font-weight:700; font-size:0.9rem;
+      background:#fff; border:1.5px dashed var(--pink-deep); border-radius:14px;
+      padding:10px 14px; text-align:center; margin-top:8px;
+    }
+    p.small { font-size:0.84rem; margin:8px 0; }
+    .contact { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .contact a {
+      flex:1 1 140px; text-align:center; text-decoration:none; font-weight:800; font-size:0.88rem;
+      color:var(--pink-deep); background:#fff; border:1.5px solid var(--pink); border-radius:999px; padding:9px 14px;
+    }
+    .contact a:hover { background:#fff6fa; }
+    .updated { margin-top:22px; font-size:0.76rem; color:var(--ink-soft); text-align:right; }
+    footer { margin-top:20px; text-align:center; font-family:'Quicksand',sans-serif; font-size:0.78rem; color:var(--ink-soft); }
+    @media (prefers-reduced-motion:reduce){ *{animation:none!important;} }
+  </style>
+  <link rel="stylesheet" href="css/sweet.css">
+</head>
+<body>
+  <main class="card">
+    <div class="topbar">
+      <a class="back" href="index.html"><span class="lang-ja">← ポータルに戻る</span><span class="lang-en" lang="en" hidden>← Back to portal</span></a>
+      <button type="button" class="lang-toggle" id="langToggle">🌐 English</button>
+    </div>
+
+    <h1><span class="lang-ja">📜 キャラクター利用ガイドライン</span><span class="lang-en" lang="en" hidden>📜 Character Usage Guidelines</span></h1>
+    <p class="subtitle">shintaya original characters</p>
+
+    <div class="chars" aria-hidden="true">
+      <img src="images/chars/shiro.webp" alt=""><img src="images/chars/kuro.webp" alt=""><img src="images/chars/haru.webp" alt="">
+      <img src="images/chars/natu.webp" alt=""><img src="images/chars/aki.webp" alt=""><img src="images/chars/fuyu.webp" alt="">
+    </div>
+
+    <p class="lead">
+      <span class="lang-ja">しんたやのキャラクターを見つけてくれてありがとうございます🍰 みんなに気持ちよく楽しんでもらうために、使い方のルールをまとめました。</span>
+      <span class="lang-en" lang="en" hidden>Thank you for loving shintaya's characters🍰 Here are a few simple rules so everyone can enjoy them happily.</span>
+    </p>
+    <p class="small">
+      <span class="lang-ja"><strong>対象：</strong>しろ・くろ・はる・なつ・あき・ふゆ・天使ちゃん・悪魔ちゃん など、しんたやのオリジナルキャラクターと、そのイラスト・2コマ漫画・壁紙・動画サムネイル・LINEスタンプ。</span>
+      <span class="lang-en" lang="en" hidden><strong>Covers:</strong> all shintaya original characters (Shiro, Kuro, Haru, Natsu, Aki, Fuyu, Angel &amp; Devil, etc.) and their illustrations, comics, wallpapers, video thumbnails and LINE stickers.</span>
+    </p>
+
+    <h2><span class="lang-ja">⭕ 自由にOK</span><span class="lang-en" lang="en" hidden>⭕ Go ahead!</span></h2>
+    <div class="box ok">
+      <ul>
+        <li><span class="lang-ja">スマホ・PCの壁紙やアイコンにして、個人で楽しむ</span><span class="lang-en" lang="en" hidden>Using them as wallpapers or icons for personal enjoyment</span></li>
+        <li><span class="lang-ja">SNSでの紹介・シェア（「shintaya」の名前かこのサイトのリンクを添えてね）</span><span class="lang-en" lang="en" hidden>Sharing on social media (please credit "shintaya" or link to this site)</span></li>
+        <li><span class="lang-ja">ファンアート（自分で描いた絵）の投稿。<strong>#shintaya</strong> を付けてくれたら見に行きます！</span><span class="lang-en" lang="en" hidden>Posting your own fan art — tag <strong>#shintaya</strong> and I'll come see it!</span></li>
+        <li><span class="lang-ja">しんたやの曲と一緒に使う、収益化していない動画・配信の背景</span><span class="lang-en" lang="en" hidden>As a background for non-monetized videos or streams featuring shintaya's music</span></li>
+      </ul>
+    </div>
+
+    <h2><span class="lang-ja">💬 先に相談してね</span><span class="lang-en" lang="en" hidden>💬 Please ask first</span></h2>
+    <div class="box ask">
+      <ul>
+        <li><span class="lang-ja">グッズ・同人誌など、お金をもらう使い方（ファンアートのグッズ化も含む）</span><span class="lang-en" lang="en" hidden>Anything that earns money, such as merchandise or doujinshi (including fan-art goods)</span></li>
+        <li><span class="lang-ja">収益化している動画・配信でのイラスト使用</span><span class="lang-en" lang="en" hidden>Using the illustrations in monetized videos or streams</span></li>
+        <li><span class="lang-ja">お店・イベント・企業での使用</span><span class="lang-en" lang="en" hidden>Use by shops, events or companies</span></li>
+      </ul>
+      <p class="hint"><span class="lang-ja">気軽にどうぞ。内容を聞いて、OKできることも多いです☺️</span><span class="lang-en" lang="en" hidden>Don't be shy — in many cases the answer is yes☺️</span></p>
+    </div>
+
+    <h2><span class="lang-ja">❌ やめてね</span><span class="lang-en" lang="en" hidden>❌ Please don't</span></h2>
+    <div class="box ng">
+      <ul>
+        <li><span class="lang-ja">画像をそのまま再配布・販売すること（NFTを含む）</span><span class="lang-en" lang="en" hidden>Redistributing or selling the images as-is (including NFTs)</span></li>
+        <li><span class="lang-ja">自分が作ったと言ったり、公式・本人のふりをしたりすること</span><span class="lang-en" lang="en" hidden>Claiming them as your own, or pretending to be official / shintaya</span></li>
+        <li><span class="lang-ja">AIの学習データにしたり、LoRAなどでキャラクターを再現・量産したりすること</span><span class="lang-en" lang="en" hidden>Using them to train AI models, or recreating the characters with LoRA or similar tools</span></li>
+        <li><span class="lang-ja">成人向け・暴力的な表現、誰かを傷つける・差別する使い方</span><span class="lang-en" lang="en" hidden>Adult or violent content, or any use that hurts or discriminates against others</span></li>
+        <li><span class="lang-ja">政治・宗教・勧誘などの宣伝に使うこと</span><span class="lang-en" lang="en" hidden>Political, religious or solicitation purposes</span></li>
+      </ul>
+    </div>
+
+    <h2><span class="lang-ja">✍️ クレジットの書き方</span><span class="lang-en" lang="en" hidden>✍️ How to credit</span></h2>
+    <p class="credit">Character: shintaya（しんたや）<br>https://himawarihima09-svg.github.io/myprofile/</p>
+
+    <h2><span class="lang-ja">🎨 権利について</span><span class="lang-en" lang="en" hidden>🎨 About rights</span></h2>
+    <p class="small">
+      <span class="lang-ja">イラストはAIツールを使って制作していますが、キャラクターの名前・設定・デザインの選定や仕上げ、漫画のストーリーやセリフはしんたやが考えています。キャラクターに関する権利はしんたやに帰属します。</span>
+      <span class="lang-en" lang="en" hidden>The illustrations are made with the help of AI tools, while the characters' names, settings, design choices and finishing, as well as the comic stories and dialogue, are created by shintaya. All rights to the characters belong to shintaya.</span>
+    </p>
+    <p class="small">
+      <span class="lang-ja">このガイドラインは予告なく変わることがあります。ルールに合わない使い方を見つけた場合は、削除をお願いすることがあります。</span>
+      <span class="lang-en" lang="en" hidden>These guidelines may change without notice. I may ask you to remove content that doesn't follow them.</span>
+    </p>
+
+    <h2><span class="lang-ja">📮 相談・連絡先</span><span class="lang-en" lang="en" hidden>📮 Contact</span></h2>
+    <div class="contact">
+      <a href="letter.html"><span class="lang-ja">💌 お便りBOX</span><span class="lang-en" lang="en" hidden>💌 Letter Box</span></a>
+      <a href="https://x.com/shintaya990654" target="_blank" rel="noopener">✨ X（DM）</a>
+    </div>
+
+    <p class="updated"><span class="lang-ja">制定：2026年10月14日</span><span class="lang-en" lang="en" hidden>Effective: October 14, 2026</span></p>
+    <footer lang="en">© 2026 shintaya. Made with AI ✨</footer>
+  </main>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('langToggle');
+      var lang = 'ja';
+      function applyLang(next) {
+        lang = next;
+        root.lang = lang;
+        var ja = document.querySelectorAll('.lang-ja');
+        var en = document.querySelectorAll('.lang-en');
+        for (var i = 0; i < ja.length; i++) ja[i].hidden = lang === 'en';
+        for (var j = 0; j < en.length; j++) en[j].hidden = lang !== 'en';
+        toggle.textContent = lang === 'en' ? '🌐 日本語' : '🌐 English';
+      }
+      try { lang = localStorage.getItem('lang') === 'en' ? 'en' : 'ja'; } catch (e) {}
+      applyLang(lang);
+      toggle.addEventListener('click', function () {
+        var next = lang === 'en' ? 'ja' : 'en';
+        try { localStorage.setItem('lang', next); } catch (e) {}
+        applyLang(next);
+      });
+    })();
+  </script>
+  <script src="js/sweet.js" defer></script>
+</body>
+</html>
