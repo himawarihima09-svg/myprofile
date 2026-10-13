@@ -164,6 +164,8 @@
     .latest-work-duo { display:flex; width:116px; height:108px; }
     .latest-comic .latest-work-duo img { width:72px; height:108px; object-fit:cover; object-position:center bottom; border-radius:0; }
     .latest-work-duo img + img { margin-left:-28px; }
+    .latest-app { grid-template-columns: 76px minmax(0, 1fr) auto; padding: 10px; }
+    .latest-comic.latest-app img { height:76px; border-radius:18px; box-shadow:0 6px 14px -8px rgba(14,26,46,.55); }
 
     /* ===== URL共有ボタン ===== */
     .copyurl-wrap { margin-top: 16px; }
@@ -308,6 +310,7 @@
     }
     .work-icon--sleepfade { background: linear-gradient(160deg, #7d8be0, #2b2f66); }
     .work-icon--rhythmloop { background: linear-gradient(160deg, #ffb0d0, #6fd6c2); }
+    .work-icon--img { object-fit: cover; box-shadow: 0 6px 14px -8px rgba(14,26,46,.55); }
     .work-title { font-size: 0.98rem; font-weight: 800; color: var(--ink); margin-bottom: 5px; }
     .work-desc { font-size: 0.79rem; line-height: 1.5; color: var(--ink-soft); margin-bottom: 8px; }
     .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -368,7 +371,7 @@
     </div>
 
     <!-- ===== ヒーロー ===== -->
-    <img class="hero-illust" src="images/shiro_kuro.png" width="800" height="533"
+    <img class="hero-illust" src="images/shiro_kuro.webp" width="800" height="533"
          alt="しろちゃんとくろちゃんが手を振って出迎えるイラスト" decoding="async">
     <h1 class="name">🍰 しんたや <span class="en">/ shintaya</span></h1>
     <p class="catch">
@@ -376,7 +379,7 @@
       <span class="lang-en" lang="en" hidden>Weaving sweet, kawaii music with AI 🎵✨</span>
     </p>
     <a class="latest-comic" href="comic.html?comic=tenshi-akuma-cake#reader">
-      <img src="images/comics/tenshi_akuma_cake_share.png" width="1152" height="1536" alt="天使ちゃんと悪魔ちゃんの2コマ漫画「ケーキのひとくち」" decoding="async">
+      <img src="images/comics/tenshi_akuma_cake_thumb.webp" width="228" height="342" alt="天使ちゃんと悪魔ちゃんの2コマ漫画「ケーキのひとくち」" decoding="async">
       <span>
         <span class="latest-comic-kicker"><span class="lang-ja">📖 最新の2コマ漫画</span><span class="lang-en" lang="en" hidden>📖 Latest 2-panel Comic</span></span>
         <span class="latest-comic-title"><span class="lang-ja">天使ちゃん＆悪魔ちゃん<br>「ケーキのひとくち」</span><span class="lang-en" lang="en" hidden>Angel &amp; Devil<br>“A Bite of Cake”</span></span>
@@ -394,11 +397,19 @@
       </span>
       <span class="latest-comic-more"><span class="lang-ja">見る ▸</span><span class="lang-en" lang="en" hidden>See ▸</span></span>
     </a>
+    <a class="latest-comic latest-work latest-app" href="rhythmlab.html">
+      <img src="images/rhythmlab/icon.webp" width="240" height="240" alt="リズラボのアプリアイコン" decoding="async">
+      <span>
+        <span class="latest-comic-kicker"><span class="lang-ja">🆕 新しい制作物</span><span class="lang-en" lang="en" hidden>🆕 New Work</span></span>
+        <span class="latest-comic-title"><span class="lang-ja">リズラボ<br>音ゲー練習アプリ＆紹介動画</span><span class="lang-en" lang="en" hidden>RhythmLab<br>Rhythm-game practice app &amp; trailer</span></span>
+      </span>
+      <span class="latest-comic-more"><span class="lang-ja">見る ▸</span><span class="lang-en" lang="en" hidden>See ▸</span></span>
+    </a>
 
     <!-- ===== お知らせ ===== -->
     <section class="news reveal" style="animation-delay:.3s" aria-label="お知らせ">
       <article class="news-item">
-      <img class="news-banner" src="images/autumn_natsu_aki_v3.png" width="1254" height="1254"
+      <img class="news-banner" src="images/autumn_natsu_aki_v3.webp" width="1000" height="1000"
            alt="なつちゃんとあきちゃんの秋コーデイラスト（紅葉の中で指ハート）" decoding="async">
       <p class="news-title">
         <span class="lang-ja">🍁 秋、きました！</span>
@@ -542,7 +553,7 @@
     <h2 class="section-title"><span class="lang-ja">🛠 制作物</span><span class="lang-en" hidden>🛠 Works</span></h2>
     <a class="work-card work-card--stamp" href="https://line.me/S/sticker/34130066" target="_blank" rel="noopener">
       <img class="work-img" src="images/chars/shiro.png" width="260" height="260"
-           alt="しろちゃんのLINEスタンプ" decoding="async">
+           alt="しろちゃんのLINEスタンプ" decoding="async" loading="lazy">
       <div>
         <p class="work-title">
           <span class="lang-ja">🤍 しろちゃんのLINEスタンプ</span>
@@ -617,7 +628,8 @@
     </a>
 
     <a class="work-card" href="rhythmlab.html">
-      <span class="work-icon work-icon--rhythmloop" aria-hidden="true">🎵</span>
+      <img class="work-icon work-icon--img" src="images/rhythmlab/icon.webp" width="240" height="240"
+           alt="" decoding="async" loading="lazy">
       <div>
         <p class="work-title">
           <span class="lang-ja">🎵 リズラボ（音ゲー練習プレイヤー）</span>
