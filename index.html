@@ -10,7 +10,11 @@
   <meta property="og:title" content="しんたや / shintaya — AIで紡ぐ、甘くてかわいい音楽世界">
   <meta property="og:description" content="Kawaii Future BassをAIツールで制作するクリエイター・しんたやのリンク集。スイーツテーマのオリジナル楽曲を世界へ🍰">
   <meta property="og:locale" content="ja_JP">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://himawarihima09-svg.github.io/myprofile/">
+  <meta property="og:image" content="https://himawarihima09-svg.github.io/myprofile/images/ogp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍰</text></svg>">
 
@@ -127,12 +131,33 @@
 
     /* ===== 名前・キャッチコピー ===== */
     .name {
-      font-size: 1.85rem;
-      font-weight: 800;
-      margin-top: 14px;
-      letter-spacing: 0.01em;
+      margin-top: 12px;
+      line-height: 1.15;
     }
-    .name .en { font-family: 'Quicksand', sans-serif; color: var(--pink-deep); }
+    .name .en { display: block; font-family: 'Quicksand', sans-serif; font-size: 2.3rem; font-weight: 700; color: var(--pink-deep); letter-spacing: 0.01em; }
+    .name .ja { display: block; margin-top: 4px; font-size: 0.98rem; font-weight: 800; color: var(--ink-soft); letter-spacing: 0.12em; }
+
+    /* ===== YouTube登録ボタン ===== */
+    .yt-cta {
+      display: flex; align-items: center; gap: 14px;
+      max-width: 430px; margin: 18px auto 4px; padding: 13px 20px;
+      border-radius: 999px; text-decoration: none; text-align: left; color: #fff;
+      background: linear-gradient(110deg, #ff7aa8, #ff8cba 45%, #ffa9c9);
+      box-shadow: 0 14px 26px -14px rgba(255,90,150,.85);
+      transition: transform .15s ease, box-shadow .2s ease;
+      animation: ctaPulse 2.8s ease-in-out infinite;
+    }
+    .yt-cta:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -14px rgba(255,90,150,.95); }
+    .yt-cta:focus-visible { outline: 3px solid var(--mint-deep); outline-offset: 3px; }
+    .yt-cta-play {
+      flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; color: #ff5c93; font-size: .95rem; padding-left: 3px;
+    }
+    .yt-cta-text { display: flex; flex-direction: column; line-height: 1.35; }
+    .yt-cta-main { font-size: 1.12rem; font-weight: 800; }
+    .yt-cta-sub { font-size: .76rem; font-weight: 700; opacity: .95; }
+    @keyframes ctaPulse { 0%,100% { box-shadow: 0 14px 26px -14px rgba(255,90,150,.85); } 50% { box-shadow: 0 14px 34px -10px rgba(255,90,150,.95); } }
     .catch { margin-top: 9px; font-size: 1rem; font-weight: 700; color: var(--ink); }
     .catch .lang-en { font-family: 'Quicksand', sans-serif; color: var(--mint-deep); }
     .latest-comic {
@@ -359,15 +384,36 @@
     /* ===== フッター ===== */
     footer { margin-top: 30px; font-family: 'Quicksand', sans-serif; font-size: 0.82rem; color: var(--ink-soft); }
 
+    @media (max-width: 520px) {
+      .hero-illust { max-width: 280px; }
+      .latest-comic { gap: 10px; padding: 8px 10px; }
+      .latest-comic, .latest-app { grid-template-columns: 60px minmax(0, 1fr) auto; }
+      .latest-comic img { width: 60px; height: 80px; }
+      .latest-comic.latest-app img { height: 60px; border-radius: 14px; }
+      .latest-work { grid-template-columns: 86px minmax(0, 1fr) auto; }
+      .latest-work-duo { width: 86px; height: 82px; }
+      .latest-work.latest-app { grid-template-columns: 60px minmax(0, 1fr) auto; }
+      .latest-comic .latest-work-duo img { width: 54px; height: 82px; }
+      .latest-work-duo img + img { margin-left: -22px; }
+      .latest-comic-title { font-size: .84rem; line-height: 1.45; }
+      .latest-comic-kicker { font-size: .68rem; }
+      .latest-comic-more { font-size: .72rem; }
+      .work-card { padding: 13px 12px; gap: 12px; }
+      .work-img, .work-icon { width: 64px; height: 64px; }
+      .work-duo { width: 74px; height: 70px; }
+      .work-duo img { width: 46px; height: 70px; }
+      .work-duo img + img { margin-left: -18px; }
+    }
     @media (min-width: 480px) {
-      .name { font-size: 1.95rem; }
+      .name .en { font-size: 2.5rem; }
       .hero-illust { max-width: 360px; }
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; }
-      .link-btn, .video-item, .work-card, .copyurl-btn { transition: none; }
+      .link-btn, .video-item, .work-card, .copyurl-btn, .yt-cta { transition: none; }
     }
   </style>
+  <link rel="stylesheet" href="css/sweet.css">
 </head>
 <body>
   <main class="card">
@@ -380,11 +426,19 @@
     <!-- ===== ヒーロー ===== -->
     <img class="hero-illust" src="images/shiro_kuro.webp" width="800" height="533"
          alt="しろちゃんとくろちゃんが手を振って出迎えるイラスト" decoding="async">
-    <h1 class="name">🍰 しんたや <span class="en">/ shintaya</span></h1>
+    <h1 class="name"><span class="en">🍰 shintaya</span><span class="ja">しんたや</span></h1>
     <p class="catch">
       <span class="lang-ja">AIで紡ぐ、甘くてかわいい音楽世界 🎵✨</span>
       <span class="lang-en" lang="en" hidden>Weaving sweet, kawaii music with AI 🎵✨</span>
     </p>
+    <!-- ===== YouTube登録ボタン（いちばん目立つ場所に） ===== -->
+    <a class="yt-cta" href="https://www.youtube.com/@shintaya-z1f?sub_confirmation=1" target="_blank" rel="noopener">
+      <span class="yt-cta-play" aria-hidden="true">▶</span>
+      <span class="yt-cta-text">
+        <span class="yt-cta-main"><span class="lang-ja">YouTubeで聴く</span><span class="lang-en" lang="en" hidden>Listen on YouTube</span></span>
+        <span class="yt-cta-sub"><span class="lang-ja">チャンネル登録はこちら 🍰 Subscribe</span><span class="lang-en" lang="en" hidden>Subscribe for sweet new tunes 🍰</span></span>
+      </span>
+    </a>
     <a class="latest-comic" href="comic.html?comic=tenshi-akuma-cake#reader">
       <img src="images/comics/tenshi_akuma_cake_thumb.webp" width="228" height="342" alt="天使ちゃんと悪魔ちゃんの2コマ漫画「ケーキのひとくち」" decoding="async">
       <span>
@@ -566,7 +620,7 @@
     <!-- ===== 制作物 ===== -->
     <h2 class="section-title"><span class="lang-ja">🛠 制作物</span><span class="lang-en" hidden>🛠 Works</span></h2>
     <a class="work-card work-card--stamp" href="https://line.me/S/sticker/34130066" target="_blank" rel="noopener">
-      <img class="work-img" src="images/chars/shiro.png" width="260" height="260"
+      <img class="work-img" src="images/chars/shiro.webp" width="260" height="260"
            alt="しろちゃんのLINEスタンプ" decoding="async" loading="lazy">
       <div>
         <p class="work-title">
@@ -739,5 +793,6 @@
       }
     })();
   </script>
+  <script src="js/sweet.js" defer></script>
 </body>
 </html>

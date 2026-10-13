@@ -1,0 +1,70 @@
+/* =========================================================
+   sweet.css … 全ページ共通の「仕上げ」スタイル
+   ・スマホで窮屈にならないよう余白を調整
+   ・ふわふわ浮かぶスイーツ、タップでキラッ、ボタンのきらめき
+   ・「動きを減らす」設定の人にはエフェクトを出さない
+   ========================================================= */
+
+/* ---- スマホの余白をすっきり ---- */
+@media (max-width: 520px) {
+  body { padding: 14px 8px 36px !important; }
+  .card, .page { padding: 22px 16px 26px !important; border-radius: 24px !important; }
+
+  /* 「できること」表：見出しを上、説明を下に積む（横幅いっぱい使える） */
+  .card table, .card tbody, .card tr, .card th, .card td { display: block; width: 100%; }
+  .card th { padding: 12px 2px 0 !important; border-bottom: 0 !important; white-space: normal !important; }
+  .card td { padding: 2px 2px 12px !important; }
+}
+
+/* ---- 背景でふわふわ浮かぶスイーツ ---- */
+.sweet-sky { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.sweet-sky span {
+  position: absolute; bottom: -60px; opacity: 0;
+  animation: sweetFloat linear infinite;
+  will-change: transform, opacity;
+}
+@keyframes sweetFloat {
+  0%   { transform: translateY(0) rotate(0deg);        opacity: 0; }
+  12%  { opacity: .55; }
+  85%  { opacity: .45; }
+  100% { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+}
+.card, .page { z-index: 1; }
+/* スマホはカードが画面いっぱいなので、ごく薄くカードの上をふわっと通す */
+@media (max-width: 520px) {
+  .sweet-sky { z-index: 2; }
+  .sweet-sky span { animation-name: sweetFloatSoft; }
+}
+@keyframes sweetFloatSoft {
+  0%   { transform: translateY(0) rotate(0deg);        opacity: 0; }
+  12%  { opacity: .3; }
+  85%  { opacity: .25; }
+  100% { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+}
+
+/* ---- タップしたところにキラッ ---- */
+.sweet-spark {
+  position: fixed; z-index: 9999; pointer-events: none;
+  font-size: 14px; line-height: 1; color: #ff8cba;
+  animation: sparkPop .7s ease-out forwards;
+}
+@keyframes sparkPop {
+  0%   { transform: translate(-50%, -50%) scale(.4); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1); opacity: 0; }
+}
+
+/* ---- ボタンやカードに、なでると光がすっと走る ---- */
+.link-btn, .latest-comic, .work-card, .yt-cta { position: relative; overflow: hidden; }
+.link-btn::after, .latest-comic::after, .work-card::after, .yt-cta::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent);
+  transform: skewX(-18deg); pointer-events: none; opacity: 0;
+}
+.link-btn:hover::after, .latest-comic:hover::after, .work-card:hover::after, .yt-cta:hover::after {
+  animation: shine .8s ease;
+}
+@keyframes shine { 0% { left: -60%; opacity: 1; } 100% { left: 130%; opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sweet-sky, .sweet-spark { display: none !important; }
+}
