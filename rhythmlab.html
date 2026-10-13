@@ -76,6 +76,14 @@
       color:var(--mint-deep); background:#e6faf4; border-radius:999px; padding:3px 12px;
     }
 
+    /* ===== 紹介動画 ===== */
+    .promo video {
+      display:block; width:100%; height:auto; aspect-ratio:16/9;
+      border-radius:16px; border:1.5px solid var(--card-border); background:#0e1b2e;
+      box-shadow:0 12px 26px -18px rgba(255,140,186,.75);
+    }
+    .promo-note { font-size:0.72rem; color:var(--ink-soft); text-align:right; margin:6px 0 0; }
+
     /* ===== 画面ギャラリー（横スクロール）===== */
     .shots {
       display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory;
@@ -148,6 +156,16 @@
       <span>日本語 / English</span>
     </div>
 
+
+    <h2>🎬 紹介動画</h2>
+    <div class="promo">
+      <video controls playsinline preload="none" width="1920" height="1080"
+             poster="video/rhythmlab-promo-poster.jpg">
+        <source src="video/rhythmlab-promo.mp4" type="video/mp4">
+        お使いのブラウザでは動画を再生できません。
+      </video>
+    </div>
+    <p class="promo-note">約38秒・音声なし</p>
 
     <h2>📱 画面</h2>
     <div class="shots">
