@@ -54,13 +54,13 @@
 }
 
 /* ---- ボタンやカードに、なでると光がすっと走る ---- */
-.link-btn, .latest-comic, .work-card, .yt-cta { position: relative; overflow: hidden; }
-.link-btn::after, .latest-comic::after, .work-card::after, .yt-cta::after {
+.link-btn, .latest-comic, .work-card, .yt-cta, .radio-cta { position: relative; overflow: hidden; }
+.link-btn::after, .latest-comic::after, .work-card::after, .yt-cta::after, .radio-cta::after {
   content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
   background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent);
   transform: skewX(-18deg); pointer-events: none; opacity: 0;
 }
-.link-btn:hover::after, .latest-comic:hover::after, .work-card:hover::after, .yt-cta:hover::after {
+.link-btn:hover::after, .latest-comic:hover::after, .work-card:hover::after, .yt-cta:hover::after, .radio-cta:hover::after {
   animation: shine .8s ease;
 }
 @keyframes shine { 0% { left: -60%; opacity: 1; } 100% { left: 130%; opacity: 1; } }

@@ -158,6 +158,31 @@
     .yt-cta-main { font-size: 1.12rem; font-weight: 800; }
     .yt-cta-sub { font-size: .76rem; font-weight: 700; opacity: .95; }
     @keyframes ctaPulse { 0%,100% { box-shadow: 0 14px 26px -14px rgba(255,90,150,.85); } 50% { box-shadow: 0 14px 34px -10px rgba(255,90,150,.95); } }
+
+    /* ===== 24/7 Radio（YouTubeの24時間配信）ボタン：夜の音楽スタジオ色 ===== */
+    .radio-cta {
+      display: flex; align-items: center; gap: 14px;
+      max-width: 430px; margin: 12px auto 4px; padding: 11px 20px 11px 14px;
+      border-radius: 999px; text-decoration: none; text-align: left; color: #fff;
+      background: linear-gradient(110deg, #3b3a8f, #6d5bd0 55%, #b07be0);
+      box-shadow: 0 14px 26px -14px rgba(90,70,200,.8);
+      transition: transform .15s ease, box-shadow .2s ease;
+    }
+    .radio-cta:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -14px rgba(90,70,200,.95); }
+    .radio-cta:focus-visible { outline: 3px solid var(--mint-deep); outline-offset: 3px; }
+    .radio-cta-live {
+      flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 999px;
+      background: #ff3d6e; font-family: 'Quicksand', sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .04em;
+    }
+    .radio-cta-live::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff;
+      animation: liveBlink 1.6s ease-in-out infinite;
+    }
+    .radio-cta-text { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
+    .radio-cta-main { font-family: 'Quicksand', 'M PLUS Rounded 1c', sans-serif; font-size: 1.08rem; font-weight: 700; }
+    .radio-cta-sub { font-size: .74rem; font-weight: 700; opacity: .92; }
+    @keyframes liveBlink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
     .catch { margin-top: 9px; font-size: 1rem; font-weight: 700; color: var(--ink); }
     .catch .lang-en { font-family: 'Quicksand', sans-serif; color: var(--mint-deep); }
     .latest-comic {
@@ -412,7 +437,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; }
-      .link-btn, .video-item, .work-card, .copyurl-btn, .yt-cta { transition: none; }
+      .link-btn, .video-item, .work-card, .copyurl-btn, .yt-cta, .radio-cta { transition: none; }
     }
   </style>
   <link rel="stylesheet" href="css/sweet.css">
@@ -439,6 +464,14 @@
       <span class="yt-cta-text">
         <span class="yt-cta-main"><span class="lang-ja">YouTubeで聴く</span><span class="lang-en" lang="en" hidden>Listen on YouTube</span></span>
         <span class="yt-cta-sub"><span class="lang-ja">チャンネル登録はこちら 🍰 Subscribe</span><span class="lang-en" lang="en" hidden>Subscribe for sweet new tunes 🍰</span></span>
+      </span>
+    </a>
+    <!-- ===== 24/7 Radio（/live は配信を作り直しても今のライブに飛ぶ） ===== -->
+    <a class="radio-cta" href="https://www.youtube.com/@shintaya-z1f/live" target="_blank" rel="noopener">
+      <span class="radio-cta-live">LIVE</span>
+      <span class="radio-cta-text">
+        <span class="radio-cta-main">24/7 Radio 🎧</span>
+        <span class="radio-cta-sub"><span class="lang-ja">ALL MIX Lounge・24時間ずっと配信中</span><span class="lang-en" lang="en" hidden>ALL MIX Lounge · streaming 24/7</span></span>
       </span>
     </a>
     <a class="latest-comic" href="comic.html?comic=halloween-ghost-cookies#reader">
