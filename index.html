@@ -224,6 +224,40 @@
     .latest-video figcaption { margin-top:6px; font-size:.72rem; font-weight:700; color:var(--ink-soft); text-align:center; }
     .latest-comic.latest-app img { height:76px; border-radius:18px; box-shadow:0 6px 14px -8px rgba(14,26,46,.55); }
 
+    /* ===== アルバム（Sunoの曲プレイヤーをページ内で再生） ===== */
+    .album {
+      max-width: 430px; margin: 14px auto 0; padding: 12px;
+      border: 1.5px solid var(--pink); border-radius: 20px; text-align: left;
+      background: linear-gradient(135deg, #fff6fa, #fffdf3 55%, #f0fffa);
+      box-shadow: 0 12px 26px -18px rgba(255,140,186,.75);
+    }
+    .album-head { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; align-items: center; }
+    .album-cover { display:block; width:92px; height:92px; object-fit:cover; border-radius:14px; box-shadow:0 8px 16px -10px rgba(14,26,46,.6); }
+    .album-kicker { display:block; color:var(--pink-deep); font-size:.72rem; font-weight:800; }
+    .album-title { display:block; margin-top:1px; font-family:'Quicksand', sans-serif; font-size:1.3rem; font-weight:700; color:var(--ink); line-height:1.2; }
+    .album-desc { display:block; margin-top:3px; font-size:.74rem; font-weight:700; color:var(--ink-soft); line-height:1.5; }
+    .album-tracks { list-style:none; margin:10px 0 0; padding:0; }
+    .album-track {
+      display:flex; align-items:center; gap:10px; width:100%;
+      padding:7px 10px; border:0; border-radius:12px; background:transparent;
+      font:inherit; font-size:.86rem; font-weight:700; color:var(--ink); text-align:left; cursor:pointer;
+    }
+    .album-track:hover { background: rgba(255,209,227,.45); }
+    .album-track:focus-visible { outline: 2px solid var(--mint-deep); outline-offset: 1px; }
+    .album-track[aria-pressed="true"] { background: var(--pink); }
+    .album-track-no {
+      flex:0 0 auto; width:24px; height:24px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      background:#fff; color:var(--pink-deep); font-family:'Quicksand', sans-serif; font-size:.74rem; font-weight:700;
+    }
+    .album-track[aria-pressed="true"] .album-track-no { background:var(--pink-deep); color:#fff; }
+    .album-track-name { flex:1 1 auto; min-width:0; font-family:'Quicksand', 'M PLUS Rounded 1c', sans-serif; }
+    .album-track-len { color:var(--ink-soft); font-size:.72rem; }
+    .album-player { margin-top:8px; }
+    .album-player iframe { display:block; width:100%; height:152px; border:0; border-radius:14px; background:#1f2550; }
+    .album-more { display:block; margin-top:8px; color:var(--pink-deep); font-size:.78rem; font-weight:800; text-align:right; text-decoration:none; }
+    .album-more:hover { text-decoration: underline; }
+
     /* ===== URL共有ボタン ===== */
     .copyurl-wrap { margin-top: 16px; }
     .copyurl-btn {
@@ -474,6 +508,27 @@
         <span class="radio-cta-sub"><span class="lang-ja">ALL MIX Lounge・24時間ずっと配信中</span><span class="lang-en" lang="en" hidden>ALL MIX Lounge · streaming 24/7</span></span>
       </span>
     </a>
+    <!-- ===== アルバム（曲を押すとSunoの公式プレイヤーがここに出て、そのまま再生できる） ===== -->
+    <section class="album" aria-label="アルバム A Little More">
+      <div class="album-head">
+        <img class="album-cover" src="images/music/a_little_more.jpg" width="400" height="400"
+             alt="アルバム「A Little More」のジャケット（T4Sの4人のティーパーティー）" decoding="async">
+        <div>
+          <span class="album-kicker"><span class="lang-ja">💿 NEW EP・全5曲</span><span class="lang-en" lang="en" hidden>💿 NEW EP · 5 songs</span></span>
+          <span class="album-title" lang="en">A Little More</span>
+          <span class="album-desc"><span class="lang-ja">あと少し、の気持ちから始まる5つの物語。T4Sの4人が描く日英ハイブリッドのKawaii Future Bass🍰</span><span class="lang-en" lang="en" hidden>Five stories that start with “just a little more.” A bilingual Kawaii Future Bass EP by the T4S girls🍰</span></span>
+        </div>
+      </div>
+      <ol class="album-tracks">
+        <li><button type="button" class="album-track" data-song="a16ac542-c13b-41ed-80ff-9ba502c6f8c3" aria-pressed="false"><span class="album-track-no">1</span><span class="album-track-name">Cream Mustache</span><span class="album-track-len">3:29</span></button></li>
+        <li><button type="button" class="album-track" data-song="0bbc6e75-0919-419c-ab2c-79d3932f6fce" aria-pressed="false"><span class="album-track-no">2</span><span class="album-track-name">Before It Melts</span><span class="album-track-len">3:31</span></button></li>
+        <li><button type="button" class="album-track" data-song="249f53d2-15ce-4988-bfd9-0f6c085a71ae" aria-pressed="false"><span class="album-track-no">3</span><span class="album-track-name">One Little Tug</span><span class="album-track-len">3:29</span></button></li>
+        <li><button type="button" class="album-track" data-song="c7a83574-5406-4826-ae5f-022f7ad8dd14" aria-pressed="false"><span class="album-track-no">4</span><span class="album-track-name">Weightless Walk</span><span class="album-track-len">3:29</span></button></li>
+        <li><button type="button" class="album-track" data-song="30e32aef-7a5d-4fdb-a842-d9b007d8d74b" aria-pressed="false"><span class="album-track-no">5</span><span class="album-track-name">On Three!</span><span class="album-track-len">3:29</span></button></li>
+      </ol>
+      <div class="album-player" id="albumPlayer" hidden></div>
+      <a class="album-more" href="https://suno.com/album/4e9914ff-8a15-4828-b34d-7f0c2c59c4d7" target="_blank" rel="noopener"><span class="lang-ja">Sunoでアルバムを開く ▸</span><span class="lang-en" lang="en" hidden>Open the album on Suno ▸</span></a>
+    </section>
     <a class="latest-comic" href="comic.html?comic=halloween-ghost-cookies#reader">
       <img src="images/comics/tenshi_akuma_halloween_ghost_cookies_thumb.webp" width="228" height="342" alt="天使ちゃんと悪魔ちゃんの2コマ漫画「にっこりおばけ」" decoding="async">
       <span>
@@ -762,6 +817,25 @@
   </main>
 
   <script>
+    // アルバム：曲を押したらその曲のSuno埋め込みプレイヤーを1つだけ読み込む
+    (function () {
+      var player = document.getElementById('albumPlayer');
+      var tracks = document.querySelectorAll('.album-track');
+      for (var i = 0; i < tracks.length; i++) {
+        tracks[i].addEventListener('click', function () {
+          for (var k = 0; k < tracks.length; k++) tracks[k].setAttribute('aria-pressed', 'false');
+          this.setAttribute('aria-pressed', 'true');
+          var frame = document.createElement('iframe');
+          frame.src = 'https://suno.com/embed/' + this.getAttribute('data-song');
+          frame.title = this.querySelector('.album-track-name').textContent + ' — Suno';
+          frame.allow = 'autoplay; encrypted-media';
+          frame.loading = 'lazy';
+          player.replaceChildren(frame);
+          player.hidden = false;
+        });
+      }
+    })();
+
     (function () {
       var SHARE_URL = 'https://himawarihima09-svg.github.io/myprofile/';
       var COPY = {
