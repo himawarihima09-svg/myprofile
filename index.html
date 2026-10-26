@@ -215,6 +215,11 @@
     .latest-comic .latest-work-duo img { width:72px; height:108px; object-fit:cover; object-position:center bottom; border-radius:0; }
     .latest-work-duo img + img { margin-left:-28px; }
     .latest-app { grid-template-columns: 76px minmax(0, 1fr) auto; padding: 10px; }
+    /* note記事（24/7 Radio の裏話）：横長サムネ＋ラジオボタンと同じ紫 */
+    .latest-note { grid-template-columns: 116px minmax(0, 1fr) auto; margin-top: 10px; border-color: #d9d0f5; background: linear-gradient(120deg, #fbf8ff, #f3f0ff); }
+    .latest-note:hover { border-color: #8a77e0; }
+    .latest-note .latest-comic-kicker, .latest-note .latest-comic-more { color: #6d5bd0; }
+    .latest-comic.latest-note img { width: 116px; height: 61px; object-fit: cover; border-radius: 10px; }
     .latest-video { max-width: 430px; margin: 10px auto 0; }
     .latest-video video {
       display:block; width:100%; height:auto; aspect-ratio:16/9;
@@ -454,6 +459,8 @@
       .latest-work { grid-template-columns: 86px minmax(0, 1fr) auto; }
       .latest-work-duo { width: 86px; height: 82px; }
       .latest-work.latest-app { grid-template-columns: 60px minmax(0, 1fr) auto; }
+      .latest-note { grid-template-columns: 92px minmax(0, 1fr) auto; }
+      .latest-comic.latest-note img { width: 92px; height: 48px; }
       .latest-comic .latest-work-duo img { width: 54px; height: 82px; }
       .latest-work-duo img + img { margin-left: -22px; }
       .latest-comic-title { font-size: .84rem; line-height: 1.45; }
@@ -507,6 +514,14 @@
         <span class="radio-cta-main">24/7 Radio 🎧</span>
         <span class="radio-cta-sub"><span class="lang-ja">ALL MIX Lounge・24時間ずっと配信中</span><span class="lang-en" lang="en" hidden>ALL MIX Lounge · streaming 24/7</span></span>
       </span>
+    </a>
+    <a class="latest-comic latest-note" href="https://note.com/shintaya_goshow/n/n42ba1baaa873" target="_blank" rel="noopener">
+      <img src="images/note_247_radio_thumb.webp" width="464" height="243" alt="24時間配信「ALL MIX Lounge」の画面。8人のちびキャラが音楽スタジオで踊るイラスト" decoding="async">
+      <span>
+        <span class="latest-comic-kicker"><span class="lang-ja">📝 note記事</span><span class="lang-en" lang="en" hidden>📝 Blog post (note)</span></span>
+        <span class="latest-comic-title"><span class="lang-ja">24/7 Radio の裏話<br>「8人の音楽スタジオ」の作り方</span><span class="lang-en" lang="en" hidden>Behind the 24/7 Radio<br>How the studio was made</span></span>
+      </span>
+      <span class="latest-comic-more"><span class="lang-ja">読む ▸</span><span class="lang-en" lang="en" hidden>Read ▸</span></span>
     </a>
     <!-- ===== アルバム（曲を押すとSunoの公式プレイヤーがここに出て、そのまま再生できる） ===== -->
     <section class="album" aria-label="アルバム A Little More">
